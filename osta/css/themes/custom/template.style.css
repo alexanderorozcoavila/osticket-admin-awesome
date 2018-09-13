@@ -1,0 +1,16 @@
+:root {
+    --header-bg:
+{{headerbg}};
+    --header-title-color:
+{{headertitlecolor}};
+    --nav-bar-bg:
+{{navbarbg}};
+    --nav-bar-link:
+{{navbarlink}};
+    --stickybar:
+{{stickybar}};
+    --mobile-menu-bg:
+{{mobilemenubg}};
+    --mobile-link-color:
+{{mobilelinkcolor}};
+} 

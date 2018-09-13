@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+
+i.icon-info-sign {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path style="fill:#128DBE" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>');	
+}
+i.icon-info-sign:hover {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path style="fill:#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>');	
+	background-size: 20px 20px !important;
+}
+i.icon-fixed-width.icon-pushpin {
+	background: url('data:image/svg+xml;utf8,<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path style="fill:#128DBE" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M8,14H6V12H8V14M8,11H6V9H8V11M8,8H6V6H8V8M15,14H10V12H15V14M18,11H10V9H18V11M18,8H10V6H18V8Z" /></svg>');	
+}
+i {
+    background-position: center center;
+    fill: #128dbe !important;
+    color: #128dbe !important;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px !important; 
+    position: relative;
+    top: -4px;
+}
+

@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+:root {
+	--header-bg: #e4e4e4;	
+	--header-title-color: #444444;
+
+	--nav-bar-bg: #cecece;
+	--nav-bar-link: #000000;
+	
+	--stickybar: #444444;	
+
+	--mobile-menu-bg: #cecece;	
+	--mobile-link-color: #000000;
+}
+
+.pull-right#nav a:hover, 
+.pull-right#nav a svg:hover,
+#nav .inactive li a:hover {
+    color: #000;
+    fill: #000;
+}

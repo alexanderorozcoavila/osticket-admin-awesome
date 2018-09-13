@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+:root {
+    --header-bg: #004d73; 
+    --header-title-color: #dbebfa;
+
+    --nav-bar-bg: #44a2d0;
+    --nav-bar-link: #004d73; 
+	
+    --stickybar: #44a2d0; 	
+
+    --mobile-menu-bg: #44a2d0;	
+    --mobile-link-color: #004d73;
+}
