@@ -8,12 +8,13 @@ $gmtime = Misc::gmtime();
 <?php csrf_token(); ?>
 <input type="hidden" name="t" value="system" >
 <table class="form_table settings_table" width="940" border="0" cellspacing="0" cellpadding="2">
+    <thead>
         <tr>
             <th colspan="2">
                 <em><b><?php echo __('General Settings'); ?></b></em>
             </th>
         </tr>
-		
+    </thead>
     <tbody>
 
         <tr>
@@ -40,6 +41,11 @@ $gmtime = Misc::gmtime();
             <td><input type="text" size="40" name="helpdesk_title" value="<?php echo $config['helpdesk_title']; ?>">
                 &nbsp;<font class="error">*&nbsp;<?php echo $errors['helpdesk_title']; ?></font>
                 <i class="help-tip icon-question-sign" href="#helpdesk_name_title"></i>
+            </td>
+        </tr>
+        <tr>
+            <td width="220" class="required"><?php echo __('Tiempo Script conflicto tickets ');?>:</td>
+            <td><input type="text" size="4" name="script_conflict_time" value="<?php echo $config['script_conflict_time']; ?>">
             </td>
         </tr>
         <tr>

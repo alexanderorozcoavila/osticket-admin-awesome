@@ -12,6 +12,9 @@
     See LICENSE.TXT for details.
 
     vim: expandtab sw=4 ts=4 sts=4:
+    actualizacion de ticket
+    ALTER TABLE `os_staff` ADD `default_preview_ticket` INT NOT NULL AFTER `default_paper_size`;
+
 **********************************************************************/
 include_once(INCLUDE_DIR.'class.ticket.php');
 include_once(INCLUDE_DIR.'class.dept.php');
@@ -321,6 +324,10 @@ implements AuthenticatedUser, EmailContact, TemplateVariable {
 
     function getDefaultPaperSize() {
         return $this->default_paper_size;
+    }
+
+    function getDefaultPreviewTicket() {
+        return $this->default_preview_ticket;
     }
 
     function forcePasswdChange() {
@@ -668,6 +675,7 @@ implements AuthenticatedUser, EmailContact, TemplateVariable {
         $this->auto_refresh_rate = $vars['auto_refresh_rate'];
         $this->default_signature_type = $vars['default_signature_type'];
         $this->default_paper_size = $vars['default_paper_size'];
+        $this->default_preview_ticket = $vars['default_preview_ticket'];
         $this->lang = $vars['lang'];
         $this->onvacation = isset($vars['onvacation']) ? 1 : 0;
 

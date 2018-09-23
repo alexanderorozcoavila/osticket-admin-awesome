@@ -81,7 +81,7 @@ class TicketsAjaxAPI extends AjaxController {
             $count = $T['tickets'];
             if ($T['number']) {
                 $tickets[] = array('id'=>$T['number'], 'value'=>$T['number'],
-                    'info'=>"{$T['number']} â€” {$email}",
+                    'info'=>"{$T['number']} — {$email}",
                     'matches'=>$_REQUEST['q']);
             }
             else {
@@ -141,7 +141,7 @@ class TicketsAjaxAPI extends AjaxController {
             Http::response(400, $this->encode(array('id'=>0, 'retry'=>false)));
 
         if (!$lock->getStaffId() || $lock->isExpired())
-            // Said lock doesn't exist or is is expired â€”Â fetch a new lock
+            // Said lock doesn't exist or is is expired — fetch a new lock
             return self::acquireLock($ticket->getId());
 
         if ($lock->getStaffId() != $thisstaff->getId())
@@ -195,17 +195,6 @@ class TicketsAjaxAPI extends AjaxController {
         include STAFFINC_DIR . 'templates/ticket-preview.tmpl.php';
     }
 
-    /* PRIORITY MOD */
-    function previewPriority ($tid) {
-        global $thisstaff;
-
-        if(!$thisstaff || !($ticket=Ticket::lookup($tid))
-                || !$ticket->checkStaffPerm($thisstaff))
-            Http::response(404, __('No such ticket'));
-
-        include(STAFFINC_DIR . 'templates/priority.tmpl.php');
-    }
-  /* end priority mod */
     function viewUser($tid) {
         global $thisstaff;
 

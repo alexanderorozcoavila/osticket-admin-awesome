@@ -86,27 +86,27 @@ class UserModel extends VerySimpleModel {
     static protected $perms = array(
         self::PERM_CREATE => array(
             'title' => /* @trans */ 'Create',
-            'desc' => /* @trans */ 'Ability to add new users',
+            'desc' => /* @trans */ ' Permiso para añadir nuevos usuarios',
             'primary' => true,
         ),
         self::PERM_EDIT => array(
             'title' => /* @trans */ 'Edit',
-            'desc' => /* @trans */ 'Ability to manage user information',
+            'desc' => /* @trans */ 'Permiso para editar la información de los usuarios',
             'primary' => true,
         ),
         self::PERM_DELETE => array(
             'title' => /* @trans */ 'Delete',
-            'desc' => /* @trans */ 'Ability to delete users',
+            'desc' => /* @trans */ 'Permiso para eliminar usuarios',
             'primary' => true,
         ),
         self::PERM_MANAGE => array(
             'title' => /* @trans */ 'Manage Account',
-            'desc' => /* @trans */ 'Ability to manage active user accounts',
+            'desc' => /* @trans */ 'Permiso para modificar la cuenta de un usuario activo',
             'primary' => true,
         ),
         self::PERM_DIRECTORY => array(
             'title' => /* @trans */ 'User Directory',
-            'desc' => /* @trans */ 'Ability to access the user directory',
+            'desc' => /* @trans */ ' Permiso para acceder al Directorio de Usuarios',
             'primary' => true,
         ),
     );

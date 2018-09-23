@@ -233,8 +233,7 @@ extends Avatar {
         $size = $this->size ?: 80;
         $url = '//www.gravatar.com/avatar/';
         $url .= md5( strtolower( $this->email ) );
-        $url .= "?s=$size&d=//osticketawesome.com/avatar.png";
-
+        $url .= "?s=$size&d={$this->d}";
         return $url;
     }
 }

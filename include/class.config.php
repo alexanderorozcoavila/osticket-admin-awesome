@@ -391,6 +391,10 @@ class OsticketConfig extends Config {
         return $this->get('helpdesk_title');
     }
 
+    function getScriptConflictTime() {
+        return $this->get('script_conflict_time');
+    }
+
     function getUrl() {
         return $this->get('helpdesk_url');
     }
@@ -1100,6 +1104,7 @@ class OsticketConfig extends Config {
         $f=array();
         $f['helpdesk_url']=array('type'=>'string',   'required'=>1, 'error'=>__('Helpdesk URL is required'));
         $f['helpdesk_title']=array('type'=>'string',   'required'=>1, 'error'=>__('Helpdesk title is required'));
+        $f['script_conflict_time']=array('type'=>'string',   'required'=>1, 'error'=>__('script_conflict_time title is required'));
         $f['default_dept_id']=array('type'=>'int',   'required'=>1, 'error'=>__('Default Department is required'));
         $f['autolock_minutes']=array('type'=>'int',   'required'=>1, 'error'=>__('Enter lock time in minutes'));
         //Date & Time Options
@@ -1139,6 +1144,7 @@ class OsticketConfig extends Config {
         return $this->updateAll(array(
             'isonline'=>$vars['isonline'],
             'helpdesk_title'=>$vars['helpdesk_title'],
+            'script_conflict_time'=>$vars['script_conflict_time'],
             'helpdesk_url'=>$vars['helpdesk_url'],
             'default_dept_id'=>$vars['default_dept_id'],
             'max_page_size'=>$vars['max_page_size'],

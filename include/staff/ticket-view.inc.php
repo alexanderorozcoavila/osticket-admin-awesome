@@ -8,6 +8,8 @@ if(!@$thisstaff->isStaff() || !$ticket->checkStaffPerm($thisstaff)) die('Access 
 //Re-use the post info on error...savekeyboards.org (Why keyboard? -> some people care about objects than users!!)
 $info=($_POST && $errors)?Format::input($_POST):array();
 
+
+
 //Get the goodies.
 $dept  = $ticket->getDept();  //Dept
 $role  = $thisstaff->getRole($dept);
@@ -49,25 +51,152 @@ if (!$errors['err']) {
 
 $unbannable=($emailBanned) ? BanList::includes($ticket->getEmail()) : false;
 
+// if($ticket->getThread()->getLogConflict($ticket->getId())){
+//     if($ticket->getThread()->getLogConflictUser($ticket->getId())){
+        
+//     }else{
+//         Http::redirect('tickets.php');
+//     }
+// }else{
+//     $ticket->logConflictTikcet();
+// }
+
 if($ticket->isOverdue())
     $warn.='&nbsp;&nbsp;<span class="Icon overdueTicket">'.__('Marked overdue!').'</span>';
 
 ?>
+<div class="dialog" id="alert2" style="top: 75.2857px;
+    left: 470px;display: none;">
+    <h3><span id="title">Conflicto de tramitación de ticket</span></h3>
+    <a class="close" href=""><i class="icon-remove-circle"></i></a>
+    <hr>
+    <div id="body" style="min-height: 20px;">El ticket selecciónado ya está siendo tramitado por el agente <a id="nombreagente"></a><br>
+No es posible que dos agentes realicen operaciones sobre un mismo ticket de forma simultánea. Para más información, contacte con dicho agente</div>
+    <hr style="margin-top:3em">
+    <p class="full-width">
+        <span class="buttons pull-right">
+            <input type="button" value="ACEPTAR" class="close ok">
+        </span>
+     </p>
+    <div class="clear"></div>
+</div>
+
+
 <div>
     <div class="sticky bar">
        <div class="content">
         <div class="pull-right flush-right">
             <?php
-            if ($thisstaff->hasPerm(Email::PERM_BANLIST)
-                    || $role->hasPerm(TicketModel::PERM_EDIT)
-                    || ($dept && $dept->isManager($thisstaff))) { ?>
+            
+            // if ($thisstaff->hasPerm(Email::PERM_BANLIST)
+            // || $role->hasPerm(TicketModel::PERM_EDIT)
+            // || ($dept && $dept->isManager($thisstaff))) {
+
+            if (true) { ?>
             <span class="action-button pull-right" data-placement="bottom" data-dropdown="#action-dropdown-more" data-toggle="tooltip" title="<?php echo __('More');?>">
                 <i class="icon-caret-down pull-right"></i>
                 <span ><i class="icon-cog"></i></span>
             </span>
             <?php
             }
+            $extra = "";
+            if(isset($_GET['status'])){
+                if($_GET['status'] == "assigned"){
+                    $statusLista = 'open';
+                    $statusUrl = '&status=assigned';
+                    $extra = " and staff_id='".$thisstaff->getId()."'";
+                }else{
+                    $statusLista = $_GET['status'];
+                    $statusUrl = '&status='.$_GET['status'];
+                }
+            }else{
+                $statusLista = 'open';
+                $statusUrl = '&status=open';
+            }
 
+            $sql="SELECT * FROM `os_ticket_status` WHERE `state` LIKE '".$statusLista."'";
+            //return $sql;
+            $resultado = db_fetch_array(db_query($sql));
+            if($resultado){
+                $id_status = $resultado["id"];
+            }else{
+                $id_status = "";
+            }
+
+            $idTicket = $_GET['id'];
+
+            //anterior
+            $sql1 = "SELECT ticket_id FROM os_ticket WHERE ticket_id = (select min(ticket_id) from os_ticket where ticket_id > '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
+            // print $sql1;
+            $anterior = db_fetch_array(db_query($sql1));
+            // print_r($anterior);
+            // exit;
+            //siguiente
+            $sql2 = "SELECT ticket_id FROM os_ticket WHERE ticket_id = (select max(ticket_id) from os_ticket where ticket_id < '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
+            $siguiente = db_fetch_array(db_query($sql2));
+            ?>
+
+            <?php 
+            if($anterior){
+                $ticket=Ticket::lookup($anterior["ticket_id"]);
+                if($ticket->getThread()->getLogConflict($anterior["ticket_id"])){
+                    if($ticket->getThread()->getLogConflictUser($anterior["ticket_id"])){
+                        $nombreagente = "";
+                    }else{
+                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($anterior["ticket_id"]);
+                        $nombreagente =  $nombreagentes["username"];   
+                    }
+                }else{
+                    $nombreagente = "";
+                }
+                if($nombreagente == ""){
+                    ?>
+                    <span class="action-button pull-right"><a href="tickets.php?id=<?php echo $anterior["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-right"></i></a></span>
+                    <?php
+                }else{
+                    ?>
+                    <span class="action-button pull-right conflictoTicket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-right"></i></a></span>
+                    <?php
+                }
+            ?>
+            
+            <?php
+            }else{
+            ?>
+            <span class="action-button pull-right"><a href="#"><i class="icon-arrow-right"></i></a></span>            
+            <?php
+            }
+            // $nombreagente = "";
+            if($siguiente){
+                if($ticket->getThread()->getLogConflict($siguiente["ticket_id"])){
+                    if($ticket->getThread()->getLogConflictUser($siguiente["ticket_id"])){
+                        $nombreagente = "";
+                    }else{
+                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($siguiente["ticket_id"]);
+                        $nombreagente =  $nombreagentes["username"];   
+                    }
+                }else{
+                    $nombreagente = "";
+                }
+                if($nombreagente == ""){
+                    ?>
+                    <span class="action-button pull-right"><a href="tickets.php?id=<?php echo $siguiente["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-left"></i></a></span>   
+                    <?php
+                }else{
+                    ?>
+                    <span class="action-button pull-right conflictoTicket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-left"></i></a></span>   
+                    <?php
+                }
+            ?>
+                     
+            <?php
+            }else{
+            ?>
+            <span class="action-button pull-right"><a href="#"><i class="icon-arrow-left"></i></a></span>            
+            <?php  
+            }
+            ?>
+            <?php
             if ($role->hasPerm(TicketModel::PERM_EDIT)) { ?>
                 <span class="action-button pull-right"><a data-placement="bottom" data-toggle="tooltip" title="<?php echo __('Edit'); ?>" href="tickets.php?id=<?php echo $ticket->getId(); ?>&a=edit"><i class="icon-edit"></i></a></span>
             <?php
@@ -140,7 +269,7 @@ if($ticket->isOverdue())
                 <?php
                  if ($role->hasPerm(TicketModel::PERM_EDIT)) { ?>
                     <li><a class="change-user" href="#tickets/<?php
-                    echo $ticket->getId(); ?>/change-user"><i class="icon-user"></i><?php
+                    echo $ticket->getId(); ?>/change-user"><i class="icon-user"></i> <?php
                     echo __('Change Owner'); ?></a></li>
                 <?php
                  }
@@ -207,9 +336,32 @@ if($ticket->isOverdue())
             </div>
                 <?php
                 if ($role->hasPerm(TicketModel::PERM_REPLY)) { ?>
-                <a href="#post-reply" class="post-response action-button"
+                <!--<a href="#post-reply" class="post-response action-button" 
                 data-placement="bottom" data-toggle="tooltip"
-                title="<?php echo __('Post Reply'); ?>"><i class="icon-mail-reply"></i></a>
+                title="<?php echo __('Post Reply'); ?>"><i class="icon-mail-reply"></i></a>-->
+
+                <span class="action-button"
+                data-dropdown="#action-dropdown-post-reply"
+                data-placement="bottom"
+                data-toggle="tooltip"
+                title="<?php echo __('Post Reply'); ?>"
+                >
+                <i class="icon-caret-down pull-right"></i>
+                <a class="ticket-action" id="ticket-assign"
+                    href="#post-reply"><i class="icon-mail-reply"></i></a>
+                </span>
+                <div id="action-dropdown-post-reply" class="action-dropdown anchor-right">
+                    <ul>
+                        
+                        <li><a class="post-response"
+                            data-placement="bottom" data-toggle="tooltip"
+                            href="#post-reply"><i class="icon-mail-reply"></i> Publicar Repuesta</a>
+                        <!--<li><a class="no-pjax ticket-action"
+                            data-redirect="tickets.php"
+                            href="#ccandcco/<?php echo $ticket->getId(); ?>/reenviar"><i class="icon-arrow-right"></i> Reenviar</a>-->
+                    </ul>
+                </div>
+
                 <?php
                 } ?>
                 <a href="#post-note" id="post-note" class="post-response action-button"
@@ -571,37 +723,466 @@ if ($errors['err'] && isset($_POST['a'])) {
                         <option value="0" <?php echo !$emailReply ? 'selected="selected"' : ''; ?>
                         >&mdash; <?php echo __('Do Not Email Reply'); ?> &mdash;</option>
                     </select>
+                    <?php if ($role->hasPerm(Ticket::PERM_CCANDCCO)) { ?>
+                        <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                    $('#emailreply').selectize({
+                        persist: true,
+                        maxItems: 1,
+                        plugins: ['remove_button'],
+                        valueField: 'id',
+                        labelField: 'email',
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                //console.log(item.name + '1');
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        onItemRemove: function(input) {
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/delete',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                        },
+                        onItemAdd: function(input,item){
+                            console.log(input);
+                            //data = { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"O" }
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/addcco',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"M" },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                            console.log('agregador:' + input);
+
+                        },
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                return {email: input, id:idusernew}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    </script>
+
+                    <?php } ?>
                 </td>
             </tr>
             </tbody>
             <?php
-            if(1) { //Make CC optional feature? NO, for now.
+            if ($role->hasPerm(Ticket::PERM_CCANDCCO)) {//Make CC optional feature? NO, for now.
                 ?>
             <tbody id="cc_sec"
                 style="display:<?php echo $emailReply?  'table-row-group':'none'; ?>;">
              <tr>
                 <td width="120">
-                    <label><strong><?php echo __('Collaborators'); ?>:</strong></label>
+                    <label><strong><?php echo __('CC'); ?>:</strong></label>
                 </td>
                 <td>
                     <input type='checkbox' value='1' name="emailcollab"
                     id="t<?php echo $ticket->getThreadId(); ?>-emailcollab"
                         <?php echo ((!$info['emailcollab'] && !$errors) || isset($info['emailcollab']))?'checked="checked"':''; ?>
-                        style="display:<?php echo $ticket->getThread()->getNumCollaborators() ? 'inline-block': 'none'; ?>;"
+                        style="display:none;"
                         >
-                    <?php
-                    $recipients = __('Add Recipients');
-                    if ($ticket->getThread()->getNumCollaborators())
-                        $recipients = sprintf(__('Recipients (%d of %d)'),
-                                $ticket->getThread()->getNumActiveCollaborators(),
-                                $ticket->getThread()->getNumCollaborators());
+                        <?php
+                        $ticket2=Ticket::lookup($ticket->getId());
+                        $thread2 = $ticket2->getThread();
+                        $collabs2=$thread2->getCollaborators(array('role'=>'M'));
+                        $colaboradores2 = "";
+                        foreach($collabs2 as $collab2) {
+                            $usercc = $collab2->getUser();
+                            $colaboradores2 = $colaboradores2 . '<option value="'.$usercc->getId().'" selected>'.$collab2->getEmail().'</option>';
+                        }
+                    ?>
+                    <div style="
+                    float:left;
+                    border: 1px solid #d0d0d0;
+                    padding: 10px 10px;
+                    width: 100%;
+                    background: #fff;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;">
+                    <select id="cc-colaboradores" class="contacts" placeholder="Agregar"  multiple style="width: 90%;">
+                        <?php echo $colaboradores2; ?>
+                    </select>
+                    <span style="
+                    float: right;
+                    top: 0px;
+                    right: 0px;
+                    margin-right: 10px;
+                    margin-top: -27px;cursor:pointer;" id="span-cco">CCO</span>
+                    </div>
+                    <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
-                    echo sprintf('<span><a class="collaborators preview"
-                            href="#thread/%d/collaborators"><span id="t%d-recipients">%s</span></a></span>',
-                            $ticket->getThreadId(),
-                            $ticket->getThreadId(),
-                            $recipients);
-                   ?>
+                    $('#cc-colaboradores').selectize({
+                        persist: true,
+                        maxItems: null,
+                        plugins: ['remove_button'],
+                        valueField: 'id',
+                        labelField: 'email',
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                //console.log(item.name + '1');
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        onItemRemove: function(input) {
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/delete',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                        },
+                        onItemAdd: function(input,item){
+                            console.log(input);
+                            //data = { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"O" }
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/addcco',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"M" },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                            console.log('agregador:' + input);
+
+                        },
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                return {email: input, id:idusernew}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    </script>
+                </td>
+             </tr>
+                <?php
+                    $ticket2=Ticket::lookup($ticket->getId());
+                    $thread2 = $ticket2->getThread();
+                    $collabs2=$thread2->getCollaborators(array('role'=>'O'));
+                    $colaboradores2 = "";
+                    foreach($collabs2 as $collab2) {
+                        $usercco = $collab2->getUser();
+                        $colaboradores2 = $colaboradores2 . '<option value="'.$usercco->getId().'" selected>'.$collab2->getEmail().'</option>';
+                    }
+                ?>
+                <?php if($colaboradores2==""){ 
+                    ?><tr id="tr-cco" style="display:none;"><?php
+                }else{
+                    ?><tr id="tr-cco"><?php
+                }?>
+                <td width="120">
+                    <label><strong><?php echo __('CCO'); ?>:</strong></label>
+                </td>
+                <td>
+                <div style="
+                    float:left;
+                    border: 1px solid #d0d0d0;
+                    padding: 10px 10px;
+                    width: 100%;
+                    background: #fff;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;">
+                <select id="cco-colaboradores" class="contacts" placeholder="Agregar" multiple style="width: 90%;">
+                <?php echo $colaboradores2; ?>
+                </select>
+                </div>
+                    <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                    $('#cco-colaboradores').selectize({
+                        persist: true,
+                        maxItems: null,
+                        valueField: 'id',
+                        labelField: 'email',
+                        plugins: ['remove_button'],
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                //console.log(item.name + '1');
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        onItemRemove: function(input) {
+                            console.log('eliminado:' + input);
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/delete',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                        },
+                        onItemAdd: function(input,item){
+                            console.log(input);
+                            //data = { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"O" }
+                            $.ajax({
+                                url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/addcco',
+                                type: 'POST',
+                                // async:false,
+                                data: { threadId:"<?php echo $ticket->getThreadId(); ?>",userId: input, role:"O" },
+                                // dataType: 'json',
+                                error: function() {
+                                    console.log('error');
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                }
+                            });
+                            console.log('agregador:' + input);
+
+                        },
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/<?php echo $ticket->getThreadId(); ?>/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                return {email: input, id:idusernew}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    </script>
                 </td>
              </tr>
             </tbody>
@@ -922,25 +1503,39 @@ if ($errors['err'] && isset($_POST['a'])) {
 </div>
 <script type="text/javascript">
 $(function() {
-    $(document).on('click', 'a.change-user', function(e) {
-        e.preventDefault();
-        var tid = <?php echo $ticket->getOwnerId(); ?>;
-        var cid = <?php echo $ticket->getOwnerId(); ?>;
-        var url = 'ajax.php/'+$(this).attr('href').substr(1);
-        $.userLookup(url, function(user) {
-            if(cid!=user.id
-                    && $('.dialog#confirm-action #changeuser-confirm').length) {
-                $('#newuser').html(user.name +' &lt;'+user.email+'&gt;');
-                $('.dialog#confirm-action #action').val('changeuser');
-                $('#confirm-form').append('<input type=hidden name=user_id value='+user.id+' />');
-                $('#overlay').show();
-                $('.dialog#confirm-action .confirm-action').hide();
-                $('.dialog#confirm-action p#changeuser-confirm')
-                .show()
-                .parent('div').show().trigger('click');
+
+    <?php if ($role->hasPerm(Ticket::PERM_CCANDCCO)) { ?>
+        $('#span-cco').click(function() {
+            if ($("#tr-cco").css('display') == 'none') {
+                $("#tr-cco").css('display','table-row');
+            }else{
+                $("#tr-cco").css('display','none');
             }
+            console.log('open tr');
         });
-    });
+    <?php } ?>
+
+    
+        $(document).on('click', 'a.change-user', function(e) {
+            e.preventDefault();
+            var tid = <?php echo $ticket->getOwnerId(); ?>;
+            var cid = <?php echo $ticket->getOwnerId(); ?>;
+            var url = 'ajax.php/'+$(this).attr('href').substr(1);
+            $.userLookup(url, function(user) {
+                if(cid!=user.id
+                        && $('.dialog#confirm-action #changeuser-confirm').length) {
+                    $('#newuser').html(user.name +' &lt;'+user.email+'&gt;');
+                    $('.dialog#confirm-action #action').val('changeuser');
+                    $('#confirm-form').append('<input type=hidden name=user_id value='+user.id+' />');
+                    $('#overlay').show();
+                    $('.dialog#confirm-action .confirm-action').hide();
+                    $('.dialog#confirm-action p#changeuser-confirm')
+                    .show()
+                    .parent('div').show().trigger('click');
+                }
+            });
+        });
+    
 
     // Post Reply or Note action buttons.
     $('a.post-response').click(function (e) {
@@ -965,6 +1560,15 @@ $(function() {
 
         return false;
     });
+
+});
+$('.conflictoTicket').click(function(){
+    var $input = $( this );
+    nombre = $input.attr('nombreagente');
+    $('#nombreagente').text(nombre);
+    $('.dialog#alert2').css({"top": "75.2857px" , "left": "470px"});
+    $('.dialog#alert2').show();
+
 
 });
 </script>

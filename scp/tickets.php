@@ -327,6 +327,26 @@ if($_POST && !$errors):
                     $vars['cannedattachments'] = $response_form->getField('attachments')->getClean();
 
                     if(($ticket=Ticket::open($vars, $errors))) {
+                        foreach($_POST['cc-colaboradores'] as $cc){
+                            $collab = Collaborator::create(array(
+                                'isactive' => '1',
+                                'thread_id' => $ticket->getThreadId(),
+                                'user_id' => $cc,
+                                'role' => 'M',
+                            ));
+                            $collab->save(true);
+                        }
+
+                        foreach($_POST['cco-colaboradores'] as $cco){
+                            $collab = Collaborator::create(array(
+                                'isactive' => '1',
+                                'thread_id' => $ticket->getThreadId(),
+                                'user_id' => $cco,
+                                'role' => 'O',
+                            ));
+                            $collab->save(true);
+                        }
+
                         $msg=__('Ticket created successfully');
                         $_REQUEST['a']=null;
                         if (!$ticket->checkStaffPerm($thisstaff) || $ticket->isClosed())
@@ -450,6 +470,15 @@ $ost->addExtraHeader('<meta name="tip-namespace" content="tickets.queue" />',
     "$('#content').data('tipNamespace', 'tickets.queue');");
 
 if($ticket) {
+    if($ticket->getThread()->getLogConflict($ticket->getId())){
+        if($ticket->getThread()->getLogConflictUser($ticket->getId())){
+            
+        }else{
+            Http::redirect('tickets.php');
+        }
+    }else{
+        $ticket->logConflictTikcet();
+    }
     $ost->setPageTitle(sprintf(__('Ticket #%s'),$ticket->getNumber()));
     $nav->setActiveSubMenu(-1);
     $inc = 'ticket-view.inc.php';

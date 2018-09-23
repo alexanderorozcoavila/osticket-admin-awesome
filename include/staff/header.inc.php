@@ -45,6 +45,10 @@ if ($lang) {
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css?9ae093d"/>
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/translatable.css?9ae093d"/>
 
+    <!-- Modificaciones de CC and CCO-->   
+    <script type="text/javascript" src="<?php echo ROOT_PATH ?>scp/selectize.js/dist/js/standalone/selectize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT_PATH ?>scp/selectize.js/dist/css/selectize.css" />
+
     <?php
     if($ost && ($headers=$ost->getExtraHeaders())) {
         echo "\n\t".implode("\n\t", $headers)."\n";
