@@ -1,0 +1,16 @@
+:root {
+    --header-bg:
+#e10000;
+    --header-title-color:
+#0096c1;
+    --nav-bar-bg:
+#bf0000;
+    --nav-bar-link:
+#00d28b;
+    --stickybar:
+#e10000;
+    --mobile-menu-bg:
+#00e58e;
+    --mobile-link-color:
+#b06000;
+} 
