@@ -465,15 +465,13 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 
 <!-- SEARCH FORM START -->
 <div id='basic_search'>
-    <div class="pull-right" style="height:25px">
-        <span class="valign-helper"></span>
-        <?php
-        require STAFFINC_DIR.'templates/queue-sort.tmpl.php';
-        ?>
-    </div>
-    
-  
-    <form action="tickets.php" method="get" onsubmit="javascript:
+<!--  <div class="pull-right" style="height:25px">
+    <span class="valign-helper"></span>
+    <?php
+    require STAFFINC_DIR.'templates/queue-sort.tmpl.php';
+    ?>
+  </div>-->
+<!--    <form action="tickets.php" method="get" onsubmit="javascript:
   $.pjax({
     url:$(this).attr('action') + '?' + $(this).serialize(),
     container:'#pjax-container',
@@ -483,17 +481,26 @@ return false;">
     <input type="hidden" name="a" value="search">
     <input type="hidden" name="search-type" value=""/>
     <div class="attached input">
-      <input type="text" class="basic-search" data-url="ajax.php/tickets/lookup" name="query"
-        autofocus size="30" value="<?php echo Format::htmlchars($_REQUEST['query'], true); ?>"
-        autocomplete="off" autocorrect="off" autocapitalize="off">
+		<input type="text" class="basic-search" data-url="ajax.php/tickets/lookup" name="query" placeholder="Search Here"
+			autofocus size="30" value="<?php echo Format::htmlchars($_REQUEST['query'], true); ?>"
+			autocomplete="off" autocorrect="off" autocapitalize="off">		
       <button type="submit" class="attached button"><i class="icon-search"></i>
-      </button>
+		</button>
     </div>
-    <a href="#" onclick="javascript:
-        $.dialog('ajax.php/tickets/search', 201);"
-        >[<?php echo __('advanced'); ?>]</a>
-        <i class="help-tip icon-question-sign" href="#advanced"></i>
-    </form>
+	<a href="#" onclick="javascript:$.dialog('ajax.php/tickets/search', 201);">
+		<div class="action-button advanced-search gray-light2">
+			<div class="button-icon">
+			</div>
+			<div class="button-text advanced-search">
+				Advanced Search
+			</div>
+			<div class="button-spacing">
+				&nbsp;
+			</div>
+		</div>
+	</a>
+    <i class="help-tip icon-question-sign" href="#advanced"></i>
+    </form>-->
 </div>
 <!-- SEARCH FORM END -->
 <div class="clear"></div>
