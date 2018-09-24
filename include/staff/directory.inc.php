@@ -74,13 +74,7 @@ $pageNav->paginate($agents);
 $qstr.='&amp;order='.($order=='DESC' ? 'ASC' : 'DESC');
 
 ?>
-<div style="margin-bottom:20px; padding-top:5px;">
-    <div class="pull-left flush-left">
-        <h2><?php echo __('Agents');?>
-            &nbsp;<i class="help-tip icon-question-sign" href="#staff_members"></i>
-        </h2>
-    </div>
-</div>
+
 <div id="basic_search">
     <div style="min-height:25px;">
     <form action="directory.php" method="GET" name="filter">
@@ -101,7 +95,13 @@ $qstr.='&amp;order='.($order=='DESC' ? 'ASC' : 'DESC');
  </div>
 </div>
 <div class="clear"></div>
-
+<div style="margin-bottom:20px; padding-top:5px;">
+    <div class="pull-left flush-left">
+        <h2><?php echo __('Agents');?>
+            &nbsp;<i class="help-tip icon-question-sign" href="#staff_members"></i>
+        </h2>
+    </div>
+</div>
     <?php
     if ($agents->exists(true))
         $showing=$pageNav->showing();
@@ -126,10 +126,7 @@ $qstr.='&amp;order='.($order=='DESC' ? 'ASC' : 'DESC');
            <tr id="<?php echo $A->staff_id; ?>">
                 <td>&nbsp;<?php echo Format::htmlchars($A->getName()); ?></td>
                 <td>&nbsp;<?php echo Format::htmlchars((string) $A->dept); ?></td>
-                <td>&nbsp;                
-					<a href="mailto://<?php echo Format::htmlchars($A->email); ?>">
-						<?php echo Format::htmlchars($A->email); ?></a>
-                </td>
+                <td>&nbsp;<?php echo Format::htmlchars($A->email); ?></td>
                 <td>&nbsp;<?php echo Format::phone($A->phone); ?></td>
                 <td>&nbsp;<?php echo $A->phone_ext; ?></td>
                 <td>&nbsp;<?php echo Format::phone($A->mobile); ?></td>

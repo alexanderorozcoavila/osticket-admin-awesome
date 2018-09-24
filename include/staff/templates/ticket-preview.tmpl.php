@@ -35,6 +35,9 @@ echo '<ul class="tabs" id="ticket-preview">';
 echo '
         <li class="active"><a id="preview_tab" href="#preview"
             ><i class="icon-list-alt"></i>&nbsp;'.__('Ticket Summary').'</a></li>';
+echo '
+        <li><a id="resumen_tab" href="#resumen"
+            >&nbsp;'.__('Contenido del Ticket').'</a></li>';
 if ($thread && $thread->getNumCollaborators()) {
 echo sprintf('
         <li><a id="collab_tab" href="#collab"
@@ -117,7 +120,26 @@ echo sprintf(
 echo '
     </table>';
 echo '</div>'; // ticket preview content.
+
+
+
+//resumen ticket
+echo '<div class="hidden tab_content" id="resumen">';
+$ticketprew=Ticket::lookup($ticket->getId());
+$tcount = $ticketprew->getThreadEntries();
+$i=0;
+foreach ($tcount as $EN){
+    if($i == 0){
+        $lineas = $EN->getBody();
+        $i = 1;
+    }
+}
+echo $lineas;
+echo '</div>'; // ticket preview content.
 ?>
+
+
+
 <div class="hidden tab_content" id="collab">
     <table border="0" cellspacing="" cellpadding="1">
         <colgroup><col style="min-width: 250px;"></col></colgroup>

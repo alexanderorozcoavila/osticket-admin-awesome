@@ -64,7 +64,7 @@ $users->order_by($order . $order_column);
             <?php csrf_token(); ?>
             <input type="hidden" name="a" value="search">
             <div class="attached input">
-                <input type="text" class="basic-search" id="basic-user-search" name="query" placeholder="Search for User"
+                <input type="text" class="basic-search" id="basic-user-search" name="query"
                          size="30" value="<?php echo Format::htmlchars($_REQUEST['query']); ?>"
                         autocomplete="off" autocorrect="off" autocapitalize="off">
             <!-- <td>&nbsp;&nbsp;<a href="" id="advanced-user-search">[advanced]</a></td> -->
@@ -195,7 +195,7 @@ else
                     <?php
                     if ($U['ticket_count'])
                          echo sprintf('<i class="icon-fixed-width icon-file-text-alt"></i>
-                             <div id="ticket-count">%d</div>', $U['ticket_count']);
+                             <small>(%d)</small>', $U['ticket_count']);
                     ?>
                 </td>
                 <td><?php echo $status; ?></td>
@@ -223,7 +223,7 @@ else
 </table>
 <?php
 if ($total) {
-    echo sprintf('<div id="table-foot-options">&nbsp;'.__('Page').': %s &nbsp; <a class="no-pjax"
+    echo sprintf('<div>&nbsp;'.__('Page').': %s &nbsp; <a class="no-pjax"
             href="users.php?a=export&qh=%s">'.__('Export').'</a></div>',
             $pageNav->getPageLinks(),
             $qhash);

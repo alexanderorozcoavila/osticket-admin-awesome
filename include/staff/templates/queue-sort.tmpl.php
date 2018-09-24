@@ -1,7 +1,7 @@
 
 <span class="action-button muted" data-dropdown="#sort-dropdown" data-toggle="tooltip" title="<?php echo $sort_options[$sort_cols]; ?>">
   <i class="icon-caret-down pull-right"></i>
-  <span><i class="icon-sort-by-attributes-alt <?php if ($sort_dir) echo 'icon-flip-vertical'; ?>"></i> <span class="sort-button-text"><?php echo __('Sort');?></span></span>
+  <span><i class="icon-sort-by-attributes-alt <?php if ($sort_dir) echo 'icon-flip-vertical'; ?>"></i> <?php echo __('Sort');?></span>
 </span>
 <div id="sort-dropdown" class="action-dropdown anchor-right"
 onclick="javascript:
@@ -30,3 +30,4 @@ $.pjax({
     <?php } ?>
  </ul>
 </div>
+

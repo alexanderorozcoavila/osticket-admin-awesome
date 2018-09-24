@@ -149,7 +149,6 @@ $dispatcher = patterns('',
         url_get('^(?P<tid>\d+)/user$', 'viewUser'),
         url_post('^(?P<tid>\d+)/user$', 'updateUser'),
         url_get('^(?P<tid>\d+)/preview', 'previewTicket'),
-        url_get('^(?P<tid>\d+)/priority', 'previewPriority'),		
         url_get('^(?P<tid>\d+)/forms/manage$', 'manageForms'),
         url_post('^(?P<tid>\d+)/forms/manage$', 'updateForms'),
         url_get('^(?P<tid>\d+)/canned-resp/(?P<cid>\w+).(?P<format>json|txt)', 'cannedResponse'),
@@ -254,7 +253,6 @@ $dispatcher = patterns('',
         url('^/reset-permissions', 'resetPermissions'),
         url('^/change-department', 'changeDepartment'),
         url('^/(?P<id>\d+)/avatar/change', 'setAvatar')
-        
     )),
     url('^/ccandcco', patterns('ajax.ccandcco.php:CcAndCcoAjaxAPI',
         url('^/(?P<id>\d+)/addcc$', 'addCc'),
@@ -265,6 +263,7 @@ $dispatcher = patterns('',
         url_post('^/(?P<id>\d+)/reenviar/guardar', 'guardarReenviar')
 
     ))
+
 );
 
 Signal::send('ajax.scp', $dispatcher);

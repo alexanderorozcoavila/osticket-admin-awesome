@@ -7,24 +7,20 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
     <div id="blur">
         <div id="background"></div>
     </div>
-    <div id="login-title">
-		<a id="login-title-link" href="<?php echo ROOT_PATH; ?>scp/">
-			<?php				
-			$file_name = ROOT_DIR ."osta/css/themes/title.txt";
-			echo file_get_contents($file_name);
-			?>  
-		</a>
-	</div>
+    <h1 id="logo"><a href="index.php">
+        <span class="valign-helper"></span>
+        <img src="logo.php?login" alt="osTicket :: <?php echo __('Staff Control Panel');?>" />
+    </a></h1>
     <h3><?php echo Format::htmlchars($msg); ?></h3>
     <div class="banner"><small><?php echo ($content) ? Format::display($content->getLocalBody()) : ''; ?></small></div>
     <form action="login.php" method="post" id="login">
         <?php csrf_token(); ?>
         <input type="hidden" name="do" value="scplogin">
         <fieldset>
-        <div id="login-userid"></div><input type="text" name="userid" id="name" value="<?php
+        <input type="text" name="userid" id="name" value="<?php
             echo $info['userid']; ?>" placeholder="<?php echo __('Email or Username'); ?>"
             autofocus autocorrect="off" autocapitalize="off">
-        <div id="login-password"></div><input type="password" name="passwd" id="pass" placeholder="<?php echo __('Password'); ?>" autocorrect="off" autocapitalize="off">
+        <input type="password" name="passwd" id="pass" placeholder="<?php echo __('Password'); ?>" autocorrect="off" autocapitalize="off">
             <?php if ($show_reset && $cfg->allowPasswordReset()) { ?>
             <h3 style="display:inline"><a href="pwreset.php"><?php echo __('Forgot My Password'); ?></a></h3>
             <?php } ?>
@@ -71,6 +67,5 @@ if (count($ext_bks)) { ?>
         #loginBox:after { background-color: white !important; }
     </style>
     <![endif]-->
-<?php include ROOT_DIR . 'osta/inc/back-button.html'; ?>    
 </body>
 </html>

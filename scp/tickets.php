@@ -190,6 +190,18 @@ if($_POST && !$errors):
             }
             break;
         case 'edit':
+            // $id = $_GET['id'];
+            // if(isset($event)){
+            //     print "si";
+            //     $event->filter(array('thread_id' => $id,'data'=>'notedit'));
+            //     print $event->uid;
+
+            //     print var_dump($event);
+                
+            // }else{
+            //     print "no";
+            // }
+            // exit;
         case 'update':
             if(!$ticket || !$role->hasPerm(TicketModel::PERM_EDIT))
                 $errors['err']=__('Permission Denied. You are not allowed to edit tickets');
@@ -455,7 +467,7 @@ $nav->addSubMenu(array('desc' => __('Closed'),
                     ($_REQUEST['status']=='closed'));
 
 if ($thisstaff->hasPerm(TicketModel::PERM_CREATE, false)) {
-    $nav->addSubMenu(array('desc'=>__('New'),
+    $nav->addSubMenu(array('desc'=>__('New Ticket'),
                            'title'=> __('Open a New Ticket'),
                            'href'=>'tickets.php?a=open',
                            'iconclass'=>'newTicket',
@@ -464,8 +476,8 @@ if ($thisstaff->hasPerm(TicketModel::PERM_CREATE, false)) {
 }
 
 
-$ost->addExtraHeader('<script type="text/javascript" src="js/ticket.js?9ae093d"></script>');
-$ost->addExtraHeader('<script type="text/javascript" src="js/thread.js?9ae093d"></script>');
+$ost->addExtraHeader('<script type="text/javascript" src="js/ticket.js?8c848b5"></script>');
+$ost->addExtraHeader('<script type="text/javascript" src="js/thread.js?8c848b5"></script>');
 $ost->addExtraHeader('<meta name="tip-namespace" content="tickets.queue" />',
     "$('#content').data('tipNamespace', 'tickets.queue');");
 
@@ -484,6 +496,12 @@ if($ticket) {
     $inc = 'ticket-view.inc.php';
     if ($_REQUEST['a']=='edit'
             && $ticket->checkStaffPerm($thisstaff, TicketModel::PERM_EDIT)) {
+        
+        //print "editando";
+        //$ticket->logConflictTikcet();
+        
+        // $th = $ticket->getThread()->getLogConflictUser($ticket->getId());
+        // print var_dump($th);
         $inc = 'ticket-edit.inc.php';
         if (!$forms) $forms=DynamicFormEntry::forTicket($ticket->getId());
         // Auto add new fields to the entries

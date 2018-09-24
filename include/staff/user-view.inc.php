@@ -10,8 +10,7 @@ $org = $user->getOrganization();
     <tr>
         <td width="50%" class="has_bottom_border">
              <h2><a href="users.php?id=<?php echo $user->getId(); ?>"
-             title="Reload"><i class="icon-refresh"></i> <?php echo Format::htmlchars($user->getName()->getOriginal()); ?>
-             </a></h2>
+             title="Reload"><i class="icon-refresh"></i> <?php echo Format::htmlchars($user->getName()); ?></a></h2>
         </td>
         <td width="50%" class="right_align has_bottom_border">
 <?php if (($account && $account->isConfirmed())
@@ -94,7 +93,7 @@ if ($thisstaff->hasPerm(User::PERM_EDIT)) { ?>
                     ?>/edit" class="user-action"><i
                         class="icon-edit"></i>
 <?php }
-                    echo Format::htmlchars($user->getName());
+                    echo Format::htmlchars($user->getName()->getOriginal());
 if ($thisstaff->hasPerm(User::PERM_EDIT)) { ?>
                         </a></b>
 <?php } ?>
