@@ -506,13 +506,56 @@ return false;">
 <div class="clear"></div>
 <div style="margin-bottom:20px; padding-top:5px;">
     <div class="sticky bar opaque">
+       
+		<div class="pull-left flush-left">
+			<h2><a href="<?php echo $refresh_url; ?>"
+				title="<?php echo __('Refresh'); ?>"><?php echo
+				$results_type; ?></a>								
+			</h2>
+		</div>       
+       
         <div class="content">
-            <div class="pull-left flush-left">
-                <h2><a href="<?php echo $refresh_url; ?>"
-                    title="<?php echo __('Refresh'); ?>"><i class="icon-refresh"></i> <?php echo
-                    $results_type; ?></a></h2>
-            </div>
-            <div class="pull-right flush-right">
+
+            <div class="pull-right flush-right page-top">            
+            
+				<form action="tickets.php" method="get" onsubmit="javascript:
+					  $.pjax({
+						url:$(this).attr('action') + '?' + $(this).serialize(),
+						container:'#pjax-container',
+						timeout: 2000
+					  });
+					return false;">
+					<input type="hidden" name="a" value="search">
+					<input type="hidden" name="search-type" value=""/>
+					<div class="attached input">
+						<input type="text" class="basic-search" data-url="ajax.php/tickets/lookup" name="query"  placeholder="<?php echo __('Search Here'); ?>"
+							size="30" value="<?php echo Format::htmlchars($_REQUEST['query'], true); ?>"
+							autocomplete="off" autocorrect="off" autocapitalize="off">		
+					  <button type="submit" class="attached button"><i class="icon-search"></i>
+						</button>
+					</div>
+					<a href="#" onclick="javascript:$.dialog('ajax.php/tickets/search', 201);">
+						<div class="action-button advanced-search gray-light2">
+							<div class="button-icon">
+							</div>
+							<div class="button-text advanced-search">
+								Advanced	
+								<svg style="width:20px;height:20px" viewBox="0 0 20 20">
+									<path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+								</svg>							
+							</div>
+							<div class="button-spacing">
+								&nbsp;
+							</div>
+						</div>
+					</a>
+				</form>            
+
+			<span class="valign-helper"></span>
+			<?php
+			require STAFFINC_DIR.'templates/queue-sort.tmpl.php';
+			?>
+
             <?php
             if ($count) {
                 Ticket::agentActions($thisstaff, array('status' => $status));
@@ -521,7 +564,6 @@ return false;">
         </div>
     </div>
 </div>
-
 <div class="clear"></div>
 <form action="tickets.php" method="POST" name='tickets' id="tickets">
 <?php csrf_token(); ?>
