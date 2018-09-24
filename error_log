@@ -1,2 +1,0 @@
-[12-Sep-2018 22:44:40 UTC] PHP Warning:  readfile(../osta/css/themes/selected.txt): failed to open stream: No existe el fichero o el directorio in /home/nous00/public_html/pinguipastry.com.ve/soporte/osta/inc/client-head.html on line 13
-[12-Sep-2018 22:44:49 UTC] PHP Warning:  readfile(../osta/css/themes/selected.txt): failed to open stream: No existe el fichero o el directorio in /home/nous00/public_html/pinguipastry.com.ve/soporte/osta/inc/client-head.html on line 13

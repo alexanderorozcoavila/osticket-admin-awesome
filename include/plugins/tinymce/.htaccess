@@ -1,4 +1,0 @@
-Order Allow,Deny
-<FilesMatch "^tinymce-osticket(\.min|)\.js$">
-Allow from all
-</FilesMatch>
