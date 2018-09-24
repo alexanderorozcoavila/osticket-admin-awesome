@@ -867,10 +867,6 @@ class TicketStatusList extends CustomListHandler {
         }
     }
 
-    function getIdName($name){
-
-    }
-
     function getNumItems() {
         return TicketStatus::objects()->count();
     }
