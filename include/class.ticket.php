@@ -100,43 +100,51 @@ class TicketModel extends VerySimpleModel {
     const PERM_CLOSE    = 'ticket.close';
     const PERM_DELETE   = 'ticket.delete';
 
+    // test
+    const PERM_CCANDCCO   = 'ticket.ccandcco';
+
 
     static protected $perms = array(
             self::PERM_CREATE => array(
                 'title' =>
                 /* @trans */ 'Create',
                 'desc'  =>
-                /* @trans */ 'Ability to open tickets on behalf of users'),
+                /* @trans */ 'Permiso para abrir tickets en nombre de un usuario'),
             self::PERM_EDIT => array(
                 'title' =>
                 /* @trans */ 'Edit',
                 'desc'  =>
-                /* @trans */ 'Ability to edit tickets'),
+                /* @trans */ 'Permiso para editar tickets y propietarios de tickets. Permiso de reenvío a terceros'),
             self::PERM_ASSIGN => array(
                 'title' =>
                 /* @trans */ 'Assign',
                 'desc'  =>
-                /* @trans */ 'Ability to assign tickets to agents or teams'),
+                /* @trans */ 'Permiso para asignar tickets a agentes o equipos'),
             self::PERM_TRANSFER => array(
                 'title' =>
                 /* @trans */ 'Transfer',
                 'desc'  =>
-                /* @trans */ 'Ability to transfer tickets between departments'),
+                /* @trans */ 'Permiso para trasferir tickets entre departamentos'),
             self::PERM_REPLY => array(
                 'title' =>
                 /* @trans */ 'Post Reply',
                 'desc'  =>
-                /* @trans */ 'Ability to post a ticket reply'),
+                /* @trans */ 'Permiso para la respuesta a un ticket'),
             self::PERM_CLOSE => array(
                 'title' =>
                 /* @trans */ 'Close',
                 'desc'  =>
-                /* @trans */ 'Ability to close tickets'),
+                /* @trans */ ' Permiso para cerrar tickets'),
             self::PERM_DELETE => array(
                 'title' =>
                 /* @trans */ 'Delete',
                 'desc'  =>
-                /* @trans */ 'Ability to delete tickets'),
+                /* @trans */ 'Permiso para eliminar tickets'),
+            self::PERM_CCANDCCO => array(
+                'title' =>
+                /* @trans */ 'CC y CCO',
+                'desc'  =>
+                /* @trans */ 'Permiso para poner en copia y/o copia oculta a un tercero en un ticket'),
             );
 
     // Ticket Sources
@@ -2593,6 +2601,14 @@ implements RestrictedAccess, Threadable {
         $this->getThread()->getEvents()->log($this, $state, $data, $user, $annul);
     }
 
+    function logConflictTikcet(){
+        $user = $thisstaff ?: $user;
+        $annul = null;
+        $data = 'notedit';
+        $state = 'notedit';
+        $this->getThread()->getEvents()->logConflict($this, $state, $data, $user, $annul);
+    }
+
     //Insert Internal Notes
     function logNote($title, $note, $poster='SYSTEM', $alert=true) {
         // Unless specified otherwise, assume HTML
@@ -2751,7 +2767,7 @@ implements RestrictedAccess, Threadable {
         }
 
         $fields = array();
-        $fields['topicId']  = array('type'=>'int',      'required'=>1, 'error'=>__('Help topic selection is required'));
+        $fields['topicId']  = array('type'=>'int',      'required'=>0, 'error'=>__('Help topic selection is required'));
         $fields['slaId']    = array('type'=>'int',      'required'=>0, 'error'=>__('Select a valid SLA'));
         $fields['duedate']  = array('type'=>'date',     'required'=>0, 'error'=>__('Invalid date format - must be MM/DD/YY'));
 
@@ -2759,8 +2775,8 @@ implements RestrictedAccess, Threadable {
 
         if (!Validator::process($fields, $vars, $errors) && !$errors['err'])
             $errors['err'] = sprintf('%s — %s',
-                __('Missing or invalid data'),
-                __('Correct any errors below and try again'));
+                __('Missing or invalid data 3'),
+                __('Correct any errors below and try again 2'));
 
         $vars['note'] = ThreadEntryBody::clean($vars['note']);
 
@@ -3109,11 +3125,11 @@ implements RestrictedAccess, Threadable {
         $fields=array();
         switch (strtolower($origin)) {
             case 'web':
-                $fields['topicId']  = array('type'=>'int',  'required'=>1, 'error'=>__('Select a Help Topic'));
+                $fields['topicId']  = array('type'=>'int',  'required'=>0, 'error'=>__('Select a Help Topic'));
                 break;
             case 'staff':
                 $fields['deptId']   = array('type'=>'int',  'required'=>0, 'error'=>__('Department selection is required'));
-                $fields['topicId']  = array('type'=>'int',  'required'=>1, 'error'=>__('Help topic selection is required'));
+                $fields['topicId']  = array('type'=>'int',  'required'=>0, 'error'=>__('Help topic selection is required'));
                 $fields['duedate']  = array('type'=>'date', 'required'=>0, 'error'=>__('Invalid date format - must be MM/DD/YY'));
             case 'api':
                 $fields['source']   = array('type'=>'string', 'required'=>1, 'error'=>__('Indicate ticket source'));
@@ -3128,8 +3144,8 @@ implements RestrictedAccess, Threadable {
 
         if(!Validator::process($fields, $vars, $errors) && !$errors['err'])
             $errors['err'] = sprintf('%s — %s',
-                __('Missing or invalid data'),
-                __('Correct any errors below and try again'));
+                __('Missing or invalid data 4'),
+                __('Correct any errors below and try again 5'));
 
         // Make sure the due date is valid
         if ($vars['duedate']) {
@@ -3237,7 +3253,7 @@ implements RestrictedAccess, Threadable {
         }
 
         if (!$form->isValid($field_filter('ticket')))
-            $errors += $form->errors();
+            #print var_dump($errors += $form->errors());exit;
 
         if ($vars['topicId']) {
             if ($topic=Topic::lookup($vars['topicId'])) {

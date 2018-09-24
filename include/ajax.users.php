@@ -58,9 +58,9 @@ class UsersAjaxAPI extends AjaxController {
         if (!$type || !strcasecmp($type, 'local')) {
 
             $users = User::objects()
-                ->values_flat('id', 'name', 'default_email__address')
+                ->values_flat('id', 'name', 'default_email__address','cdata__phone__contains')
                 ->limit($limit);
-
+  
             if ($fulltext) {
                 global $ost;
                 $users = $ost->searcher->find($q, $users);
@@ -77,30 +77,35 @@ class UsersAjaxAPI extends AjaxController {
                     'emails__address__contains' => $q,
                     'name__contains' => $q,
                     'org__name__contains' => $q,
+                    'cdata__phone__contains' => $q,
                 )));
             }
 
             // Omit already-imported remote users
             if ($emails = array_filter($emails)) {
                 $users->union(User::objects()
-                    ->values_flat('id', 'name', 'default_email__address')
+                    ->values_flat('id', 'name', 'default_email__address','cdata__phone__contains')
                     ->annotate(array('__relevance__' => new SqlCode(1)))
                     ->filter(array(
                         'emails__address__in' => $emails
                 )));
             }
-
+ 
             foreach ($users as $U) {
-                list($id, $name, $email) = $U;
+                list($id, $name, $email,$phone) = $U;
                 foreach ($matches as $i=>$u) {
                     if ($u['email'] == $email) {
                         unset($matches[$i]);
                         break;
                     }
+                
                 }
                 $name = Format::htmlchars(new UsersName($name));
                 $matches[] = array('email'=>$email, 'name'=>$name, 'info'=>"$email - $name",
+                'phone'=> $phone,
                     "id" => $id, "/bin/true" => $_REQUEST['q']);
+                
+
             }
             usort($matches, function($a, $b) { return strcmp($a['name'], $b['name']); });
         }

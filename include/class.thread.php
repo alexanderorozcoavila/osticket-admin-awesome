@@ -130,6 +130,9 @@ class Thread extends VerySimpleModel {
 
         if (isset($criteria['isactive']))
             $collaborators->filter(array('isactive' => $criteria['isactive']));
+        
+        if (isset($criteria['role']))
+            $collaborators->filter(array('role' => $criteria['role']));
 
         // TODO: sort by name of the user
         $collaborators->order_by('user__name');
@@ -262,6 +265,48 @@ class Thread extends VerySimpleModel {
     function getEvents() {
         return $this->events;
     }
+
+    function getLogConflictUser($thread) {
+        global $thisstaff, $thisclient;
+        $username = $user;
+        $user = is_object($user) ? $user : $thisclient ?: $thisstaff;
+        if (!is_string($username)) {
+            if ($user instanceof Staff) {
+                $username = $user->getUserName();
+            }
+            // XXX: Use $user here
+        }
+
+        $sql="SELECT * FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        AND data = 'notedit' and username LIKE ".db_input($username);
+        //return $sql;
+        if(db_fetch_array(db_query($sql))){
+            return true;
+        }else{
+            return false;   
+        }
+    }
+
+    function getLogConflictUserAgente($thread) {
+        $sql="SELECT username FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        AND data = 'notedit'";
+        //return $sql;
+        $d=db_fetch_array(db_query($sql));
+        return $d;
+    }
+
+    function getLogConflict($thread) {
+        $sql="SELECT * FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        AND data = 'notedit'";
+        //return $sql;
+        if(db_fetch_array(db_query($sql))){
+            return true;
+        }else{
+            return false;   
+        }
+    }
+
+
 
     /**
      * postEmail
@@ -610,7 +655,7 @@ implements TemplateVariable {
     static protected $perms = array(
         self::PERM_EDIT => array(
             'title' => /* @trans */ 'Edit Thread',
-            'desc'  => /* @trans */ 'Ability to edit thread items of other agents',
+            'desc'  => /* @trans */ 'Permiso para editar hilos de un ticket de otros agentes ',
         ),
     );
 
@@ -1716,7 +1761,8 @@ class ThreadEvent extends VerySimpleModel {
             $inst->uid_type = 'U';
             $inst->uid = $user->getId();
         }
-
+        // print var_dump($inst);
+        // exit;
         return $inst;
     }
 
@@ -1726,6 +1772,17 @@ class ThreadEvent extends VerySimpleModel {
             'team_id' => $ticket->getTeamId(),
             'dept_id' => $ticket->getDeptId(),
             'topic_id' => $ticket->getTopicId(),
+        ), $user);
+        return $inst;
+    }
+
+    static function forTicketConflict($ticket, $state, $user=false) {
+        $inst = self::create(array(
+            'staff_id' => '0',
+            'team_id' => '0',
+            'dept_id' => '0',
+            'topic_id' => '0',
+            'state'=>$state,
         ), $user);
         return $inst;
     }
@@ -1770,12 +1827,12 @@ class ThreadEvents extends InstrumentedList {
     function log($object, $state, $data=null, $user=null, $annul=null) {
         global $thisstaff, $thisclient;
 
-        if ($object instanceof Ticket)
+        if ($object instanceof Ticket){
             // TODO: Use $object->createEvent() (nolint)
             $event = ThreadEvent::forTicket($object, $state, $user);
-        else
+        }else{
             $event = ThreadEvent::create(false, $user);
-
+        }
         # Annul previous entries if requested (for instance, reopening a
         # ticket will annul an 'closed' entry). This will be useful to
         # easily prevent repeated statistics.
@@ -1811,6 +1868,37 @@ class ThreadEvents extends InstrumentedList {
                 throw new InvalidArgumentException('Data must be string or array');
             $event->data = $data;
         }
+
+        $this->add($event);
+
+        // Save event immediately
+        return $event->save();
+    }
+
+    
+
+    function logConflict($object, $state, $data=null, $user=null, $annul=null) {
+        global $thisstaff, $thisclient;
+
+        if ($object instanceof Ticket){
+            // TODO: Use $object->createEvent() (nolint)
+            $event = ThreadEvent::forTicketConflict($object, $state, $user);
+        }
+        # Annul previous entries if requested (for instance, reopening a
+        # ticket will annul an 'closed' entry). This will be useful to
+        # easily prevent repeated statistics.
+
+        $username = $user;
+        $user = is_object($user) ? $user : $thisclient ?: $thisstaff;
+        if (!is_string($username)) {
+            if ($user instanceof Staff) {
+                $username = $user->getUserName();
+            }
+            // XXX: Use $user here
+        }
+        $event->username = $username;
+        $event->state = $state;
+        $event->data = $data;
 
         $this->add($event);
 
