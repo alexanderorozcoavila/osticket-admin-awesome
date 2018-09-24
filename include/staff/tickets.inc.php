@@ -943,6 +943,47 @@ return false;">
 					</td>					
 
 				</tr>
+				<tr>
+                <td colspan="7">
+                <?php
+                $ticketprew=Ticket::lookup($T['ticket_id']);
+                $tcount = $ticketprew->getThreadEntries();
+                ?>
+                <?php 
+                $i=0;
+                foreach ($tcount as $EN){
+                    if($i == 0){
+                        $lineas = $EN->getBody();
+                        $i = 1;
+                    }
+                }
+
+                $allowed_tags = array("html", "body", "b", "br", "em", "hr", "i", "li", "ol", "p", "s", "span", "table", "tr", "td", "u", "ul","div");
+                $descripcion = "";
+                foreach($allowed_tags as $tag ){
+                    $descripcion = strip_tags($lineas, $tag);
+                }
+                $linea1 = substr($descripcion, 0, 250);
+                // $linea2 = substr($descripcion, 101, 202);
+                    if(($thisstaff->getDefaultPreviewTicket() == 1) || ($thisstaff->getDefaultPreviewTicket() == 2)){
+                        if($thisstaff->getDefaultPreviewTicket() == 1){
+                        $selected = "preview_1 preview-line-hide";
+                        }
+                        if($thisstaff->getDefaultPreviewTicket() == 2){
+                        $selected = "preview_1";
+                        } 
+                    }else{
+                        $selected = "preview_1 preview-line-hide";
+                    }
+                
+                ?>
+
+                <div class="<?php echo $selected; ?>" style="width: 891px;"><?php echo $linea1; ?></div>
+                <!-- <span class="preview_2" style="display:none;">
+                <?php //echo $linea2; ?>
+                </span> -->
+                </td>
+            </tr>
 				<tr class="mobile-only-bottom-spacer">
 					<td colspan="3"></td>
 				</tr>
