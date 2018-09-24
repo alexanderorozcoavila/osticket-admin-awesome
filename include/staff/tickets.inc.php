@@ -1,4 +1,36 @@
 <?php
+$link = mysqli_connect("localhost", "administrador", "BtCFfa~G5n=9", "nous00_os1");
+                        
+if ($link == false) {
+    die("ERROR: Could not connect. "
+                .mysqli_connect_error());
+}
+
+$sql = "SELECT id, thread_id, timestamp as hora, DATE_ADD(timestamp, INTERVAL ".$cfg->getScriptConflictTime()." MINUTE) as limite, NOW() as hora_actual FROM `os_thread_event` WHERE `data` = 'notedit'";
+// print $sql;
+// exit;
+$res = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_array($res)) {
+    $hora_thread = strtotime($row['hora']);
+    $hora_limite = strtotime($row['limite']);
+    $hora_actual = strtotime($row['hora_actual']);
+    if($hora_actual >= $hora_limite){
+        $sql2 ="DELETE FROM `os_thread_event` WHERE `os_thread_event`.`id` = ".$row['id'];
+        $resultado = mysqli_query($link, $sql2);
+        if($resultado){
+            // echo $row['thread_id'].": liberado...";
+            // echo "\n";
+        }else{
+            // echo $row['thread_id'].": en espera...";
+            // echo "\n";
+        }
+    }else{
+        // echo $row['thread_id'].": en espera...";
+        // echo "\n";
+    }
+
+}
+
 $search = SavedSearch::create();
 $tickets = TicketModel::objects();
 $clear_button = false;
@@ -397,7 +429,34 @@ $tickets->constrain(array('lock' => array(
                 'lock__expire__gt' => SqlFunction::NOW())));
 
 ?>
+<style>
+    .tooltip {
+    text-align:left !important;
+    width: 250px !important;
+ padding-right:3px !important;
+    }   
+    .tooltip-inner {
+ text-align:left !important;
+ width: 250px !important;
+ padding-right:3px !important;
+}
+</style>
 
+<div class="dialog" id="alert2" style="top: 75.2857px;
+    left: 470px;display: none;">
+    <h3><span id="title">Conflicto de tramitación de ticket</span></h3>
+    <a class="close" href=""><i class="icon-remove-circle"></i></a>
+    <hr>
+    <div id="body" style="min-height: 20px;">El ticket selecciónado ya está siendo tramitado por el agente <a id="nombreagente"></a><br>
+No es posible que dos agentes realicen operaciones sobre un mismo ticket de forma simultánea. Para más información, contacte con dicho agente</div>
+    <hr style="margin-top:3em">
+    <p class="full-width">
+        <span class="buttons pull-right">
+            <input type="button" value="ACEPTAR" class="close ok">
+        </span>
+     </p>
+    <div class="clear"></div>
+</div>
 <!-- SEARCH FORM START -->
 <div id='basic_search'>
 <!--  <div class="pull-right" style="height:25px">
@@ -634,7 +693,27 @@ return false;">
 				?>
 
 		<!-- Table Priority -->
-				<tr id="<?php echo $T['ticket_id']; ?>">	
+				<tr id="<?php echo $T['ticket_id']; ?>">
+				<?php
+                if(isset($_GET['status'])){
+                    $statusLista = '&status='.$_GET['status'];
+                }else{
+                    $statusLista = '&status=open';
+                }
+
+                $ticket=Ticket::lookup($T['ticket_id']);
+                if($ticket->getThread()->getLogConflict($T['ticket_id'])){
+                    if($ticket->getThread()->getLogConflictUser($T['ticket_id'])){
+                        $nombreagente = "";
+                    }else{
+                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($T['ticket_id']);
+                        $nombreagente =  $nombreagentes["username"];   
+                    }
+                }else{
+                    $nombreagente = "";
+                }
+
+            ?>	
 
 					<td class="cursor priority <?php echo $T['cdata__:priority__priority_desc']; ?>" style="cursor:pointer" nowrap >
 						<a style="display:block;" class="preview cursor" href="#" onclick='return false;'
@@ -683,11 +762,28 @@ return false;">
 											   <li> 
 												  <div class="ticket-number-mobile">
 												  <span class="table-id" title="<?php echo $T['user__default_email__address']; ?>" nowrap>
-												  <a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
-													 title="Preview Ticket"
-													 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
-													 data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
-													 >#<?php echo $tid; ?></a>
+												  <?php 
+													if($nombreagente == ""){
+													?>
+														<a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
+														title="Preview Ticket"
+														href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+														data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+														><?php echo $tid; ?></a>
+													<?php
+													}else{
+													?>
+														
+														<span class="Icon <?php echo strtolower($T['source']); ?>Ticket preview conflictoTicket"
+														title="Preview Ticket" 
+														style="cursor:pointer"
+														nombreagente="<?php echo $nombreagente; ?>"
+														href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+														data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+														><?php echo $tid; ?></span>
+													<?php
+													}
+													?>
 												  </span>
 												  </div>
 												  <div class="agent">
@@ -822,11 +918,28 @@ return false;">
 
 		<!-- Table ID -->
 					<td class="table-id" title="<?php echo $T['user__default_email__address']; ?>" nowrap>
-					  <a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
-						title="Preview Ticket"
-						href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
-						data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
-						><?php echo $tid; ?></a>
+					<?php 
+						if($nombreagente == ""){
+						?>
+							<a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
+							title="Preview Ticket"
+							href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+							data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+							><?php echo $tid; ?></a>
+						<?php
+						}else{
+						?>
+							
+							<span class="Icon <?php echo strtolower($T['source']); ?>Ticket preview conflictoTicket"
+							title="Preview Ticket" 
+							style="cursor:pointer"
+							nombreagente="<?php echo $nombreagente; ?>"
+							href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+							data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+							><?php echo $tid; ?></span>
+						<?php
+						}
+						?>
 					</td>					
 
 				</tr>
@@ -895,3 +1008,35 @@ return false;">
      </p>
     <div class="clear"></div>
 </div>
+<script type="text/javascript">
+$(function() {
+    $('[data-toggle=tooltip]').tooltip();
+});
+
+$('#btn-pre-1').click(function(){
+    //$('.preview_2').hide();
+    $('.preview_1').addClass('preview-line-hide');
+    $('#ico-pre-1').addClass('icon-hand-down');
+    $('#ico-pre-2').removeClass('icon-hand-down');
+    $('#li-pre-2').removeClass('active');
+    $('#li-pre-1').addClass('active');
+});
+$('#btn-pre-2').click(function(){
+    //$('.preview_2').show();
+    $('.preview_1').removeClass('preview-line-hide');
+    $('#ico-pre-2').addClass('icon-hand-down');
+    $('#ico-pre-1').removeClass('icon-hand-down');
+    $('#li-pre-1').removeClass('active');
+    $('#li-pre-2').addClass('active');
+});
+
+$('.conflictoTicket').click(function(){
+    var $input = $( this );
+    nombre = $input.attr('nombreagente');
+    $('#nombreagente').text(nombre);
+    $('.dialog#alert2').css({"top": "75.2857px" , "left": "470px"});
+    $('.dialog#alert2').show();
+
+
+});
+</script>

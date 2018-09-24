@@ -254,6 +254,15 @@ $dispatcher = patterns('',
         url('^/reset-permissions', 'resetPermissions'),
         url('^/change-department', 'changeDepartment'),
         url('^/(?P<id>\d+)/avatar/change', 'setAvatar')
+    )),
+    url('^/ccandcco', patterns('ajax.ccandcco.php:CcAndCcoAjaxAPI',
+        url('^/(?P<id>\d+)/addcc$', 'addCc'),
+        url('^/(?P<id>\d+)/addcco$', 'addCco'),
+        url('^/(?P<id>\d+)/adduser$', 'addUser'),
+        url('^/(?P<id>\d+)/delete$', 'delete'),
+        url_get('^/(?P<id>\d+)/reenviar', 'ticketReenviar'),
+        url_post('^/(?P<id>\d+)/reenviar/guardar', 'guardarReenviar')
+
     ))
 );
 

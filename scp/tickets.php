@@ -190,6 +190,18 @@ if($_POST && !$errors):
             }
             break;
         case 'edit':
+            // $id = $_GET['id'];
+            // if(isset($event)){
+            //     print "si";
+            //     $event->filter(array('thread_id' => $id,'data'=>'notedit'));
+            //     print $event->uid;
+
+            //     print var_dump($event);
+                
+            // }else{
+            //     print "no";
+            // }
+            // exit;
         case 'update':
             if(!$ticket || !$role->hasPerm(TicketModel::PERM_EDIT))
                 $errors['err']=__('Permission Denied. You are not allowed to edit tickets');
@@ -327,6 +339,26 @@ if($_POST && !$errors):
                     $vars['cannedattachments'] = $response_form->getField('attachments')->getClean();
 
                     if(($ticket=Ticket::open($vars, $errors))) {
+                        foreach($_POST['cc-colaboradores'] as $cc){
+                            $collab = Collaborator::create(array(
+                                'isactive' => '1',
+                                'thread_id' => $ticket->getThreadId(),
+                                'user_id' => $cc,
+                                'role' => 'M',
+                            ));
+                            $collab->save(true);
+                        }
+
+                        foreach($_POST['cco-colaboradores'] as $cco){
+                            $collab = Collaborator::create(array(
+                                'isactive' => '1',
+                                'thread_id' => $ticket->getThreadId(),
+                                'user_id' => $cco,
+                                'role' => 'O',
+                            ));
+                            $collab->save(true);
+                        }
+
                         $msg=__('Ticket created successfully');
                         $_REQUEST['a']=null;
                         if (!$ticket->checkStaffPerm($thisstaff) || $ticket->isClosed())
@@ -435,7 +467,7 @@ $nav->addSubMenu(array('desc' => __('Closed'),
                     ($_REQUEST['status']=='closed'));
 
 if ($thisstaff->hasPerm(TicketModel::PERM_CREATE, false)) {
-    $nav->addSubMenu(array('desc'=>__('New'),
+    $nav->addSubMenu(array('desc'=>__('New Ticket'),
                            'title'=> __('Open a New Ticket'),
                            'href'=>'tickets.php?a=open',
                            'iconclass'=>'newTicket',
@@ -450,11 +482,26 @@ $ost->addExtraHeader('<meta name="tip-namespace" content="tickets.queue" />',
     "$('#content').data('tipNamespace', 'tickets.queue');");
 
 if($ticket) {
+    if($ticket->getThread()->getLogConflict($ticket->getId())){
+        if($ticket->getThread()->getLogConflictUser($ticket->getId())){
+            
+        }else{
+            Http::redirect('tickets.php');
+        }
+    }else{
+        $ticket->logConflictTikcet();
+    }
     $ost->setPageTitle(sprintf(__('Ticket #%s'),$ticket->getNumber()));
     $nav->setActiveSubMenu(-1);
     $inc = 'ticket-view.inc.php';
     if ($_REQUEST['a']=='edit'
             && $ticket->checkStaffPerm($thisstaff, TicketModel::PERM_EDIT)) {
+        
+        //print "editando";
+        //$ticket->logConflictTikcet();
+        
+        // $th = $ticket->getThread()->getLogConflictUser($ticket->getId());
+        // print var_dump($th);
         $inc = 'ticket-edit.inc.php';
         if (!$forms) $forms=DynamicFormEntry::forTicket($ticket->getId());
         // Auto add new fields to the entries
