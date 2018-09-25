@@ -409,7 +409,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             </table>
         </td>
         <?php 
-        echo $idTicketUser = $_GET['id'];
+        $idTicketUser = $_GET['id'];
         ?>
         <td width="50%" style="vertical-align:top">
             <table border="0" cellspacing="" cellpadding="4" width="100%">
