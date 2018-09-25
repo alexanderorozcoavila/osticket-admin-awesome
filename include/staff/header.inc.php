@@ -137,36 +137,7 @@ if ($lang) {
                 <button href="#right-menu" class="c-hamburger c-hamburger--htx" style="">
                     <span>toggle menu</span>
                 </button>
-                <script>
-                    /* osTA */
-                    $(document).ready(function() { /* osTA */
-                        "use strict"; /* osTA */
-                        var toggles = document.querySelectorAll(".c-hamburger"); /* osTA */
-                        for (var i = toggles.length - 1; i >= 0; i--) { /* osTA */
-                            var toggle = toggles[i]; /* osTA */
-                            toggleHandler(toggle); /* osTA */
-                        }; /* osTA */
-                        function toggleHandler(toggle) { /* osTA */
-                            toggle.addEventListener("click", function(e) { /* osTA */
-                                e.preventDefault(); /* osTA */
-                                (this.classList.contains("is-active") === true) ? this.classList.remove("is-active"): this.classList.add("is-active"); /* osTA */
-                            }); /* osTA */
-                            toggle.addEventListener("touchstart", function(e) { /* osTA */
-                                e.preventDefault(); /* osTA */
-                                (this.classList.contains("is-active") === true) ? this.classList.remove("is-active"): this.classList.add("is-active"); /* osTA */
-                            }); /* osTA */
-                        } /* osTA */
-                        $('.c-hamburger').sidr({ /* osTA */
-                            name: 'sidr-right',
-                            /* osTA */
-                            side: 'right',
-                            /* osTA */
-                            body: '#content',
-                            /* osTA */
-                            displace: false /* osTA */
-                        }); /* osTA */
-                    })(); /* osTA */
-                </script>
+                
             </div>
 
         <div id="sidr-right" class="sidr right">
