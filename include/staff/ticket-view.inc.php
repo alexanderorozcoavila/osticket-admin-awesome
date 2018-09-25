@@ -408,13 +408,16 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 </tr>
             </table>
         </td>
+        <?php 
+        echo $idTicketUser = $_GET('id');
+        ?>
         <td width="50%" style="vertical-align:top">
             <table border="0" cellspacing="" cellpadding="4" width="100%">
                 <tr>
                     <th width="100"><?php echo __('User'); ?>:</th>
-                    <td><a href="#tickets/<?php echo $ticket->getId(); ?>/user"
+                    <td><a href="#tickets/<?php echo $idTicketUser; ?>/user"
                         onclick="javascript:
-                            $.userLookup('ajax.php/tickets/<?php echo $ticket->getId(); ?>/user',
+                            $.userLookup('ajax.php/tickets/<?php echo $idTicketUser; ?>/user',
                                     function (user) {
                                         $('#user-'+user.id+'-name').text(user.name);
                                         $('#user-'+user.id+'-email').text(user.email);
