@@ -173,16 +173,24 @@ if ($total) { ?>
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                 data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"><?php
                 echo $tid; ?></a>
+
+
                <?php
                 if ($user_id && $user_id != $T['user_id'])
                     echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
                             .__('Collaborator').'"><i class="icon-eye-open"></i></span>';
-            ?></td>
+                ?>
+            
+            </td>
             <td nowrap><?php echo Format::datetime($T['lastupdate']); ?></td>
             <td><?php echo $status; ?></td>
-            <td><a class="truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
+            <td>
+            
+            <a class="truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
                 style="max-width: 230px;"
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></a>
+
+            
                  <?php
                     if ($T['attachment_count'])
                         echo '<i class="small icon-paperclip icon-flip-horizontal" data-toggle="tooltip" title="'
@@ -193,9 +201,26 @@ if ($total) { ?>
 <?php               }
                     if ($T['attachments'])
                         echo '<i class="small icon-paperclip icon-flip-horizontal"></i>';
-                    if ($T['collab_count'])
-                        echo '<span class="faded-more" data-toggle="tooltip" title="'
-                            .$T['collab_count'].'"><i class="icon-group"></i></span>';
+                    
+
+                    if ($T['collab_count']){
+                        $ticket=Ticket::lookup($T['ticket_id']);
+                        $thread = $ticket->getThread();
+                        $collabs=$thread->getCollaborators();
+                        $colaboradores = "";
+                        $coma = '';
+                        foreach($collabs as $collab) {
+                            $colaboradores = $colaboradores.$coma.$collab->getEmail();
+                            $coma = ',&nbsp;&#10;';
+                        }
+                        echo '<span class="faded-more" data-toggle="tooltip" title="'.$colaboradores.'"><i class="icon-group"></i></span>';
+                    }else{
+
+                    }
+
+
+
+
                 ?>
             </td>
             <?php

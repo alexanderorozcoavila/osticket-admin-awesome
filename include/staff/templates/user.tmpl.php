@@ -1,4 +1,5 @@
 <?php
+$role  = $thisstaff->getRole($dept);
 if (!isset($info['title']))
     $info['title'] = Format::htmlchars($user->getName());
 
@@ -21,16 +22,16 @@ if ($info['error']) {
     </div>
     <?php
     if ($ticket) { ?>
+        <?php if ($role->hasPerm(Ticket::PERM_EDIT)) { ?>
     <a class="action-button pull-right change-user" style="overflow:inherit"
         href="#tickets/<?php echo $ticket->getId(); ?>/change-user" ><i class="icon-user"></i>
         <?php echo __('Change User'); ?></a>
     <?php
+        }
     } ?>
     <div><b><?php
     echo Format::htmlchars($user->getName()->getOriginal()); ?></b></div>
-
-    <div id="user-email"><a href="mailto://<?php echo $user->getEmail(); ?>"><?php echo $user->getEmail(); ?></a></div>
-
+    <div class="faded">&lt;<?php echo $user->getEmail(); ?>&gt;</div>
     <?php
     if (($org=$user->getOrganization())) { ?>
     <div style="margin-top: 7px;"><?php echo $org->getName(); ?></div>
