@@ -890,7 +890,9 @@ return false;">
 </div>
 
 <script type="text/javascript">
-
+$(function() {
+    $('[data-toggle=tooltip]').tooltip();
+});
 
 $('#btn-pre-1').click(function(){
     //$('.preview_2').hide();
