@@ -54,7 +54,7 @@ if ($lang) {
         echo "\n\t".implode("\n\t", $headers)."\n";
     }
     ?>
-	<?php include ROOT_DIR . '/osta/inc/staff-head.html'; ?>	
+	<?php //include ROOT_DIR . '/osta/inc/staff-head.html'; ?>	
 </head>
 <body class="<?php echo basename($_SERVER['PHP_SELF'], '.php');  ?>-page">
 <div id="container">
