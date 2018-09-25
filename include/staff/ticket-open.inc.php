@@ -84,10 +84,108 @@ if ($_POST)
             <td width="160" class="required"> <?php echo __('Email Address'); ?>: </td>
             <td>
                 <div class="attached input">
-                    <input type="text" size=45 name="email" id="user-email" class="attached"
-                        autocomplete="off" autocorrect="off" value="<?php echo $info['email']; ?>" /> </span>
-                <a href="?a=open&amp;uid={id}" data-dialog="ajax.php/users/lookup/form"
-                    class="attached button"><i class="icon-search"></i></a>
+                    <div style="width: 350px;border: 1px solid #aaa;">
+                        <input type="text" size=45 name="email" id="user-email2" class="attached" style="width: 333px;border: 1px solid #aaa;"
+                        autocomplete="off" autocorrect="off" value="<?php echo $info['email']; ?>" />
+                    </div>
+                        <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                    $('#user-email2').selectize({
+                        persist: true,
+                        maxItems: 1,
+                        plugins: ['remove_button'],
+                        valueField: 'email',
+                        labelField: 'email',
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                console.log(item.name + '1');
+                                if(item.name == ""){
+
+                                }else{
+                                    $('#user-name').val(item.name);
+                                }
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/1/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                name1 = input.split('@');
+                                $('#user-name').val(name1[0]);
+                                return {email: input, id:idusernew, name:""}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    
+                    $('selectize-input').css('border','1px solid #d0d0d0;');
+                    </script>
+
                 </div>
                 <span class="error">*</span>
                 <div class="error"><?php echo $errors['email']; ?></div>
@@ -103,6 +201,245 @@ if ($_POST)
             </td>
         </tr>
         <?php
+            $role = $thisstaff->getRole($thisstaff->dept);
+            if ($role->hasPerm(Ticket::PERM_CCANDCCO)) {//Make CC optional feature? NO, for now.
+                ?>
+        <tr>
+                <td width="120">
+                    <label><strong><?php echo __('CC'); ?>:</strong></label>
+                </td>
+                <td>    
+                    <div style="
+                    float:left;
+                    border: 1px solid #d0d0d0;
+                    padding: 10px 10px;
+                    width: 100%;
+                    background: #fff;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;">
+                    <select id="cc-colaboradores" name="cc-colaboradores[]" class="contacts" placeholder="Agregar"  multiple style="width: 90%;">
+                        
+                    </select>
+                    <span style="
+                    float: right;
+                    top: 0px;
+                    right: 0px;
+                    margin-right: 10px;
+                    margin-top: -27px;cursor:pointer;" id="span-cco">CCO</span>
+                    </div>
+                    <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                    $('#cc-colaboradores').selectize({
+                        persist: true,
+                        maxItems: null,
+                        plugins: ['remove_button'],
+                        valueField: 'id',
+                        labelField: 'email',
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                //console.log(item.name + '1');
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/1/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                return {email: input, id:idusernew}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    </script>
+                </td>
+             </tr>
+                
+             <tr id="tr-cco" style="display:none;">
+                <td width="120">
+                    <label><strong><?php echo __('CCO'); ?>:</strong></label>
+                </td>
+                <td>
+                <div style="
+                    float:left;
+                    border: 1px solid #d0d0d0;
+                    padding: 10px 10px;
+                    width: 100%;
+                    background: #fff;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;">
+                <select id="cco-colaboradores" name="cco-colaboradores[]" class="contacts" placeholder="Agregar" multiple style="width: 90%;">
+                
+                </select>
+                </div>
+                    <script>
+                    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                    $('#cco-colaboradores').selectize({
+                        persist: true,
+                        maxItems: null,
+                        valueField: 'id',
+                        labelField: 'email',
+                        plugins: ['remove_button'],
+                        searchField: ['name', 'email','phone'],
+                        options: [],
+                        load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                                url: 'ajax.php/users/local?q=' + encodeURIComponent(query),
+                                type: 'GET',
+                                // async:false,
+                                dataType: 'json',
+                                error: function() {
+                                    callback();
+                                },
+                                success: function(res) {
+                                    console.log(res);
+                                    callback(res);
+                                }
+                            });
+                        },
+                        render: {
+                            item: function(item, escape) {
+                                //console.log(item.name + '1');
+                                return '<div>' +
+                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                '</div>';
+                            },
+                            option_create: function(item, escape) {
+                                return '<div class="create">Agregar <strong>' + escape(item.input) + '</strong>&hellip;</div>';
+                            }
+                        },
+                        createFilter: function(input) {
+                            var match, regex;
+
+                            // email@address.com
+                            regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[0]);
+
+                            // name <email@address.com>
+                            regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                            match = input.match(regex);
+                            if (match) return !this.options.hasOwnProperty(match[2]);
+
+                            return false;
+                        },
+                        create: function(input) {
+                            
+                            if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                idusernew = 0;
+                                $.ajax({
+                                    url: 'ajax.php/ccandcco/1/adduser',
+                                    type: 'POST',
+                                    async:false,
+                                    data: { name: input, email:input },
+                                    // dataType: 'json',
+                                    error: function() {
+                                        console.log('error');
+                                    },
+                                    success: function(res) {
+                                        idusernew = res;
+                                        
+                                    }
+                                }); 
+                                return {email: input, id:idusernew}; 
+                                
+                            }
+                            var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                            if (match) {
+                                return {
+                                    email : match[2],
+                                    name  : $.trim(match[1])
+                                };
+                            }
+                            alert('Invalid email address.');
+                            return false;
+                        }
+                    });
+                    </script>
+                </td>
+             </tr>
+
+        <?php
+            }
         } ?>
 
         <?php
@@ -199,7 +536,7 @@ if ($_POST)
                                 continue;
                             }
                             echo sprintf('<option value="%d" %s>%s</option>',
-                                    $id, ($info['deptId']==$id)?'selected="selected"':'',$name);
+                                    $id, ($thisstaff->dept==$name)?'selected="selected"':'',$name);
                         }
                     }
                     ?>
@@ -207,8 +544,7 @@ if ($_POST)
                 &nbsp;<font class="error"><?php echo $errors['deptId']; ?></font>
             </td>
         </tr>
-
-         <tr>
+        <tr>
             <td width="160">
                 <?php echo __('SLA Plan');?>:
             </td>
@@ -246,7 +582,6 @@ if ($_POST)
                 <em><?php echo __('Time is based on your time zone');?> (GMT <?php echo Format::date(false, false, 'ZZZ'); ?>)</em>
             </td>
         </tr>
-
         <?php
         if($thisstaff->hasPerm(TicketModel::PERM_ASSIGN, false)) { ?>
         <tr>
@@ -329,8 +664,7 @@ if ($_POST)
                     name="response" id="response" cols="21" rows="8"
                     style="width:80%;" <?php
     list($draft, $attrs) = Draft::getDraftAndDataAttrs('ticket.staff.response', false, $info['response']);
-    echo $attrs; ?>><?php echo $_POST ? $info['response'] : $draft;
-                ?></textarea>
+    echo $attrs; ?>></textarea>
                     <div class="attachments">
 <?php
 print $response_form->getField('attachments')->render();
@@ -418,7 +752,19 @@ print $response_form->getField('attachments')->render();
 </p>
 </form>
 <script type="text/javascript">
+$('#span-cco').click(function() {
+            if ($("#tr-cco").css('display') == 'none') {
+                $("#tr-cco").css('display','table-row');
+            }else{
+                $("#tr-cco").css('display','none');
+            }
+            console.log('open tr');
+        });
 $(function() {
+    $('a').click(function(){
+        var opcion = confirm("¿Seguro que desea salir? \nCualquier cambio o información que hayas introducido \nserán descartados");
+        return opcion;
+    });
     $('input#user-email').typeahead({
         source: function (typeahead, query) {
             $.ajax({
@@ -436,18 +782,7 @@ $(function() {
         },
         property: "/bin/true"
     });
-
-   <?php
-    // Popup user lookup on the initial page load (not post) if we don't have a
-    // user selected
-    if (!$_POST && !$user) {?>
-    setTimeout(function() {
-      $.userLookup('ajax.php/users/lookup/form', function (user) {
-        window.location.href = window.location.href+'&uid='+user.id;
-      });
-    }, 100);
-    <?php
-    } ?>
 });
 </script>
+    
 
