@@ -43,6 +43,11 @@ $gmtime = Misc::gmtime();
             </td>
         </tr>
         <tr>
+            <td width="220" class="required"><?php echo __('Tiempo Script conflicto tickets ');?>:</td>
+            <td><input type="text" size="4" name="script_conflict_time" value="<?php echo $config['script_conflict_time']; ?>">
+            </td>
+        </tr>
+        <tr>
             <td width="220" class="required"><?php echo __('Default Department');?>:</td>
             <td>
                 <select name="default_dept_id" data-quick-add="department">
