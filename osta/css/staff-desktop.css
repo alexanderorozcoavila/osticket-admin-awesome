@@ -3484,7 +3484,7 @@ a#ostawesome-link {
 
 #loginBody #brickwall {
 	background-image: none;
-    background: #f4f6f7 !important;
+    background: var(--header-bg) !important;
 }
 #loginBody #loginBox {
     box-shadow: initial;
