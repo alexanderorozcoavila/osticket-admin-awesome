@@ -3527,7 +3527,7 @@ a#login-title-link {
     display: inline;
 }
 #loginBody fieldset input {
-    background: rgba(255, 255, 255, 0.5);
+    background: #f4f6f7 !important;
 }
 #loginBody fieldset input {
     display: block;
@@ -3562,7 +3562,7 @@ input[type=password] {
     margin-bottom: 1px !important;	
 }
 #login-userid {
-    background: rgba(255, 255, 255, 0.3);
+    background:#ededed;
     display: inline-block;
     width: 36px;
     height: 37px;
@@ -3571,7 +3571,7 @@ input[type=password] {
     background-size: 22px;
     background-repeat: no-repeat;
     background-position: 7px 7px;
-background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(0%2C 0%2C 0%2C 0.1)' d='M12%2C19.2C9.5%2C19.2 7.29%2C17.92 6%2C16C6.03%2C14 10%2C12.9 12%2C12.9C14%2C12.9 17.97%2C14 18%2C16C16.71%2C17.92 14.5%2C19.2 12%2C19.2M12%2C5A3%2C3 0 0%2C1 15%2C8A3%2C3 0 0%2C1 12%2C11A3%2C3 0 0%2C1 9%2C8A3%2C3 0 0%2C1 12%2C5M12%2C2A10%2C10 0 0%2C0 2%2C12A10%2C10 0 0%2C0 12%2C22A10%2C10 0 0%2C0 22%2C12C22%2C6.47 17.5%2C2 12%2C2Z' /%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(0%2C 0%2C 0%2C 0.1)' d='M12%2C19.2C9.5%2C19.2 7.29%2C17.92 6%2C16C6.03%2C14 10%2C12.9 12%2C12.9C14%2C12.9 17.97%2C14 18%2C16C16.71%2C17.92 14.5%2C19.2 12%2C19.2M12%2C5A3%2C3 0 0%2C1 15%2C8A3%2C3 0 0%2C1 12%2C11A3%2C3 0 0%2C1 9%2C8A3%2C3 0 0%2C1 12%2C5M12%2C2A10%2C10 0 0%2C0 2%2C12A10%2C10 0 0%2C0 12%2C22A10%2C10 0 0%2C0 22%2C12C22%2C6.47 17.5%2C2 12%2C2Z' /%3E%3C/svg%3E");
 }
 #login-password {
     background: rgba(255, 255, 255, 0.3);

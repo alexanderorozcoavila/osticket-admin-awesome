@@ -1,10 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
 :root {
-    --header-bg: #D59F9A;
+    --header-bg: #f4f6f7;
     --header-title-color: #3e5d69;
 
-    --nav-bar-bg: #89C3D9;
+    --nav-bar-bg: #fff;
     --nav-bar-link: #3e5d69;
 	
     --stickybar: #3e5d69;	

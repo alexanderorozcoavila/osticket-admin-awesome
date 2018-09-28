@@ -22,9 +22,10 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
         <?php csrf_token(); ?>
         <input type="hidden" name="do" value="scplogin">
         <fieldset>
-        <div id="login-userid"></div><input type="text" name="userid" id="name" value="<?php
+        <div id="login-userid"></div>
+            <input type="text" name="userid" id="name" value="<?php
             echo $info['userid']; ?>" placeholder="<?php echo __('Email or Username'); ?>"
-            autofocus autocorrect="off" autocapitalize="off">
+            autofocus autocorrect="off" autocapitalize="off" >
         <div id="login-password"></div><input type="password" name="passwd" id="pass" placeholder="<?php echo __('Password'); ?>" autocorrect="off" autocapitalize="off">
             <?php if ($show_reset && $cfg->allowPasswordReset()) { ?>
             <h3 style="display:inline"><a href="pwreset.php"><?php echo __('Forgot My Password'); ?></a></h3>
