@@ -10,9 +10,10 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
     <div id="login-title">
 		<a id="login-title-link" href="<?php echo ROOT_PATH; ?>scp/">
 			<?php				
-			$file_name = ROOT_DIR ."osta/css/themes/title.txt";
-			echo file_get_contents($file_name);
+			// $file_name = ROOT_DIR ."osta/css/themes/title.txt";
+			// echo file_get_contents($file_name);
 			?>  
+            <img src="images/logo.png">
 		</a>
 	</div>
     <h3><?php echo Format::htmlchars($msg); ?></h3>
