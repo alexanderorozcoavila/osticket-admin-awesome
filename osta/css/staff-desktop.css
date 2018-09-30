@@ -317,12 +317,12 @@ div#left-logo {
 /* ==========================================================================
  HEADER NAV 
 ========================================================================== */
-.bglistanav:hover{
+/* .bglistanav:hover{
     background-color: #f0faff !important;
 }
 .banlist a:hover{
     background-color: #f0faff !important;
-}
+} */
 #nav.pull-right {
 	background: initial;
     position: relative;
