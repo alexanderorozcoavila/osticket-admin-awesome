@@ -294,9 +294,10 @@ a time {
 }
 
 #nav .inactive li a:hover {
-    color:#E65524;
+    /* color:#E65524;
     background-color: #fbfbfb;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.05); */
+    background-color: #f0faff;
 }
 
 #sub_nav {

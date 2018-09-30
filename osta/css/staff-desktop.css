@@ -122,8 +122,7 @@ div#header a {
     color: var(--header-title-color);
 }
 #header a[href*="login.php"]:hover {
-    /* background: rgba(255, 255, 255, 0.10980392156862745); */
-    background-color: #0083e4;
+    background: rgba(255, 255, 255, 0.10980392156862745);
 }
 .sidr {
 	background: #f3f3f5;
