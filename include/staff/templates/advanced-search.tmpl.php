@@ -147,7 +147,7 @@ return false;
 <div style="position:absolute;bottom:0">
 <hr>
     <form method="post">
-    <div class="attached input">
+    <div class="attached input" style="opacity: 0.9;background-color: #fff !important;">
     <input name="title" type="text" size="27" placeholder="<?php
         echo __('Enter a title for the search'); ?>"/>
         <a class="attached button" href="#tickets/search/create" onclick="javascript:
