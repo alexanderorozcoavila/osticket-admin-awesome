@@ -317,6 +317,9 @@ div#left-logo {
 /* ==========================================================================
  HEADER NAV 
 ========================================================================== */
+.bglistanav:hover{
+    background-color: #f0faff;
+}
 #nav.pull-right {
 	background: initial;
     position: relative;
