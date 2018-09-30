@@ -1,3 +1,6 @@
+html{
+    background-color: #212331 !important;
+}
 body {
   font-family: "Lato", "Helvetica Neue", arial, helvetica, sans-serif;
   font-weight: 400;
@@ -5,7 +8,7 @@ body {
   -webkit-font-smoothing:antialiased;
           font-smoothing:antialiased;
 }
-body, html {
+body {
     background:#eee;
     color:#000;
     font-size:14px;
