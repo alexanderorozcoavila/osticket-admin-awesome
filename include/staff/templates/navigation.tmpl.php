@@ -3,7 +3,7 @@ if(($tabs=$nav->getTabs()) && is_array($tabs)){
     foreach($tabs as $name =>$tab) {
         if ($tab['href'][0] != '/')
             $tab['href'] = ROOT_PATH . 'scp/' . $tab['href'];
-        echo sprintf('<li class="%s %s bglistanav" style="color:#212331;"><a style="color:#212331;" href="%s">%s</a>',
+        echo sprintf('<li class="%s %s" style="color:#212331;"><a style="color:#212331;" href="%s">%s</a>',
             $tab['active'] ? 'active':'inactive',
             @$tab['class'] ?: '',
             $tab['href'],$tab['desc']);
