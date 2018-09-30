@@ -3426,8 +3426,8 @@ div#footer + div {
 }
 #footer {
     width: 100%;
-    background: var(--nav-bar-bg) !important;
-    background: rgba(0, 0, 0, 0.05);
+    background: #212331;
+    /* background: rgba(0, 0, 0, 0.05); */
     height: 60px;
     bottom: 0;
     padding: 0;	
@@ -3441,12 +3441,15 @@ div#footer + div {
     height: 100%;
     display: inline-block;
     float: left;
+    background-color: #212331;
 }
 #ostawesome {
     width: 50% !important;
     height: 100%;
     display: inline-block;
     float: right;
+    background-color: #212331;
+
 }
 #footer a {
     position: relative;
@@ -3462,7 +3465,7 @@ a#ostawesome-link {
     float: left;
 }
 #footer svg {
-    fill: var(--header-title-color);
+    fill: #fff;
     width: 122px;
 }
 #ostawesome svg {
