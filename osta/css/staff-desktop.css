@@ -172,7 +172,8 @@ ul#sub_nav a.active {
     margin-left: 20px;
 }
 #nav li.active, #nav li.inactive:hover {
-    background-color: var(--header-title-color);	
+    /* background-color: var(--header-title-color);	 */
+    background-color: #f0faff;
     box-shadow: none;
     border: none;
     padding-left: initial;
