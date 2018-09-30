@@ -3487,7 +3487,7 @@ a#ostawesome-link {
     background: var(--header-bg2) !important;
 }
 #loginBody #loginBox {
-    box-shadow: initial;
+    /* box-shadow: initial; */
     width: 360px;
 	margin-left: -181px;
 }
