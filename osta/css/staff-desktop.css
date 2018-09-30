@@ -223,6 +223,11 @@ ul#sub_nav a.active {
     /* color:#f0faff; */
     color: var(--mobile-menu-bg);
 }
+
+#sub_nav li a:hover {
+    color: #f3f3f3;
+}
+
 /* ==========================================================================
  LOGO Logo replaced with earlier version 
 ========================================================================== */
