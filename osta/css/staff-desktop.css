@@ -154,6 +154,9 @@ div#header a {
     padding-top: 0px;
     z-index: initial;	
 }
+#nav li.inactive:hover {
+    background-color: #f0faff !important;
+}
 #sub_nav {
     background: var(--nav-bar-bg2);
     border: none;
@@ -173,7 +176,7 @@ ul#sub_nav a.active {
 }
 #nav li.active, #nav li.inactive:hover {
     /* background-color: var(--header-title-color);	 */
-    background-color: #f0faff;
+    background-color: #f0faff !important;
     box-shadow: none;
     border: none;
     padding-left: initial;
