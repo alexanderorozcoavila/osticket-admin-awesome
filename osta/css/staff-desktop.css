@@ -154,9 +154,9 @@ div#header a {
     padding-top: 0px;
     z-index: initial;	
 }
-#nav li.inactive:hover {
+/* #nav li:hover {
     background-color: #f0faff !important;
-}
+} */
 #sub_nav {
     background: var(--nav-bar-bg2);
     border: none;
@@ -175,8 +175,8 @@ ul#sub_nav a.active {
     margin-left: 20px;
 }
 #nav li.active, #nav li.inactive:hover {
-    /* background-color: var(--header-title-color);	 */
-    background-color: #f0faff !important;
+    background-color: var(--header-title-color);	
+    /* background-color: #f0faff !important; */
     box-shadow: none;
     border: none;
     padding-left: initial;
@@ -211,8 +211,8 @@ ul#sub_nav a.active {
     padding: 4px 34px 4px 34px;
 }
 #nav .inactive li a:hover {
-    color:#f0faff;
-    /* color: var(--mobile-menu-bg); */
+    /* color:#f0faff; */
+    color: var(--mobile-menu-bg);
 }
 /* ==========================================================================
  LOGO Logo replaced with earlier version 
