@@ -3414,13 +3414,13 @@ div[style="width:650px; padding: 2px 2px 0 5px;"] {
  FOOTER
 ========================================================================== */
 #footer {
-    color: var(--header-title-color);
-    background: var(--nav-bar-bg);
+    color: #ffffff;
+    background: #212331;
     position: relative;
     height: 60px;
 }
 div#footer + div {
-    background: var(--nav-bar-bg) !important;
+    background:#212331!important;
     height: 36px;
     margin: -40px 0;
 }
