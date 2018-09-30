@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 :root {
-    --header-bg2: #f4f6f7;
+    --header-bg2: #000;
     --header-bg:#fff;
     --header-title-color: #3e5d69;
     --header-title-color2: #fff;
