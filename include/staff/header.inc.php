@@ -53,9 +53,9 @@ if ($lang) {
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT_PATH ?>scp/selectize.js/dist/css/selectize.css" />
     
     <!--
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/redactor.css"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/redactor.css"/>-->
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/jquery.spellchecker.css"/>
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/bootstrap.min.css"/>-->
+    <!--<link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/bootstrap.min.css"/>-->
 
 
 
