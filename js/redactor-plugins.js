@@ -172,7 +172,7 @@ RedactorPlugins.spellchecker = function(){
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { alert(s.toLowerCase()); }};
 			});
 
-			dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
+			// dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
 
 			var button = this.button.addBefore('bold', 'fontfamily', __('Corrector Ortográfico'));
 			this.button.addDropdown(button, dropdown);
