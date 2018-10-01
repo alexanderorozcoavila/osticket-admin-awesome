@@ -100,17 +100,18 @@ if ($lang) {
             <div class="header-title">
                 <a id="header-logo-title" href="<?php echo ROOT_PATH; ?>scp/">
 					<?php				
-					$file_name = ROOT_DIR ."osta/css/themes/title.txt";
-					echo file_get_contents($file_name);
-					?>  
+					// $file_name = ROOT_DIR ."osta/css/themes/title.txt";
+					// echo file_get_contents($file_name);
+                    ?>  
+                    <img src="images/logo.png">
                 </a>
             </div>
 
             <div class="header-subtitle">
                 <a id="header-logo-subtitle" href="<?php echo ROOT_PATH; ?>scp/">
 					<?php				
-					$file_name = ROOT_DIR ."osta/css/themes/subtitle.txt";
-					echo file_get_contents($file_name);
+					// $file_name = ROOT_DIR ."osta/css/themes/subtitle.txt";
+					// echo file_get_contents($file_name);
 					?>      
                 </a>
             </div>
