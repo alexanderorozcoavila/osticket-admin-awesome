@@ -764,7 +764,7 @@ return false;">
                             $colaboradores = $colaboradores.$coma.$collab->getEmail();
                             $coma = ',<br>';
                         }
-                        echo '<span class="pull-right faded-more tooltip"><i class="icon-group"></i>
+                        echo '<span class="pull-right faded-more tooltip2"><i class="icon-group"></i>
                         <span class="tooltiptext">'.$colaboradores.'</span>
                         </span>';
                     }else{
