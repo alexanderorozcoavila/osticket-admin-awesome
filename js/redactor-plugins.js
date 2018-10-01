@@ -157,6 +157,31 @@ RedactorPlugins.fontfamily = function()
 	};
 };
 
+
+RedactorPlugins.spellchecker = function(){
+  return {
+		init: function ()
+		{
+			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
+			var that = this;
+			var dropdown = {};
+
+			$.each(fonts, function(i, s)
+			{
+				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { alert(s.toLowerCase()); }};
+			});
+
+			dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
+
+			var button = this.button.addBefore('bold', 'fontfamily', __('Corrector Ortográfico'));
+			this.button.addDropdown(button, dropdown);
+
+		}
+	};
+};
+
+
+
 RedactorPlugins.fullscreen = function()
 {
 	return {
