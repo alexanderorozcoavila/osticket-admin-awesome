@@ -95,7 +95,7 @@ if ($lang) {
         </div>
 
 
-        <div id="left-logo">
+        <div id="left-logo" style="width: 327px;">
 
             <div class="header-title" style="float: left;margin-top: -6px;">
                 <a id="header-logo-title" href="<?php echo ROOT_PATH; ?>scp/">
@@ -107,7 +107,10 @@ if ($lang) {
                 </a>
             </div>
 
-            <div class="header" style="float: left;">
+            <div class="header" style="float: left;margin-top: 4px;
+    border-left: 1px solid;
+    height: 25px;padding-top: 2px;
+    padding-left: 7px;">
                 <a id="header-logo-subtitle" href="<?php echo ROOT_PATH; ?>scp/">
 					<?php				
 					// $file_name = ROOT_DIR ."osta/css/themes/subtitle.txt";
