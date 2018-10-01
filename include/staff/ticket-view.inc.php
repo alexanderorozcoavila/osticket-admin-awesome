@@ -1245,7 +1245,7 @@ if ($errors['err'] && isset($_POST['a'])) {
                         'Start writing your response here. Use canned responses from the drop-down above'
                         ); ?>"
                         rows="9" wrap="soft"
-                        class="<?php if ($cfg->isRichTextEnabled()) echo 'richtext';
+                        class="textarea <?php if ($cfg->isRichTextEnabled()) echo 'richtext';
                             ?> draft draft-delete" <?php
     list($draft, $attrs) = Draft::getDraftAndDataAttrs('ticket.response', $ticket->getId(), $info['response']);
     echo $attrs; ?>><?php echo $_POST ? $info['response'] : $draft;
@@ -1629,7 +1629,7 @@ $('.conflictoTicket').click(function(){
   };
   
   // Init redactor
-  $('textarea').redactor({ 
+  $('.textarea').redactor({ 
     plugins: ['spellchecker']
   });
 
