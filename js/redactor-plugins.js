@@ -142,7 +142,7 @@ RedactorPlugins.fontfamily = function()
 
 			dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
 
-			var button = this.button.addBefore('bold', 'fontfamily', __('Change Font Family'));
+			var button = this.button.addBefore('bold', 'fontfamily', __('Cambiar tipo de letra'));
 			this.button.addDropdown(button, dropdown);
 
 		},
