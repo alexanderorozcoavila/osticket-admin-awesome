@@ -174,7 +174,7 @@ RedactorPlugins.spellchecker = function(){
 
 			// dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
 
-			var button = this.button.addBefore('bold', 'fontfamily', __('Corrector Ortográfico'));
+			var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
 			this.button.addDropdown(button, dropdown);
 
 		}
