@@ -1629,7 +1629,7 @@ $('.conflictoTicket').click(function(){
   };
   
   // Init redactor
-  $('.textarea').redactor({ 
+  $('textarea').redactor({ 
     plugins: ['spellchecker']
   });
 
