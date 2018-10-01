@@ -762,7 +762,7 @@ return false;">
                         $coma = '';
                         foreach($collabs as $collab) {
                             $colaboradores = $colaboradores.$coma.$collab->getEmail();
-                            $coma = ',&nbsp;&#10;';
+                            $coma = ',';
                         }
                         echo '<span class="pull-right faded-more tooltip"><i class="icon-group"></i>
                         <span class="tooltiptext">'.$colaboradores.'</span>
