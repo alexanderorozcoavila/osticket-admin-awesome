@@ -435,7 +435,7 @@ $tickets->constrain(array('lock' => array(
 ?>
 
 <style>
-    .tooltip {
+    /* .tooltip {
     text-align:left !important;
     width: 250px !important;
  padding-right:3px !important;
@@ -444,7 +444,7 @@ $tickets->constrain(array('lock' => array(
  text-align:left !important;
  width: 250px !important;
  padding-right:3px !important;
-}
+} */
 </style>
 
 <div class="dialog" id="alert2" style="top: 75.2857px;
