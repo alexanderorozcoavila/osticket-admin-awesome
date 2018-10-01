@@ -1,4 +1,6 @@
 <?php
+
+        $idTicketUser = $_GET['id'];
 //Note that ticket obj is initiated in tickets.php.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($ticket) || !$ticket->getId()) die('Invalid path');
 
@@ -300,7 +302,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 } ?>
                 <?php
                 if ($role->hasPerm(Ticket::PERM_EDIT)) { ?>
-                <li><a href="#ajax.php/tickets/<?php echo $ticket->getId();
+                <li><a href="#ajax.php/tickets/<?php echo $idTicketUser;
                     ?>/forms/manage" onclick="javascript:
                     $.dialog($(this).attr('href').substr(1), 201);
                     return false"
@@ -408,9 +410,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 </tr>
             </table>
         </td>
-        <?php 
-        $idTicketUser = $_GET['id'];
-        ?>
+        
         <td width="50%" style="vertical-align:top">
             <table border="0" cellspacing="" cellpadding="4" width="100%">
                 <tr>
