@@ -49,16 +49,15 @@ if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/select2.min.js"></script>
 
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/tips.js"></script>
-
+<!--
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/redactor.min.js"></script>
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/jquery.spellchecker.js"></script>
 
-<script type="text/javascript" src="http://jquery-spellchecker.badsyntax.co/js/lib/jquery/jquery-1.8.2.min.js"></script>
-
-<!-- <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor.min.js"></script>
+-->
+<script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor.min.js"></script>
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-osticket.js"></script>
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-plugins.js"></script>
--->
+
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/jquery.translatable.js"></script>
 <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/jquery.dropdown.js"></script>
 <!-- <script type="text/javascript" src="<?php echo ROOT_PATH; ?>scp/js/bootstrap-tooltip.js"></script>-->
