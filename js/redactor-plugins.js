@@ -164,7 +164,8 @@ RedactorPlugins.spellchecker = function(){
 		{
 			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
 			var that = this;
-			var dropdown = {};
+      var dropdown = {};
+      console.log('llamo al plugin spellchecker')
 
 			$.each(fonts, function(i, s)
 			{
