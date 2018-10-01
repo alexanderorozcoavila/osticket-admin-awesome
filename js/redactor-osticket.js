@@ -266,8 +266,8 @@ $(function() {
                 'minHeight': selectedSize,
                 'focus': false,
                 'plugins': el.hasClass('no-bar')
-                  ? ['imagemanager','definedlinks']
-                  : ['imagemanager','imageannotate','table','video','definedlinks','autolock'],
+                  ? ['imagemanager','definedlinks','spellchecker']
+                  : ['imagemanager','imageannotate','table','video','definedlinks','autolock','spellchecker'],
                 'imageUpload': el.hasClass('draft'),
                 'imageManagerJson': 'ajax.php/draft/images/browse',
                 'syncBeforeCallback': captureImageSizes,
