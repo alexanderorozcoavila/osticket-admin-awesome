@@ -395,6 +395,9 @@
   var WebService = function(config) {
 
     this.config = config;
+    var headers2 = new Headers();
+    headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+    headers.append("Access-Control-Allow-Origin", "*");
 
     this.defaultConfig = {
       url: config.webservice.path,
@@ -402,20 +405,11 @@
         withCredentials: true
       },
       type: 'POST',
-      headers: {'Access-Control-Allow-Origin': '*'},
+      headers: headers2,
       dataType: 'json',
-      beforeSend: function(request) {
-        request.setRequestHeader("Access-Control-Allow-Origin", "*");
-        // request.setRequestHeader("Access-Control-Allow-Headers", "access-control-allow-origin");
-        
-        // request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
-        // request.header("Access-Control-Allow-Origin", "*");
-      },
-      // async: true,
+      async: true,
       crossDomain: true,
       // "aca":"si",
-      'Access-Control-Allow-Headers': 'access-control-allow-origin',
-      'Access-Control-Allow-Origin': '*',
       // cors: true,
       cache: false,
       data: {
