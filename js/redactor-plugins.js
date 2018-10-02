@@ -162,7 +162,7 @@ RedactorPlugins.spellchecker = function(){
   return {
 		init: function ()
 		{
-			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
+			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés','Desactivar Corrector' ];
 			var that = this;
       var dropdown = {};
       console.log('llamo al plugin spellchecker')
@@ -191,6 +191,7 @@ RedactorPlugins.spellchecker = function(){
     //   });
     // },
     create: function() {
+      //this.lenguaje_cod = "Inactive";
       if(this.lenguaje == "Español"){
         this.lenguaje_cod = "es";
       }
@@ -222,20 +223,28 @@ RedactorPlugins.spellchecker = function(){
     },
     toggle: function() {
       console.log('toogle');
+      if(this.lenguaje == "Desactivar Corrector"){
+        this.spellchecker2.destroy();
+        this.spellchecker2 = null;
+        console.log('se destruyo la funcion');
+      }else{
+        if (!this.spellchecker2) {
+          //   // this.setBtnActive('spellchecker');
+            console.log('se creo la funcion para chequear el idioma');
+            this.spellchecker.create();
+            this.spellchecker2.check();
+          }else{
+            console.log('se creo la funcion para chequear el idioma 2');
+            this.spellchecker2.destroy();
+            this.spellchecker2 = null;
+            this.spellchecker.create();
+            this.spellchecker2.check();
+          } 
+      }
         // this.spellchecker.create();
         // this.spellchecker2.check();
       // this.spellchecker2.check();
-      if (!this.spellchecker2) {
-      //   // this.setBtnActive('spellchecker');
-        console.log('se creo la funcion para chequear el idioma');
-        this.spellchecker.create();
-        this.spellchecker2.check();
-      } else {
-      //   // this.setBtnInactive('spellchecker');
-        console.log('se destruyo la funcion');
-        this.spellchecker2.destroy();
-        this.spellchecker2 = null;
-      }
+      
     }
 	};
 };
