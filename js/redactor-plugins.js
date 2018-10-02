@@ -191,7 +191,7 @@ RedactorPlugins.spellchecker = function(){
     // },
     create: function() {
  
-      this.spellchecker = new $.SpellChecker(this.$editor, {
+      this.spellchecker2 = new $.SpellChecker(this.$editor, {
         lang: 'en',
         parser: 'html',
         webservice: {
@@ -204,12 +204,12 @@ RedactorPlugins.spellchecker = function(){
       });
  
       // Bind spellchecker handler functions
-      this.spellchecker.on('check.success', function() {
+      this.spellchecker2.on('check.success', function() {
         alert('There are no incorrectly spelt words.');
       });
     },
     toggle: function() {
-      this.spellchecker.check();
+      this.spellchecker2.check();
       // if (!this.spellchecker) {
       //   // this.setBtnActive('spellchecker');
       //   // this.create();
