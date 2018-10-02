@@ -401,6 +401,10 @@
       type: 'POST',
       // headers: {  'Access-Control-Allow-Origin': 'http://pinguipastry.com.ve' },
       dataType: 'json',
+      beforeSend: function(request) {
+        request.setRequestHeader("Access-Control-Allow-Origin", "*");
+        request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+      },
       // async: true,
       // crossDomain: true,
       cache: false,
