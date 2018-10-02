@@ -401,8 +401,8 @@
       type: 'POST',
       headers: {  'Access-Control-Allow-Origin': 'http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php' },
       dataType: 'json',
-      // async: true,
-      //crossDomain: true,
+      async: true,
+      crossDomain: true,
       cache: false,
       data: {
         lang: config.lang,
