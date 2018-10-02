@@ -171,6 +171,7 @@ RedactorPlugins.spellchecker = function(){
 			{
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
             console.log(s);
+            this.lenguaje = s;
             this.spellchecker.toggle();
          }};
 			});
@@ -190,9 +191,20 @@ RedactorPlugins.spellchecker = function(){
     //   });
     // },
     create: function() {
- 
+      if(this.lenguaje == "Español"){
+        this.lenguaje_cod = "es";
+      }
+      if(this.lenguaje == "Inglés"){
+        this.lenguaje_cod = "en";
+      }
+      if(this.lenguaje == "Alemán"){
+        this.lenguaje_cod = "nl";
+      }
+      if(this.lenguaje == "Francés"){
+        this.lenguaje_cod = "fr";
+      }
       this.spellchecker2 = new $.SpellChecker(this.$editor, {
-        lang: 'en',
+        lang: this.lenguaje_cod,
         parser: 'html',
         webservice: {
           path: "http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php",
