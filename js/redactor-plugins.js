@@ -170,22 +170,7 @@ RedactorPlugins.spellchecker = function(){
 			$.each(fonts, function(i, s)
 			{
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
-          this.spellchecker = new $.SpellChecker(this.$editor, {
-            lang: 'en',
-            parser: 'html',
-            webservice: {
-              path: "http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php",
-              driver: 'pspell'
-            },
-            suggestBox: {
-              position: 'below'
-            }
-          });
-     
-          // Bind spellchecker handler functions
-          this.spellchecker.on('check.success', function() {
-            alert('There are no incorrectly spelt words.');
-          });
+          
          }};
 			});
 
