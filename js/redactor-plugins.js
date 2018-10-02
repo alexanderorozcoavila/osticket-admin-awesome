@@ -217,7 +217,7 @@ RedactorPlugins.spellchecker = function(){
         this.spellchecker2.check();
       } else {
         // this.setBtnInactive('spellchecker');
-        this.spellchecker2.destroy();
+        this.spellchecker.destroy();
         this.spellchecker2 = null;
       }
     }
