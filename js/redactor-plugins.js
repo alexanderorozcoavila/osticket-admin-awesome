@@ -170,17 +170,22 @@ RedactorPlugins.spellchecker = function(){
 			$.each(fonts, function(i, s)
 			{
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
-          if (!this.spellchecker) {
-            console.log('si');
-            // this.setBtnActive('spellchecker');
-            this.create();
-            this.spellchecker.check();
-          } else {
-            console.log('no');
-            // this.setBtnInactive('spellchecker');
-            this.spellchecker.destroy();
-            this.spellchecker = null;
-          }
+          this.spellchecker = new $.SpellChecker(this.$editor, {
+            lang: 'en',
+            parser: 'html',
+            webservice: {
+              path: "http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php",
+              driver: 'pspell'
+            },
+            suggestBox: {
+              position: 'below'
+            }
+          });
+     
+          // Bind spellchecker handler functions
+          this.spellchecker.on('check.success', function() {
+            alert('There are no incorrectly spelt words.');
+          });
          }};
 			});
 
