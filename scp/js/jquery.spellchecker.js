@@ -396,8 +396,8 @@
 
     this.config = config;
     var headers2 = new Headers();
-    headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
-    headers.append("Access-Control-Allow-Origin", "*");
+    headers2.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+    headers2.append("Access-Control-Allow-Origin", "*");
 
     this.defaultConfig = {
       url: config.webservice.path,
