@@ -399,14 +399,11 @@
     this.defaultConfig = {
       url: config.webservice.path,
       type: 'POST',
-      headers: {
-        // "accept": "application/json",
-        "Access-Control-Allow-Origin":"*"
-      },
+      headers: {  'Access-Control-Allow-Origin': 'http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php' },
       dataType: 'json',
       // async: true,
-      crossDomain: true,
-      // cache: false,
+      //crossDomain: true,
+      cache: false,
       data: {
         lang: config.lang,
         driver: config.webservice.driver
