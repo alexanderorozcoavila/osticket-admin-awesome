@@ -396,14 +396,14 @@
 
     this.config = config;
     var headers2 = new Headers();
-    // headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+    headers2.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
     headers2.set("Access-Control-Allow-Origin", "*");
 
     this.defaultConfig = {
       url: config.webservice.path,
-      xhrFields: {
-        withCredentials: true
-      },
+      // xhrFields: {
+      //   withCredentials: true
+      // },
       type: 'POST',
       headers: headers2,
       dataType: 'jsonp',
@@ -411,7 +411,8 @@
       //   request.setRequestHeader("Access-Control-Allow-Origin", "*");
       // },
       // async: true,
-      crossDomain: true,
+      //crossDomain: true,
+      jsonpCallback: 'envoltorio',  
       // "aca":"si",
       // 'Access-Control-Allow-Headers': 'access-control-allow-origin',
       // 'Access-Control-Allow-Origin': '*',
