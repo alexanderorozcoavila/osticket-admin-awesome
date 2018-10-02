@@ -173,12 +173,12 @@ RedactorPlugins.spellchecker = function(){
           if (!this.spellchecker) {
             console.log('si');
             // this.setBtnActive('spellchecker');
-            // this.create();
+            this.create();
             this.spellchecker.check();
           } else {
             console.log('no');
             // this.setBtnInactive('spellchecker');
-            // this.spellchecker.destroy();
+            this.spellchecker.destroy();
             this.spellchecker = null;
           }
          }};
