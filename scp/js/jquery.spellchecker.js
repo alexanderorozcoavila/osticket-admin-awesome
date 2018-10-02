@@ -399,10 +399,10 @@
     this.defaultConfig = {
       url: config.webservice.path,
       type: 'POST',
-      headers: {  'Access-Control-Allow-Origin': 'http://pinguipastry.com.ve' },
+      // headers: {  'Access-Control-Allow-Origin': 'http://pinguipastry.com.ve' },
       dataType: 'json',
-      async: true,
-      crossDomain: true,
+      // async: true,
+      // crossDomain: true,
       cache: false,
       data: {
         lang: config.lang,
