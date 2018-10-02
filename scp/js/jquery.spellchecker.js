@@ -403,10 +403,11 @@
       dataType: 'json',
       beforeSend: function(request) {
         request.setRequestHeader("Access-Control-Allow-Origin", "*");
-        request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+        // request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+        request.setResponsetHeader("Access-Control-Allow-Origin", "*");
       },
       // async: true,
-      // crossDomain: true,
+      crossDomain: true,
       cache: false,
       data: {
         lang: config.lang,
