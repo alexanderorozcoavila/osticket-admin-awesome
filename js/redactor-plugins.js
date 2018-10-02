@@ -162,22 +162,24 @@ RedactorPlugins.spellchecker = function(){
   return {
 		init: function ()
 		{
-			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
-			var that = this;
-      var dropdown = {};
-      console.log('llamo al plugin spellchecker')
+			// var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
+			// var that = this;
+      // var dropdown = {};
+      // console.log('llamo al plugin spellchecker')
 
-			$.each(fonts, function(i, s)
-			{
-				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
-          
-         }};
-			});
+			// $.each(fonts, function(i, s)
+			// {
+			// 	dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
+      //       console.log()
+      //    }};
+			// });
+			// var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
+      // this.button.addDropdown(button, dropdown);
+      
+      var button = this.button.add('spellchecker', 'Spellchecker');
+			this.button.addCallback(button, this.spellchecker.toggle);
 
-			// dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
-
-			var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
-			this.button.addDropdown(button, dropdown);
+			if (true) this.spellchecker.toggle();
 
     },
     // init: function() {
@@ -207,11 +209,11 @@ RedactorPlugins.spellchecker = function(){
     },
     toggle: function() {
       if (!this.spellchecker) {
-        this.setBtnActive('spellchecker');
-        this.create();
+        // this.setBtnActive('spellchecker');
+        // this.create();
         this.spellchecker.check();
       } else {
-        this.setBtnInactive('spellchecker');
+        // this.setBtnInactive('spellchecker');
         this.spellchecker.destroy();
         this.spellchecker = null;
       }
