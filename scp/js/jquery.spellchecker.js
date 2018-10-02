@@ -409,7 +409,11 @@
         // request.header("Access-Control-Allow-Origin", "*");
       },
       // async: true,
-      crossDomain: true,
+      // crossDomain: true,
+      // "aca":"si",
+      'Access-Control-Allow-Headers': 'access-control-allow-origin',
+      'Access-Control-Allow-Origin': '*',
+      // cors: true,
       cache: false,
       data: {
         lang: config.lang,
