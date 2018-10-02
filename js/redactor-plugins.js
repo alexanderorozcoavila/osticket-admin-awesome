@@ -210,18 +210,20 @@ RedactorPlugins.spellchecker = function(){
     },
     toggle: function() {
       console.log('toogle');
-      this.spellchecker.create();
-        this.spellchecker2.check();
+        // this.spellchecker.create();
+        // this.spellchecker2.check();
       // this.spellchecker2.check();
-      // if (!this.spellchecker) {
+      if (!this.spellchecker2) {
       //   // this.setBtnActive('spellchecker');
-      //   this.spellchecker.create();
-      //   this.spellchecker2.check();
-      // } else {
+        console.log('se creo la funcion para chequear el idioma');
+        this.spellchecker.create();
+        this.spellchecker2.check();
+      } else {
       //   // this.setBtnInactive('spellchecker');
-      //   //this.spellchecker.destroy();
-      //   this.spellchecker2 = null;
-      // }
+        console.log('se destruyo la funcion');
+        this.spellchecker2.destroy();
+        this.spellchecker2 = null;
+      }
     }
 	};
 };
