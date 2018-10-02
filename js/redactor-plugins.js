@@ -209,6 +209,7 @@ RedactorPlugins.spellchecker = function(){
       });
     },
     toggle: function() {
+      console.log('toogle');
       this.spellchecker2.check();
       // if (!this.spellchecker) {
       //   // this.setBtnActive('spellchecker');
