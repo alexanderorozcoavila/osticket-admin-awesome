@@ -169,7 +169,19 @@ RedactorPlugins.spellchecker = function(){
 
 			$.each(fonts, function(i, s)
 			{
-				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { alert(s.toLowerCase()); }};
+				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
+          if (!this.spellchecker) {
+            console.log('si');
+            this.setBtnActive('spellchecker');
+            this.create();
+            this.spellchecker.check();
+          } else {
+            console.log('no');
+            this.setBtnInactive('spellchecker');
+            this.spellchecker.destroy();
+            this.spellchecker = null;
+          }
+         }};
 			});
 
 			// dropdown.remove = { title: __('Remove Font Family'), func: that.fontfamily.reset };
