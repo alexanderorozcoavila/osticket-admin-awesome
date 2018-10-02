@@ -400,12 +400,12 @@
       url: config.webservice.path,
       type: 'POST',
       headers: {
-        "accept": "application/json",
+        // "accept": "application/json",
         "Access-Control-Allow-Origin":"*"
       },
       dataType: 'json',
       async: true,
-      crossDomain: true,
+      crossDomain: false,
       cache: false,
       data: {
         lang: config.lang,
