@@ -396,8 +396,8 @@
 
     this.config = config;
     var headers2 = new Headers();
-    headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
-    headers.append("Access-Control-Allow-Origin", "*");
+    // headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+    headers.set("Access-Control-Allow-Origin", "*");
 
     this.defaultConfig = {
       url: config.webservice.path,
@@ -409,10 +409,6 @@
       dataType: 'jsonp',
       // beforeSend: function(request) {
       //   request.setRequestHeader("Access-Control-Allow-Origin", "*");
-      //   // request.setRequestHeader("Access-Control-Allow-Headers", "access-control-allow-origin");
-        
-      //   // request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
-      //   // request.header("Access-Control-Allow-Origin", "*");
       // },
       // async: true,
       crossDomain: true,
