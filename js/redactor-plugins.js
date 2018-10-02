@@ -162,24 +162,24 @@ RedactorPlugins.spellchecker = function(){
   return {
 		init: function ()
 		{
-			// var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
-			// var that = this;
-      // var dropdown = {};
-      // console.log('llamo al plugin spellchecker')
+			var fonts = [ 'Español', 'Inglés', 'Alemán', 'Francés' ];
+			var that = this;
+      var dropdown = {};
+      console.log('llamo al plugin spellchecker')
 
-			// $.each(fonts, function(i, s)
-			// {
-			// 	dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
-      //       console.log()
-      //    }};
-			// });
-			// var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
-      // this.button.addDropdown(button, dropdown);
+			$.each(fonts, function(i, s)
+			{
+				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
+            console.log(s);
+         }};
+			});
+			var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
+      this.button.addDropdown(button, dropdown);
       
-      var button = this.button.add('spellchecker', 'Spellchecker');
-			this.button.addCallback(button, this.spellchecker.toggle);
+      // var button = this.button.add('spellchecker', 'Spellchecker');
+			// this.button.addCallback(button, this.spellchecker.toggle);
 
-			if (true) this.spellchecker.toggle();
+			// if (true) this.spellchecker.toggle();
 
     },
     // init: function() {
