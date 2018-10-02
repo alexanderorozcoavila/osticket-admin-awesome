@@ -404,9 +404,9 @@
         "Access-Control-Allow-Origin":"*"
       },
       dataType: 'json',
-      async: true,
-      crossDomain: false,
-      cache: false,
+      // async: true,
+      crossDomain: true,
+      // cache: false,
       data: {
         lang: config.lang,
         driver: config.webservice.driver
