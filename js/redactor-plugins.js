@@ -172,13 +172,13 @@ RedactorPlugins.spellchecker = function(){
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
           if (!this.spellchecker) {
             console.log('si');
-            this.setBtnActive('spellchecker');
-            this.create();
+            // this.setBtnActive('spellchecker');
+            // this.create();
             this.spellchecker.check();
           } else {
             console.log('no');
-            this.setBtnInactive('spellchecker');
-            this.spellchecker.destroy();
+            // this.setBtnInactive('spellchecker');
+            // this.spellchecker.destroy();
             this.spellchecker = null;
           }
          }};
