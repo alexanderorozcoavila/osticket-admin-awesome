@@ -210,16 +210,16 @@ RedactorPlugins.spellchecker = function(){
     },
     toggle: function() {
       console.log('toogle');
-      this.spellchecker2.check();
-      // if (!this.spellchecker) {
-      //   // this.setBtnActive('spellchecker');
-      //   // this.create();
-      //   this.spellchecker.check();
-      // } else {
-      //   // this.setBtnInactive('spellchecker');
-      //   this.spellchecker.destroy();
-      //   this.spellchecker = null;
-      // }
+      // this.spellchecker2.check();
+      if (!this.spellchecker) {
+        // this.setBtnActive('spellchecker');
+        this.spellchecker.create();
+        this.spellchecker2.check();
+      } else {
+        // this.setBtnInactive('spellchecker');
+        this.spellchecker2.destroy();
+        this.spellchecker2 = null;
+      }
     }
 	};
 };
