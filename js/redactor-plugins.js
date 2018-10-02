@@ -171,6 +171,7 @@ RedactorPlugins.spellchecker = function(){
 			{
 				dropdown['s' + i] = { title: '<span>' + s + '</span>', func: function() { 
             console.log(s);
+            this.spellchecker.toggle();
          }};
 			});
 			var button = this.button.addBefore('spellchecker', 'Spellchecker', __('Corrector Ortográfico'));
