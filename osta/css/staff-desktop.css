@@ -3511,7 +3511,7 @@ a#ostawesome-link {
 ========================================================================== */
 
 #loginBody #brickwall {
-	background-image: none;
+	background-image: url(../../scp/images/fondo-login.jpg) !important;
     background: var(--header-bg2) !important;
 }
 #loginBody #loginBox {
