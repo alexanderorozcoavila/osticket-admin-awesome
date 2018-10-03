@@ -3512,7 +3512,7 @@ a#ostawesome-link {
 
 #loginBody #brickwall {
 	background-image: url(../../scp/images/fondo-login.jpg) !important;
-    background: var(--header-bg2) !important;
+    /* background: var(--header-bg2) !important; */
 }
 #loginBody #loginBox {
     /* box-shadow: initial; */
