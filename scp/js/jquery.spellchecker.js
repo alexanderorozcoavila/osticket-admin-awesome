@@ -405,13 +405,13 @@
       //   withCredentials: true
       // },
       type: 'POST',
-      headers: headers2,
+      // headers: headers2,
       dataType: 'json',
-      beforeSend: function(request) {
-        request.setRequestHeader("Access-Control-Allow-Origin", "*");
-      },
+      // beforeSend: function(request) {
+      //   request.setRequestHeader("Access-Control-Allow-Origin", "*");
+      // },
       // async: true,
-      crossDomain: true,
+      // crossDomain: true,
       // jsonpCallback: 'envoltorio',  
       // "aca":"si",
       // 'Access-Control-Allow-Headers': 'access-control-allow-origin',
