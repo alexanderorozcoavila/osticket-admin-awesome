@@ -208,7 +208,7 @@ RedactorPlugins.spellchecker = function(){
         lang: this.lenguaje_cod,
         parser: 'html',
         webservice: {
-          path: "http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php",
+          path: "http://pinguipastry.com.ve/spell.php",
           driver: 'pspell'
         },
         suggestBox: {

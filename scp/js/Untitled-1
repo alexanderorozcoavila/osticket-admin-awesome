@@ -1,0 +1,18 @@
+var url = 'http://servidorRemoto.com/archivo.json?callback=envoltorio'
+var headers2 = new Headers();
+headers2.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+headers2.set("Access-Control-Allow-Origin", "*");
+$.ajax(
+   { url: 'http://jquery-spellchecker.badsyntax.co/webservices/php/SpellChecker.php',
+     type: 'POST',
+     dataType: 'json',
+     headers: headers2,
+     crossDomain: true,
+     error: function(xhr, status, error) {
+        alert("error");
+     },
+     success: function(jsonp) {
+        alert("peticion correcta")
+     }
+    }
+);
