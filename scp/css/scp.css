@@ -1838,7 +1838,8 @@ input[type="button"] i,
 }
 select + .action-button,
 select + .button {
-  vertical-align: middle;
+    /* staff.php?id=2#access */
+  /* vertical-align: middle; */
 }
 .dark.button {
     background-color: rgba(0,0,0,0.5);
