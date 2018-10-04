@@ -1163,7 +1163,7 @@ input[type="submit"], input[type="reset"], input[type="button"], .action-button,
     box-shadow: none;
     text-shadow: none;
     margin: 0px;
-    padding: 6px 16px;
+    padding: 5px 16px;
     color: #898989;
     background: #fff;		
     cursor: pointer;
