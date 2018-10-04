@@ -212,7 +212,7 @@ if ($_POST)
                     <div style="
                     float:left;
                     border: 1px solid #d0d0d0;
-                    padding: 10px 10px;
+                    padding: 0px 0px;
                     width: 100%;
                     background: #fff;
                     -webkit-box-sizing: border-box;
@@ -333,7 +333,7 @@ if ($_POST)
                 <div style="
                     float:left;
                     border: 1px solid #d0d0d0;
-                    padding: 10px 10px;
+                    padding: 0px 0px;
                     width: 100%;
                     background: #fff;
                     -webkit-box-sizing: border-box;

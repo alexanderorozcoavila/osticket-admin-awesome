@@ -32,7 +32,7 @@
 }
 .selectize-dropdown-header {
   position: relative;
-  padding: 5px 8px;
+  padding: 0px 8px;
   border-bottom: 1px solid #d0d0d0;
   background: #f8f8f8;
   -webkit-border-radius: 3px 3px 0 0;
@@ -88,7 +88,7 @@
   text-decoration: none;
   vertical-align: middle;
   display: inline-block;
-  padding: 2px 0 0 0;
+  padding: 0px 0 0 0;
   border-left: 1px solid #d0d0d0;
   -webkit-border-radius: 0 2px 2px 0;
   -moz-border-radius: 0 2px 2px 0;
@@ -135,7 +135,7 @@
 }
 .selectize-input {
   /* border: 1px solid #d0d0d0; */
-  padding: 8px 8px;
+  padding: 0px 8px;
   display: inline-block;
   width: 100%;
   overflow: hidden;
@@ -151,7 +151,7 @@
   border-radius: 3px; */
 }
 .selectize-control.multi .selectize-input.has-items {
-  padding: 6px 8px 3px;
+  padding: 0px 8px 0px;
 }
 .selectize-input.full {
   background-color: #fff;
@@ -179,7 +179,7 @@
 .selectize-control.multi .selectize-input > div {
   cursor: pointer;
   margin: 0 3px 3px 0;
-  padding: 2px 6px;
+  padding: 0px 6px;
   background: #f2f2f2;
   color: #303030;
   border: 0 solid #d0d0d0;
@@ -259,7 +259,7 @@
 }
 .selectize-dropdown .option,
 .selectize-dropdown .optgroup-header {
-  padding: 5px 8px;
+  padding: 0px 8px;
 }
 .selectize-dropdown .option,
 .selectize-dropdown [data-disabled],
