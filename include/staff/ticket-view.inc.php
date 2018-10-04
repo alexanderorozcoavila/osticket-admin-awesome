@@ -1,6 +1,6 @@
 <?php
 
-        $idTicketUser = $_GET['id'];
+$idTicketUser = $_GET['id'];
 //Note that ticket obj is initiated in tickets.php.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($ticket) || !$ticket->getId()) die('Invalid path');
 
@@ -148,12 +148,12 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 
             <?php 
             if($anterior){
-                $ticket=Ticket::lookup($anterior["ticket_id"]);
-                if($ticket->getThread()->getLogConflict($anterior["ticket_id"])){
-                    if($ticket->getThread()->getLogConflictUser($anterior["ticket_id"])){
+                $ticket_nav=Ticket::lookup($anterior["ticket_id"]);
+                if($ticket_nav->getThread()->getLogConflict($anterior["ticket_id"])){
+                    if($ticket_nav->getThread()->getLogConflictUser($anterior["ticket_id"])){
                         $nombreagente = "";
                     }else{
-                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($anterior["ticket_id"]);
+                        $nombreagentes = $ticket_nav->getThread()->getLogConflictUserAgente($anterior["ticket_id"]);
                         $nombreagente =  $nombreagentes["username"];   
                     }
                 }else{
@@ -178,11 +178,11 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             }
             // $nombreagente = "";
             if($siguiente){
-                if($ticket->getThread()->getLogConflict($siguiente["ticket_id"])){
-                    if($ticket->getThread()->getLogConflictUser($siguiente["ticket_id"])){
+                if($ticket_nav->getThread()->getLogConflict($siguiente["ticket_id"])){
+                    if($ticket_nav->getThread()->getLogConflictUser($siguiente["ticket_id"])){
                         $nombreagente = "";
                     }else{
-                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($siguiente["ticket_id"]);
+                        $nombreagentes = $ticket_nav->getThread()->getLogConflictUserAgente($siguiente["ticket_id"]);
                         $nombreagente =  $nombreagentes["username"];   
                     }
                 }else{
