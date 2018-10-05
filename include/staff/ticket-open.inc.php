@@ -466,7 +466,7 @@ if ($_POST)
             </td>
             <td>
                 <select name="source">
-                    <option> -- Seleccione la fuente -- </option>
+                    <option>—  Seleccione la fuente —</option>
                     <?php
                     $source = $info['source'] ?: '';
                     $sources = Ticket::getSources();
