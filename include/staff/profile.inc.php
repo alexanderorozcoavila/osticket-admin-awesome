@@ -247,6 +247,36 @@ if ($avatar->isChangeable()) { ?>
             </td>
         </tr>
         <tr>
+            <td width="180"><?php echo __('Previsualización de tickets');?>:
+              
+            </td>
+            <td>
+                <select name="default_preview_ticket">
+                  
+                  <?php 
+                    $selected0 = "";
+                    $selected1 = "";
+                    $selected2 = "";
+
+                  if(($staff->default_preview_ticket == 1) || ($staff->default_preview_ticket == 2)){
+                    if($staff->default_preview_ticket == 1){
+                      $selected1 = "selected=\"selected\"";
+                    }
+                    if($staff->default_preview_ticket == 2){
+                      $selected2 = "selected=\"selected\"";
+                    } 
+                  }else{
+                    $selected0 = "selected=\"selected\"";
+                  }
+                  ?>
+                  <option value="none" <?php echo $selected0; ?>>&mdash; <?php echo __('None');?> &mdash;</option>
+                  <option value="1" <?php echo $selected1; ?>>Previsualizar 1 linea del ticket</option>
+                  <option value="2" <?php echo $selected2; ?>>Previsualizar 2 lineas del ticket</option>
+                </select>
+                <div class="error"><?php echo $errors['default_preview_ticket']; ?></div>
+            </td>
+        </tr>
+        <tr>
             <td><?php echo __('Default Signature');?>:
               <div class="faded"><?php echo __('This can be selected when replying to a thread');?></div>
             </td>
@@ -283,6 +313,7 @@ if ($avatar->isChangeable()) { ?>
                 <div class="error"><?php echo $errors['default_paper_size']; ?></div>
             </td>
         </tr>
+        
       </tbody>
       <tbody>
         <tr class="header">
