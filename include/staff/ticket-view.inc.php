@@ -161,11 +161,11 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 }
                 if($nombreagente == ""){
                     ?>
-                    <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket"><a href="tickets.php?id=<?php echo $anterior["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-right"></i></a></span>
+                    <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="Siguiente ticket"><a href="tickets.php?id=<?php echo $anterior["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-right"></i></a></span>
                     <?php
                 }else{
                     ?>
-                    <span class="action-button pull-right conflictoTicket" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-right"></i></a></span>
+                    <span class="action-button pull-right conflictoTicket" data-placement="bottom" data-toggle="tooltip" title="Siguiente ticket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-right"></i></a></span>
                     <?php
                 }
             ?>
@@ -190,11 +190,11 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 }
                 if($nombreagente == ""){
                     ?>
-                    <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="Siguiente ticket"><a href="tickets.php?id=<?php echo $siguiente["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-left"></i></a></span>   
+                    <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket"><a href="tickets.php?id=<?php echo $siguiente["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-left"></i></a></span>   
                     <?php
                 }else{
                     ?>
-                    <span class="action-button pull-right conflictoTicket" data-placement="bottom" data-toggle="tooltip" title="Siguiente ticket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-left"></i></a></span>   
+                    <span class="action-button pull-right conflictoTicket" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-left"></i></a></span>   
                     <?php
                 }
             ?>
