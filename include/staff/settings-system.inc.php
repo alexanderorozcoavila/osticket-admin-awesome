@@ -70,7 +70,7 @@ $gmtime = Misc::gmtime();
             <td>
                 <input type="text" name="autolock_minutes" size=4 value="<?php echo $config['autolock_minutes']; ?>">
                 <font class="error"><?php echo $errors['autolock_minutes']; ?></font>&nbsp;<?php echo __('minutes'); ?>
-                &nbsp;<i class="help-tip icon-question-sign" href="#collision_avoidance"></i>
+                <!-- &nbsp;<i class="help-tip icon-question-sign" href="#collision_avoidance"></i> -->
             </td>
         </tr>
         <tr><td><?php echo __('Default Page Size');?>:</td>
