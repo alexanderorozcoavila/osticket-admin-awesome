@@ -208,7 +208,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             ?>
             <?php
             if ($role->hasPerm(TicketModel::PERM_EDIT)) { ?>
-                <span class="action-button pull-right"><a data-placement="bottom" data-toggle="tooltip" title="<?php echo __('Edit'); ?>" href="tickets.php?id=<?php echo $ticket->getId(); ?>&a=edit"><i class="icon-edit"></i></a></span>
+                <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="<?php echo __('Edit'); ?>"><a href="tickets.php?id=<?php echo $ticket->getId(); ?>&a=edit"><i class="icon-edit"></i></a></span>
             <?php
             } ?>
             <span class="action-button pull-right" data-placement="bottom" data-dropdown="#action-dropdown-print" data-toggle="tooltip" title="<?php echo __('Print'); ?>">
@@ -226,9 +226,8 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             <?php
             // Transfer
             if ($role->hasPerm(TicketModel::PERM_TRANSFER)) {?>
-            <span class="action-button pull-right">
-            <a class="ticket-action" id="ticket-transfer" data-placement="bottom" data-toggle="tooltip" title="<?php echo __('Transfer'); ?>"
-                data-redirect="tickets.php"
+            <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="<?php echo __('Transfer'); ?>">
+            <a class="ticket-action" id="ticket-transfer" data-redirect="tickets.php"
                 href="#tickets/<?php echo $ticket->getId(); ?>/transfer"><i class="icon-share"></i></a>
             </span>
             <?php
