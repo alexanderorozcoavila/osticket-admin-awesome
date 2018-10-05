@@ -16,6 +16,30 @@ body {
     padding:0;
 }
 
+.conflictoTicket{
+    color: #184E81;
+    cursor: pointer;
+}
+
+.conflictoTicket:hover{
+    color: #184E81 !important;
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+
+.preview-line-hide{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.preview-line-show{
+    overflow: auto;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
 .link,
 a {
     color:#184E81;
