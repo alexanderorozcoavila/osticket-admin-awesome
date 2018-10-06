@@ -792,6 +792,7 @@ return false;">
                     echo Format::htmlchars($lc); ?></span></td>
             </tr>
             <tr>
+                <td colspan="7">
                 <?php
                 $ticketprew=Ticket::lookup($T['ticket_id']);
                 $tcount = $ticketprew->getThreadEntries();
@@ -824,10 +825,9 @@ return false;">
                     }
                 
                 ?>
-                <td colspan="7" class="<?php echo $selected; ?>" style="width: auto;" >
-                
+
+                <div class="<?php echo $selected; ?>" style="width: 1000px;" ><?php echo $linea1; ?></div>
                 <!-- <span class="preview_2" style="display:none;">
-                <?php echo $linea1; ?>
                 <?php //echo $linea2; ?>
                 </span> -->
                 </td>
