@@ -825,8 +825,8 @@ return false;">
                     }
                 
                 ?>
-                <td colspan="7" class="<?php echo $selected; ?>">
-                <p><?php echo $linea1; ?></p>
+                <td colspan="7">
+                <p class="<?php echo $selected; ?>"><?php echo $linea1; ?></p>
                 <!-- <span class="preview_2" style="display:none;">
                 <?php //echo $linea2; ?>
                 </span> -->
