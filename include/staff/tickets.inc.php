@@ -648,7 +648,7 @@ return false;">
                     $tid=sprintf('<b>%s</b>',$tid);
                 }
                 ?>
-            <tr id="<?php echo $T['ticket_id']; ?>" style="background-color: #f0faff !important;">
+            <tr id="<?php echo $T['ticket_id']; ?>" >
             <?php
                 if(isset($_GET['status'])){
                     $statusLista = '&status='.$_GET['status'];
@@ -675,12 +675,12 @@ return false;">
                     if($ids && in_array($T['ticket_id'], $ids))
                         $sel=true;
                     ?>
-                <td align="center" class="nohover" style="background-color: #f0faff !important;">
+                <td align="center" class="nohover" >
                     <input class="ckb" type="checkbox" name="tids[]"
                         value="<?php echo $T['ticket_id']; ?>" <?php echo $sel?'checked="checked"':''; ?>>
                 </td>
                 <?php } ?>
-                <td title="<?php echo $T['user__default_email__address']; ?>" nowrap style="background-color: #f0faff !important;">
+                <td title="<?php echo $T['user__default_email__address']; ?>" nowrap >
                 <?php 
                 if($nombreagente == ""){
                 ?>
@@ -706,8 +706,8 @@ return false;">
                   
                 
                 </td>
-                <td align="center" nowrap style="background-color: #f0faff !important;"><?php echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback; ?></td>
-                <td style="background-color: #f0faff !important;">
+                <td align="center" nowrap ><?php echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback; ?></td>
+                <td >
                 <?php 
                 if($nombreagente == ""){
                 ?>
@@ -753,7 +753,7 @@ return false;">
                         </span>
                     <?php } ?>
                 </td>
-                <td nowrap style="background-color: #f0faff !important;"><div><?php
+                <td nowrap ><div><?php
                     if ($T['collab_count']){
                         $ticket=Ticket::lookup($T['ticket_id']);
                         $thread = $ticket->getThread();
@@ -788,7 +788,7 @@ return false;">
                 <?php
                 }
                 ?>
-                <td nowrap style="background-color: #f0faff !important;"><span class="truncate" style="max-width: 169px"><?php
+                <td nowrap ><span class="truncate" style="max-width: 169px"><?php
                     echo Format::htmlchars($lc); ?></span></td>
             </tr>
             <tr>
