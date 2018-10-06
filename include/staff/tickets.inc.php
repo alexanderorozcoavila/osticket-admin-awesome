@@ -826,7 +826,7 @@ return false;">
                 
                 ?>
 
-                <div class="<?php echo $selected; ?>" style="width: 1000px;" linea="<?php echo $thisstaff->getDefaultPreviewTicket(); ?>"><?php echo $linea1; ?></div>
+                <div class="<?php echo $selected; ?>" style="width: auto;" linea="<?php echo $thisstaff->getDefaultPreviewTicket(); ?>"><?php echo $linea1; ?></div>
                 <!-- <span class="preview_2" style="display:none;">
                 <?php //echo $linea2; ?>
                 </span> -->
