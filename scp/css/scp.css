@@ -17,14 +17,15 @@ body {
 }
 
 .conflictoTicket{
-    color: #184E81;
+    color: #128dbe;
     cursor: pointer;
+    text-decoration: none !important;
 }
 
 .conflictoTicket:hover{
-    color: #184E81 !important;
+    color: #128dbe !important;
     cursor: pointer;
-    text-decoration: underline !important;
+    text-decoration: none !important;
 }
 
 
