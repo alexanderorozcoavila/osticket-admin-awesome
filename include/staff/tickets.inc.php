@@ -1090,7 +1090,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 
 $('.tr_ticket_es').hover(function() {
     id = $(this).attr('id');
-    console.log(id);
+    //console.log(id);
     $('.td_ticket'+id).css('background-color', '#fbf0e4 !important');
     }, function() {
     // vuelve a dejar el <div> como estaba al hacer el "mouseout"
