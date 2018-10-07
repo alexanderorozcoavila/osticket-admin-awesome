@@ -15,8 +15,7 @@ function updatePriority ( ticketid, value ) {
     url: "priority.php",
     data: ({ticketid: ticketid, priority: value}),
     success:function(response){
-        //self.location.reload();
-        console.log(response);
+        self.location.reload();
         //alert(response);
     }
 });
