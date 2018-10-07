@@ -951,7 +951,7 @@ table.list tbody tr:nth-child(2n+1) td[style="background-color:#FEE7E7;"],
 table.list tbody tr:nth-child(2n+1) td[style="background-color:#DDFFDD;"] {
     background-color: #f0faff !important;
 }
-table.list tbody tr:nth-child(2n+1):hover td {
+table.list tbody tr:hover td {
     background: #ffe9d2 !important;
 }
 table.list tbody tr:hover td, table.list tbody tr.highlight td {
