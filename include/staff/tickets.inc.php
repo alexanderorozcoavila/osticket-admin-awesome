@@ -555,7 +555,7 @@ return false;">
 		<!-- Head Priority -->	
 					<th class="head-priority" <?php echo $pri_sort;?>>
 						<a <?php echo $pri_sort; ?> href="tickets.php?sort=pri&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							title="Sort By Priority <?php echo $negorder; ?>">			
+							>			
 							</a>
 					</th>
 
@@ -568,19 +568,19 @@ return false;">
 		<!-- Head Date -->            
 					<th class="head-date">
 						<a  <?php echo $date_sort; ?> href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							title="<?php echo sprintf(__('Sort by %s %s'), __('Date'), __($negorder)); ?>"><?php echo __('Due'); ?></a>
+							><?php echo __('Date'); ?></a>
 					</th>  
 
 		<!-- Head Client -->             
 					<th class="head-client">
 						<a <?php echo $name_sort; ?> href="tickets.php?sort=name&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							 title="<?php echo sprintf(__('Sort by %s %s'), __('Name'), __($negorder)); ?>"><?php echo __('Client');?></a>
+							 ><?php echo __('Client');?></a>
 					</th>
 
 		<!-- Head Description -->            
 					<th class="head-description">
 						 <a <?php echo $subj_sort; ?> href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							title="<?php echo sprintf(__('Sort by %s %s'), __('Subject'), __($negorder)); ?>"><?php echo __('Description'); ?></a>
+							><?php echo __('Description'); ?></a>
 					</th>
 
 		<!-- Head Status -->             
@@ -588,7 +588,7 @@ return false;">
 					if($search && !$status) { ?>
 						<th class="head-status">
 							<a <?php echo $status_sort; ?> href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-								title="<?php echo sprintf(__('Sort by %s %s'), __('Status'), __($negorder)); ?>"><?php echo __('Status');?></a>
+								><?php echo __('Status');?></a>
 					</th>
 
 		<!-- Head Closed By --> <!-- OR -->    
@@ -602,7 +602,7 @@ return false;">
 						if(!strcasecmp($status,'closed')) { ?>
 							<th class="head-closed-by">
 								<a <?php echo $staff_sort; ?> href="tickets.php?sort=staff&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-									title="<?php echo sprintf(__('Sort by %s %s'), __("Closing Agent's Name"), __($negorder)); ?>"><?php echo __('Closed By'); ?></a>
+									><?php echo __('Closed By'); ?></a>
 					</th> 
 		<!-- OR -->
 		<!-- Head Assigned To -->    
@@ -610,7 +610,7 @@ return false;">
 						} else { //assigned to ?>
 							<th class="head-assigned-to">
 								<a <?php echo $assignee_sort; ?> href="tickets.php?sort=assignee&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-									title="<?php echo sprintf(__('Sort by %s %s'), __('Assignee'), __($negorder)); ?>"><?php echo __('Assigned To'); ?></a>
+									><?php echo __('Assigned To'); ?></a>
 					</th>         
 		<!-- Head Department -->             
 						<?php
@@ -618,7 +618,7 @@ return false;">
 					} else { ?>
 						<th class="head-department">
 							<a <?php echo $dept_sort; ?> href="tickets.php?sort=dept&order=<?php echo $negorder;?><?php echo $qstr; ?>"
-								title="<?php echo sprintf(__('Sort by %s %s'), __('Department'), __($negorder)); ?>"><?php echo __('Dept'); ?></a>
+								><?php echo __('Dept'); ?></a>
 					</th>                
 
 					<?php
@@ -627,7 +627,7 @@ return false;">
 		<!-- Head ID --> 
 					<th class="head-id">
 						<a style="padding-left:7px;" <?php echo $id_sort; ?> href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							title="<?php echo sprintf(__('Sort by %s %s'), __('Ticket ID'), __($negorder)); ?>"><?php echo __('ID'); ?></a>
+							><?php echo __('ID'); ?></a>
 					</th>   
 
 				</tr>
