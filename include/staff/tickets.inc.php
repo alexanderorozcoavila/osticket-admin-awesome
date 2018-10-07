@@ -814,9 +814,20 @@ return false;">
 
 		<!-- Table Client -->				
 					<td class="table-client" nowrap><?php
-						if ($T['collab_count'])
-							echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
-								.$T['collab_count'].'"><i class="icon-group"></i></span>';
+						if ($T['collab_count']){
+                            $ticket=Ticket::lookup($T['ticket_id']);
+                        $thread = $ticket->getThread();
+                        $collabs=$thread->getCollaborators();
+                        $colaboradores = "";
+                        $coma = '';
+                        foreach($collabs as $collab) {
+                            $colaboradores = $colaboradores.$coma.$collab->getEmail();
+                            $coma = ',<br>';
+                        }
+                        echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
+								.$colaboradores.'"><i class="icon-group"></i></span>';
+                        }
+							
 						?><span class="truncate" style="max-width:<?php
 							echo $T['collab_count'] ? '150px' : '170px'; ?>"><a href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php
 						$un = new UsersName($T['user__name']);
