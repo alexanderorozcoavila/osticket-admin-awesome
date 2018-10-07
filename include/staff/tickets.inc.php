@@ -627,7 +627,7 @@ return false;">
 		<!-- Head ID --> 
 					<th class="head-id">
 						<a style="padding-left:7px;" <?php echo $id_sort; ?> href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>"
-							><?php echo __('ID'); ?></a>
+							title="<?php echo sprintf(__('Sort by %s %s'), __('Ticket ID'), __($negorder)); ?>"><?php echo __('ID'); ?></a>
 					</th>   
 
 				</tr>
