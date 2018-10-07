@@ -72,7 +72,7 @@ if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
         print $api->scp(false);
     ?>);
     $("#right-menu" ).click(function() {
-        if($("#sidr-right" ).css('right') == 'none'){
+        if($("#sidr-right" ).css('right') == '0px'){
             $("#sidr-right" ).css('right','none');
         }else{
             $("#sidr-right" ).css('right','0px');
