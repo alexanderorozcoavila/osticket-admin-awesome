@@ -686,7 +686,6 @@ return false;">
 
             ?>
         <!-- Table Priority  --inicio-- -->
-                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>" inicio>
                 <tr id="<?php echo $T['ticket_id']; ?>">	
                 
 
@@ -887,7 +886,11 @@ return false;">
 				<tr class="mobile-only-bottom-spacer">
 					<td colspan="3"></td>
                 </tr>
-                </a>
+                <tr id="<?php echo $T['ticket_id']; ?>">
+                <td class="table-date" nowrap>  
+                    textos
+                </td>
+                </tr>
 				<?php
 				} //end of foreach
 			if (!$total)
