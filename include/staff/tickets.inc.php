@@ -791,7 +791,7 @@ return false;">
                 <td nowrap ><span class="truncate" style="max-width: 169px"><?php
                     echo Format::htmlchars($lc); ?></span></td>
             </tr>
-            <tr>
+            <!--<tr>
                 
                 <?php
                 $ticketprew=Ticket::lookup($T['ticket_id']);
@@ -825,13 +825,13 @@ return false;">
                     }
                 
                 ?>
-                <td colspan="7">
+                 <td colspan="7">
                 <p class="<?php echo $selected; ?>"><?php echo $linea1; ?></p>
-                <!-- <span class="preview_2" style="display:none;">
+                <span class="preview_2" style="display:none;">
                 <?php //echo $linea2; ?>
-                </span> -->
+                </span> 
                 </td>
-            </tr>
+            </tr>-->
             <?php
             } //end of foreach
         if (!$total)
