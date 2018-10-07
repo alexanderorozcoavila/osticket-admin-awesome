@@ -1,4 +1,37 @@
 <?php
+
+
+$link = mysqli_connect("localhost", "administrador", "BtCFfa~G5n=9", "nous00_os1");
+                        
+if ($link == false) {
+    die("ERROR: Could not connect. "
+                .mysqli_connect_error());
+}
+
+$sql = "SELECT id, thread_id, timestamp as hora, DATE_ADD(timestamp, INTERVAL ".$cfg->getScriptConflictTime()." MINUTE) as limite, NOW() as hora_actual FROM `os_thread_event` WHERE `data` = 'notedit'";
+// print $sql;
+// exit;
+$res = mysqli_query($link, $sql);
+while ($row = mysqli_fetch_array($res)) {
+    $hora_thread = strtotime($row['hora']);
+    $hora_limite = strtotime($row['limite']);
+    $hora_actual = strtotime($row['hora_actual']);
+    if($hora_actual >= $hora_limite){
+        $sql2 ="DELETE FROM `os_thread_event` WHERE `os_thread_event`.`id` = ".$row['id'];
+        $resultado = mysqli_query($link, $sql2);
+        if($resultado){
+            // echo $row['thread_id'].": liberado...";
+            // echo "\n";
+        }else{
+            // echo $row['thread_id'].": en espera...";
+            // echo "\n";
+        }
+    }else{
+        // echo $row['thread_id'].": en espera...";
+        // echo "\n";
+    }
+
+}
 $search = SavedSearch::create();
 $tickets = TicketModel::objects();
 $clear_button = false;
@@ -632,9 +665,30 @@ return false;">
 					$tid=sprintf('<b>%s</b>',$tid);
 				}
 				?>
+                <?php
+                if(isset($_GET['status'])){
+                    $statusLista = '&status='.$_GET['status'];
+                }else{
+                    $statusLista = '&status=open';
+                }
 
-		<!-- Table Priority -->
-				<tr id="<?php echo $T['ticket_id']; ?>">	
+                $ticket=Ticket::lookup($T['ticket_id']);
+                if($ticket->getThread()->getLogConflict($T['ticket_id'])){
+                    if($ticket->getThread()->getLogConflictUser($T['ticket_id'])){
+                        $nombreagente = "";
+                    }else{
+                        $nombreagentes = $ticket->getThread()->getLogConflictUserAgente($T['ticket_id']);
+                        $nombreagente =  $nombreagentes["username"];   
+                    }
+                }else{
+                    $nombreagente = "";
+                }
+
+            ?>
+        <!-- Table Priority  --inicio-- -->
+                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
+                <tr id="<?php echo $T['ticket_id']; ?>">	
+                
 
 					<td class="cursor priority <?php echo $T['cdata__:priority__priority_desc']; ?>" style="cursor:pointer" nowrap >
 						<a style="display:block;" class="preview cursor" href="#" onclick='return false;'
@@ -832,7 +886,8 @@ return false;">
 				</tr>
 				<tr class="mobile-only-bottom-spacer">
 					<td colspan="3"></td>
-				</tr>
+                </tr>
+                </a>
 				<?php
 				} //end of foreach
 			if (!$total)
