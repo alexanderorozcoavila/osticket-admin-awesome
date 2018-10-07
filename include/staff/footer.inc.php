@@ -71,6 +71,13 @@ if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
         $api = new ConfigAjaxAPI();
         print $api->scp(false);
     ?>);
+    $("#sidr-right" ).click(function() {
+        if($("#sidr-right" ).css('right')){
+            $("#sidr-right" ).css('right','none');
+        }else{
+            $("#sidr-right" ).css('right','0px');
+        }
+    });
 </script>
 <?php
 if ($thisstaff
