@@ -3154,6 +3154,7 @@ table.form_table.fixed tbody:nth-child(3) th[colspan="2"]:nth-child(1) {
     border: 1px solid #AAA;
     border-radius: 2px;
     box-shadow: rgba(0,0,0,0.4) 0 10px 26px;
+    left: calc((100%/2) - 250px) !important;
 }
 .dialog th {
     background-color: initial;
