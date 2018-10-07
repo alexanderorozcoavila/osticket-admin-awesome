@@ -686,7 +686,7 @@ return false;">
 
             ?>
         <!-- Table Priority  --inicio-- -->
-                <tr id="<?php echo $T['ticket_id']; ?>">	
+                <tr id="<?php echo $T['ticket_id']; ?>" class="tr_ticket_es">	
                 
 
 					<td class="cursor priority <?php echo $T['cdata__:priority__priority_desc']; ?>" style="cursor:pointer" nowrap >
@@ -1088,7 +1088,14 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 </div>
 <script type="text/javascript">
 
-
+$('.tr_ticket_es').hover(function() {
+    id = this.attr('id');
+    console.log(id);
+    $('#'+id).css('background-color', '#fbf0e4 !important');
+    }, function() {
+    // vuelve a dejar el <div> como estaba al hacer el "mouseout"
+    $('#'+id).css('background-color', '');
+    });
 $('.conflictoTicket').click(function(){
     var $input = $( this );
     nombre = $input.attr('nombreagente');
