@@ -120,7 +120,7 @@ if ($lang) {
                 </a>
             </div>
 
-            <div class="header" style="float: left;margin-top: 4px;
+            <div id="texto-header" class="header" style="float: left;margin-top: 4px;
     border-left: 1px solid;
     height: 25px;padding-top: 2px;
     padding-left: 7px;">

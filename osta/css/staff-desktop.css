@@ -3876,6 +3876,9 @@ i.icon-spinner:before {
   transition: transform .2s, -webkit-transform .2s;
 }
 @media screen and (min-width: 760px) {
+    #texto-header{
+        display: none;
+    }
   .checkbox:hover input + span, .radio:hover input + span {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
