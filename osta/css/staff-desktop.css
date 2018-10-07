@@ -4143,12 +4143,14 @@ form#header-bg {
     margin: 0 0 9px 0;
 }
  @media screen and (max-width: 850px) {
-    #texto-header{
-        display: none;
-    }
      #one-theme, #two-theme {
          width:auto;
          float:none;
+    }
+}
+@media screen and (max-width: 980px) {
+    #texto-header{
+        display: none;
     }
 }
 a[href="theme.php?"] {
