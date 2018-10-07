@@ -686,7 +686,7 @@ return false;">
 
             ?>
         <!-- Table Priority  --inicio-- -->
-                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
+                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>" inicio>
                 <tr id="<?php echo $T['ticket_id']; ?>">	
                 
 
