@@ -71,12 +71,10 @@ if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
         $api = new ConfigAjaxAPI();
         print $api->scp(false);
     ?>);
-    $("#right-menu" ).click(function() {
-        if($("#sidr-right" ).css('right') == '0px'){
-            $("#sidr-right" ).css('right','none');
-        }else{
-            $("#sidr-right" ).css('right','0px');
-        }
+    
+
+    $( "#right-menu" ).click(function() {
+        $("#sidr-right").toggleClass( "mostrarmenu" );
     });
 </script>
 <?php

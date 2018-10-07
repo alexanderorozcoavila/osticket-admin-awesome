@@ -187,7 +187,7 @@ if ($lang) {
                 </script>
             </div>
 
-        <div id="sidr-right" class="sidr right" style="transition: right 0.2s ease 0s;">
+        <div id="sidr-right" class="sidr right">
             <?php include ROOT_DIR . 'osta/inc/staff-mobile-menu.html'; ?>
         </div>    	
     <!-- END Header -->

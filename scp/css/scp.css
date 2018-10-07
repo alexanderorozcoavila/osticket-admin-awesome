@@ -16,6 +16,11 @@ body {
     padding:0;
 }
 
+.mostrarmenu{
+    transition: right 0.2s ease 0s;
+    right: 0px;
+}
+
 .conflictoTicket{
     color: #128dbe;
     cursor: pointer;
