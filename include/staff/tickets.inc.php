@@ -828,11 +828,27 @@ return false;">
 								.$colaboradores.'"><i class="icon-group"></i></span>';
                         }
 							
-						?><span class="truncate" style="max-width:<?php
+                        ?>
+                        <?php 
+                            if($nombreagente == ""){
+                        ?>
+						<span class="truncate" style="max-width:<?php
 							echo $T['collab_count'] ? '150px' : '170px'; ?>"><a href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php
 						$un = new UsersName($T['user__name']);
 							echo Format::htmlchars($un);
 						?></a></span>
+                        <?php
+                            }else{
+                        ?>
+                        <span class="truncate conflictoTicket" nombreagente="<?php echo $nombreagente; ?>" style="max-width:<?php
+							echo $T['collab_count'] ? '150px' : '170px'; ?>"><a><?php
+						$un = new UsersName($T['user__name']);
+							echo Format::htmlchars($un);
+						?></a></span>
+                        <?php
+                        
+                            }
+                        ?>
 					</td>
 
 		<!-- Table Description -->
