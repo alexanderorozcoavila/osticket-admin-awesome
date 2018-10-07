@@ -1089,7 +1089,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 <script type="text/javascript">
 
 $('.tr_ticket_es').hover(function() {
-    id = this.attr('id');
+    id = $(this).attr('id');
     console.log(id);
     $('#'+id).css('background-color', '#fbf0e4 !important');
     }, function() {
