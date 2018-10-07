@@ -17,8 +17,8 @@ body {
 }
 
 .mostrarmenu{
-    transition: right 0.2s ease 0s;
-    right: 0px;
+    
+    right: 0px !important;
 }
 
 .conflictoTicket{
