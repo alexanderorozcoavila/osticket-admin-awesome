@@ -886,7 +886,7 @@ return false;">
 				<tr class="mobile-only-bottom-spacer">
 					<td colspan="3"></td>
                 </tr>
-                <tr id="<?php echo $T['ticket_id']; ?>">
+                <tr>
                 <td colspan="7" class="table-date" nowrap>  
                     textos
                 </td>
