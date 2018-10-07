@@ -1094,7 +1094,7 @@ $('.tr_ticket_es').hover(function() {
     $('.td_ticket'+id).css('background-color', '#fbf0e4 !important');
     }, function() {
     // vuelve a dejar el <div> como estaba al hacer el "mouseout"
-    $('.'+id).css('background-color', '');
+    $('.td_ticket'+id).css('background-color', '');
     });
 $('.conflictoTicket').click(function(){
     var $input = $( this );
