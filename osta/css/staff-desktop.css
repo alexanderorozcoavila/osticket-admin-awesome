@@ -1551,6 +1551,7 @@ form[action="#sequence/manage"] i.icon-plus {
     border: .5px solid #aaa;
     border-radius: 6px;
 }
+*/
 .tip_menu {
     margin: 20px 0 0 0;
     border-top: .5px solid #aaa;
@@ -1565,7 +1566,7 @@ form[action="#sequence/manage"] i.icon-plus {
     float: left;
     padding: 0 16px;
     border-right: .5px solid #ffffff;	
-} */
+} 
 /* ==========================================================================
  CHECKBOX
 ========================================================================== */
