@@ -725,11 +725,26 @@ return false;">
 								   <tr class="accordion-row">
 									  <td colspan="1" class="accordion-td name">
 										 <div class="inner-client-summary">
-											<!-- Table Client -->	
-											<a href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php
+                                            <!-- Table Client -->	
+                                            <?php 
+                                                    if($nombreagente == ""){
+                                                ?>
+                                                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php
 											   $un = new UsersName($T['user__name']);
 												echo Format::htmlchars($un);
-											   ?></a></span>
+											   ?></a>
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                   <a class="conflictoTicket" nombreagente="<?php echo $nombreagente; ?>"><?php
+											   $un = new UsersName($T['user__name']);
+												echo Format::htmlchars($un);
+											   ?></a> 
+                                                <?php
+                                                
+                                                    }
+                                                ?>
+											</span>
 										 </div>
 										 <div class="details">
 											<ul>
@@ -778,9 +793,22 @@ return false;">
 											   href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
 											   
 											   
-												<a href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
-													<?php echo $subject; ?>
-												</a>
+                                               <?php 
+                                                    if($nombreagente == ""){
+                                                ?>
+                                                <a href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
+                                                    <?php echo $subject; ?>
+                                                </a>
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                    <a class="conflictoTicket" nombreagente="<?php echo $nombreagente; ?>">
+                                                    <?php echo $subject; ?>
+                                                </a>  
+                                                <?php
+                                                
+                                                    }
+                                                ?>
 											   
 											   
 											   </div>
