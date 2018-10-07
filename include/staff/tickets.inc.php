@@ -1003,7 +1003,7 @@ return false;">
                 
                 ?>
                 <tr>
-                <td colspan="7" class="table-date" nowrap>  
+                <td colspan="7" class="table-date td_ticket<?php echo $T['ticket_id']; ?>" nowrap >  
                 <div class="<?php echo $selected; ?>" style="width: 891px;"><?php echo $linea1; ?></div>
                 </td>
                 </tr>
@@ -1091,10 +1091,10 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
 $('.tr_ticket_es').hover(function() {
     id = $(this).attr('id');
     console.log(id);
-    $('#'+id).css('background-color', '#fbf0e4 !important');
+    $('.td_ticket'+id).css('background-color', '#fbf0e4 !important');
     }, function() {
     // vuelve a dejar el <div> como estaba al hacer el "mouseout"
-    $('#'+id).css('background-color', '');
+    $('.'+id).css('background-color', '');
     });
 $('.conflictoTicket').click(function(){
     var $input = $( this );
