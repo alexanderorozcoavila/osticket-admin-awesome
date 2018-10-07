@@ -931,7 +931,7 @@ return false;">
                 ?>
                 <tr>
                 <td colspan="7" class="table-date" nowrap>  
-                    <?php echo $linea1; ?>
+                <div class="<?php echo $selected; ?>" style="width: 891px;"><?php echo $linea1; ?></div>
                 </td>
                 </tr>
 				<?php
