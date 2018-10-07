@@ -1072,7 +1072,7 @@ return false;">
 
 
 <div class="dialog" id="alert2" style="top: 75.2857px;
-    left: 470px;display: none;">
+    left: calc((100%/2) - 250px) !important;display: none;">
     <h3><span id="title">Conflicto de tramitación de ticket</span></h3>
     <a class="close" href=""><i class="icon-remove-circle"></i></a>
     <hr>
