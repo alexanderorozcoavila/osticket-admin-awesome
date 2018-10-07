@@ -180,28 +180,28 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             
             if($siguiente){
                 $ticket_nav=Ticket::lookup($siguiente["ticket_id"]);
-                echo "paso 1";
+                // echo "paso 1";
                 if($ticket_nav->getThread()->getLogConflict($siguiente["ticket_id"])){
-                    echo "paso 2";
+                    // echo "paso 2";
                     if($ticket_nav->getThread()->getLogConflictUser($siguiente["ticket_id"])){
-                        echo "paso 3";
+                        // echo "paso 3";
                         $nombreagente = "";
                     }else{
-                        echo "paso 4";
+                        // echo "paso 4";
                         $nombreagentes = $ticket_nav->getThread()->getLogConflictUserAgente($siguiente["ticket_id"]);
                         $nombreagente =  $nombreagentes["username"];   
                     }
                 }else{
-                    echo "paso 5";
+                    // echo "paso 5";
                     $nombreagente = "";
                 }
                 if($nombreagente == ""){
-                    echo "paso 6";
+                    // echo "paso 6";
                     ?>
                     <span class="action-button pull-right" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket"><a href="tickets.php?id=<?php echo $siguiente["ticket_id"].$statusUrl; ?>"><i class="icon-arrow-left"></i></a></span>   
                     <?php
                 }else{
-                    echo "paso 7";
+                    // echo "paso 7";
                     ?>
                     <span class="action-button pull-right conflictoTicket" data-placement="bottom" data-toggle="tooltip" title="Anterior ticket" nombreagente="<?php echo $nombreagente; ?>"><a><i class="icon-arrow-left"></i></a></span>   
                     <?php
