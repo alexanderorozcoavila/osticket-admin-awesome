@@ -848,10 +848,22 @@ return false;">
 						echo $base; ?>px; max-height: 1.2em"
 						class="<?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>link truncate"
 						<?php if ($flag) { ?> title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>>
-						
+                        <?php 
+                            if($nombreagente == ""){
+                        ?>
 						<a href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
 							<?php echo $subject; ?>
-						</a>
+                        </a>
+                        <?php
+                            }else{
+                        ?>
+                              <a class="conflictoTicket" nombreagente="<?php echo $nombreagente; ?>">
+							<?php echo $subject; ?>
+                        </a>  
+                        <?php
+                        
+                            }
+                        ?>
 						
 						</div>
 						<?php 
@@ -885,12 +897,29 @@ return false;">
 
 
 		<!-- Table ID -->
-					<td class="table-id" title="<?php echo $T['user__default_email__address']; ?>" nowrap>
-					  <a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
-						title="Preview Ticket"
-						href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
-						data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
-						><?php echo $tid; ?></a>
+                    <td class="table-id" title="<?php echo $T['user__default_email__address']; ?>" nowrap>
+                        <?php 
+                            if($nombreagente == ""){
+                            ?>
+                                <a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
+                                title="Preview Ticket"
+                                href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+                                data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+                                ><?php echo $tid; ?></a>
+                            <?php
+                            }else{
+                            ?>
+                                
+                                <span class="Icon <?php echo strtolower($T['source']); ?>Ticket preview conflictoTicket"
+                                title="Preview Ticket" 
+                                style="cursor:pointer;color: #128dbe;"
+                                nombreagente="<?php echo $nombreagente; ?>"
+                                href="tickets.php?id=<?php echo $T['ticket_id'].$statusLista; ?>"
+                                data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
+                                ><?php echo $tid; ?></span>
+                            <?php
+                            }
+                        ?>
 					</td>					
 
 				</tr>
@@ -996,3 +1025,33 @@ return false;">
      </p>
     <div class="clear"></div>
 </div>
+
+
+<div class="dialog" id="alert2" style="top: 75.2857px;
+    left: 470px;display: none;">
+    <h3><span id="title">Conflicto de tramitación de ticket</span></h3>
+    <a class="close" href=""><i class="icon-remove-circle"></i></a>
+    <hr>
+    <div id="body" style="min-height: 20px;">El ticket selecciónado ya está siendo tramitado por el agente <a id="nombreagente"></a><br>
+No es posible que dos agentes realicen operaciones sobre un mismo ticket de forma simultánea. Para más información, contacte con dicho agente</div>
+    <hr style="margin-top:3em">
+    <p class="full-width">
+        <span class="buttons pull-right">
+            <input type="button" value="ACEPTAR" class="close ok">
+        </span>
+     </p>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+
+
+$('.conflictoTicket').click(function(){
+    var $input = $( this );
+    nombre = $input.attr('nombreagente');
+    $('#nombreagente').text(nombre);
+    $('.dialog#alert2').css({"top": "75.2857px" , "left": "470px"});
+    $('.dialog#alert2').show();
+
+
+});
+</script>
