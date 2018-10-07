@@ -988,14 +988,14 @@ return false;">
                 foreach($allowed_tags as $tag ){
                     $descripcion = strip_tags($lineas, $tag);
                 }
-                $linea1 = substr($descripcion, 0, 250);
+                $linea1 = substr($descripcion, 0, 300);
                 // $linea2 = substr($descripcion, 101, 202);
                     if(($thisstaff->getDefaultPreviewTicket() == 1) || ($thisstaff->getDefaultPreviewTicket() == 2)){
                         if($thisstaff->getDefaultPreviewTicket() == 1){
                         $selected = "preview_1 preview-line-hide";
                         }
                         if($thisstaff->getDefaultPreviewTicket() == 2){
-                        $selected = "preview_1";
+                        $selected = "preview_1 preview-line-show";
                         } 
                     }else{
                         $selected = "preview_1 preview-line-hide";
