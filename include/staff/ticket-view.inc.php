@@ -177,6 +177,8 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             <?php
             }
             // $nombreagente = "";
+            print var_dump($siguiente);
+            
             if($siguiente){
                 if($ticket_nav->getThread()->getLogConflict($siguiente["ticket_id"])){
                     if($ticket_nav->getThread()->getLogConflictUser($siguiente["ticket_id"])){
