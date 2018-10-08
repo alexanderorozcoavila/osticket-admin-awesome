@@ -1,7 +1,7 @@
 <?php
 
 
-$link = mysqli_connect("localhost", "administrador", "BtCFfa~G5n=9", "nous00_os1");
+$link = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
                         
 if ($link == false) {
     die("ERROR: Could not connect. "
@@ -1086,7 +1086,6 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
      </p>
     <div class="clear"></div>
 </div>
-<h1><?php echo DBPASS; ?></h1>
 <script type="text/javascript">
 
 $('.tr_ticket_es').hover(function() {
