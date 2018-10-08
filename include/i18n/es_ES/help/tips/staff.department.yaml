@@ -1,0 +1,69 @@
+---
+type:
+  title: Tipo
+  content: >
+    Selecciona <span class="doc-desc-opt">privado</span> si desea que se asignen máscaras a este departamento en el portal del cliente. Además, cuando se etiquete como <span class="doc-desc-opt">privado</span>,la<span class="doc-desc-title">firma de departamento</span>no será mostrado en las respuestas de Email.<br/><br/>Por lo menos un departamento debe ser <span class="doc-desc-opt">público</span>
+email:
+  title: Correo electrónico
+  content: >
+    Dirección de correo electrónico utilizada cuando las respuestas se envían a los usuarios cuando los Agentes envían respuestas a los Tickets.
+template:
+  title: Conjunto de plantillas
+  content: >
+    Correo electrónico <span class="doc-desc-title"> Pantilla</span> utilizado para Auto-respuestas y alertas &amp;avisos para Tickets enviados a este departamento.
+  links:
+    - 
+      title: Administrar plantillas
+      href: /scp/templates.php
+sla:
+  title: SLA
+  content: >
+    Service Level Agreement para Tickets envíados a este departamento.
+  links:
+    - 
+      title: Gestionar planes de SLA
+      href: /scp/slas.php
+manager:
+  title: Gerente del Departamento
+  content: >
+    Seleccione un <span class="doc-desc-title"> Gerente</span> para este departamento. <br/> <br/> Los gerentes pueden configurarse para recibir alertas especiales y también tienen el derecho de cancelar la asignación de Tickets.
+  links:
+    - 
+      title: Administrar alertas &amp; avisos
+      href: /scp/settings.php?t=alerts
+group_membership:
+  title: Alertas &amp; avisos de destinatarios
+  content: >
+    Seleccione a los destinatarios de las <span class="doc-desc-title"> alertas &amp;avisos</span>configurados.
+  links:
+    - 
+      title: Configurar alertas &amp; avisos
+      href: /scp/settings.php?t=alerts
+sandboxing:
+  title: Restricciones de Asignación de Tickets
+  content: >
+    Habilite esta opción para restringir la asignación de Tickets para sólo incluir los miembros de este Departamento. El acceso al Departamento puede extenderse a los Grupos, si también está habilitada la <span class="doc-desc-title"> Pertenencia al grupo</span>.
+auto_response_settings:
+  title: Configuración de autoresponder
+  content: >
+    Esto le permite anular la configuración global de Autoresponder para este departamento.
+new_ticket:
+  title: Auto-Respuesta de Nuevo Ticket
+  content: >
+    Puede desactivar la respuesta automática enviada al usuario cuando un ticket nuevo es creado y enroutado a este departamento.
+new_message:
+  title: Nuevo mensaje de respuesta automática
+  content: >
+    Puede desactivar la respuesta automática enviada al usuario para confirmar un nuevo mensaje publicado por Tickets en este Departamento.
+auto_response_email:
+  title: Correo electrónico de respuesta automática
+  content: >
+    Seleccione una dirección de correo electrónico desde donde se envían Auto-respuestas para este departamento.
+department_access:
+  title: Acceso de grupo
+  content: >
+    Permitir que agentes de otro de departamentos accedan a los Tickets de este Departamento.
+department_signature:
+  title: Firma del departamento
+  content: >
+    La Firma se pone a disposición, como una opción para departamentos <span class="doc-desc-opt"> Públicos</span>, en las respuestas de Agente.

@@ -1,0 +1,10 @@
+---
+type:
+  title: Tipo
+  content: >
+    Si el Tipo del Departamento es privado, la Firma del Departamento no estará disponible en las respuestas ni se mostrará la asignación del departamento en el Portal del cliente.
+dept_manager:
+  title: Gerente del Departamento
+  content: >
+    Puede elegir a un Agente como Gerente del Departamento para recibir alertas y avisos de Tickets en el departamento.
+  0: Los agentes no tienen que ser miembros del Departamento para ser el gerente del Departamento

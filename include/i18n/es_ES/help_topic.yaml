@@ -1,0 +1,36 @@
+---
+- 
+  topic_id: 1
+  isactive: 1
+  ispublic: 1
+  dept_id: 1
+  priority_id: 2
+  topic: Consulta general
+  notes: Preguntas sobre los productos o servicios
+- 
+  isactive: 1
+  ispublic: 1
+  dept_id: 1
+  priority_id: 1
+  topic: Comentarios
+  notes: |
+    Tickets que se refieren principalmente a los departamentos de ventas y facturación
+- 
+  topic_id: 10
+  isactive: 1
+  ispublic: 1
+  dept_id: 1
+  priority_id: 2
+  topic: Informar de un problema
+  notes: |
+    Temas relacionados con productos, servicios o equipos
+- 
+  topic_pid: 10
+  isactive: 1
+  ispublic: 1
+  dept_id: 1
+  sla_id: 1
+  priority_id: 3
+  topic: Problema de acceso
+  notes: |
+    Reportar la imposibilidad de acceso físico o virtual

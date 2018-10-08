@@ -1,0 +1,7 @@
+---
+source: Web
+name: Soporte de osTicket
+email: support@osticket.com
+subject: osTicket ha sido actualizado!
+message: |
+  <p>osTicket  se ha actualizado con éxito! Consulte las notas de la versión (http://osticket.com/wiki/Release_Notes) para obtener más información acerca de cambios y nuevas características. </p> <p>Asegúrese de unirse a los foros de osTicket <a href="http://osticket.com/forums"> </a> y nuestra lista de correo<a href="http://osticket.com/updates"> </a> para mantenerse al día sobre anuncios, actualizaciones de seguridad y alertas! Su contribución a la comunidad de osTicket será apreciada! </p> <p>El equipo osTicket está comprometido a proporcionar apoyo a todos los usuarios a través de nuestros recursos en línea gratuitos y una amplia gama de paquetes de soporte comercial y de servicios. Para obtener más información, o para discutir sus necesidades, póngase en contacto con nosotros hoy en http://osticket.com/support/. Cualquier comentario será apreciado! </p> <p>Si administrar y actualizar esta instalación osTicket es desalentador, puede intentar osTicket como servicio alojado en http://www.supportsystem.com/ -- no actualizando nunca, y podemos importar sus datos!  Con infraestructura de llave en mano de SupportSystem, consigue osTicket en las mejores condiciones, dejándole libre para centrarse en sus clientes sin la carga de asegurarse de que la aplicación es estable, está mantenida y es seguras. </p> <p>-<br/> su equipo osTicket <br/> http://osticket.com/</p>

@@ -1,0 +1,57 @@
+---
+- 
+  isactive: 1
+  name: Domadores de Leones
+  notes: Administradores. Estas personas (inicialmente) tienen el control total de todos los departamentos a los que tienen acceso.
+  can_create_tickets: 1
+  can_edit_tickets: 1
+  can_delete_tickets: 1
+  can_close_tickets: 1
+  can_assign_tickets: 1
+  can_transfer_tickets: 1
+  can_ban_emails: 1
+  can_manage_premade: 1
+  can_manage_faq: 1
+  can_post_ticket_reply: 1
+  depts:
+    - 1
+    - 2
+    - 3
+- 
+  isactive: 1
+  name: Paseadores de Elefantes
+  notes: |
+    Habitantes de la torre de marfil
+  can_create_tickets: 1
+  can_edit_tickets: 1
+  can_delete_tickets: 1
+  can_close_tickets: 1
+  can_assign_tickets: 1
+  can_transfer_tickets: 1
+  can_ban_emails: 1
+  can_manage_premade: 1
+  can_manage_faq: 1
+  can_post_ticket_reply: 1
+  depts:
+    - 1
+    - 2
+    - 3
+- 
+  isactive: 1
+  name: Entrenadores de pulgas
+  notes: |
+    Miembros del personal
+  can_create_tickets: 1
+  can_edit_tickets: 1
+  can_delete_tickets: 0
+  can_close_tickets: 1
+  can_assign_tickets: 1
+  can_transfer_tickets: 1
+  can_ban_emails: 0
+  can_manage_premade: 0
+  can_manage_faq: 0
+  can_post_ticket_reply: 1
+  depts:
+    - 1
+    - 2
+    - 3

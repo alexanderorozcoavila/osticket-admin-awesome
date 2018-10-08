@@ -1,0 +1,44 @@
+---
+notes: |
+  Se enviara un alerta a los agentes cuando haya actividad, como una nota interna o alguna respuesta de algún agente sea añadida al ticket.
+subject: |
+  Alerta de nueva actividad interna
+body: |
+  <h3><strong>Hola %{recipient.name},</strong></h3>
+  Un agente ha registrado actividad en un ticket<a
+  href="%{ticket.staff_link}">#%{ticket.number}</a>
+  <br>
+  <br>
+  <table>
+  <tbody>
+  <tr>
+  <td>
+  <strong>De:</strong>:
+  </td>
+  <td>
+  %{note.poster}
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <strong>Título</strong>:
+  </td>
+  <td>
+  %{note.title}
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  %{note.message}
+  <br>
+  <br>
+  <hr>
+  Para ver o responder el Ticket, por favor <a
+  href="%{ticket.staff_link}">inicie sección</a> en el Sistema de Soporte
+  <br>
+  <br>
+  <em style="font-size: small; ">Att: Tu Servicio de Atención al Cliente</em>
+  <br>
+  <img src="cid:b56944cb4722cc5cda9d1e23a3ea7fbc"
+  alt="Powered by osTicket" width="126" height="19" style="width: 126px;">}

@@ -1,0 +1,13 @@
+---
+groups:
+  title: Grupos
+  content: >
+    Los grupos son utilizados para definir los permisos de un agente en la mesa de ayuda. Los grupos también pueden conceder acceso a los departamentos que no sean el departamento principal de un agente.
+status:
+  title: Estado
+  content: >
+    Si <span class="doc-desc-opt"> deshabilitado</span>, los agentes asignados a este grupo no puede firmar y no recibirán alertas del departamento &amp; notificaciones.
+department_access:
+  title: Acceso al Departamento
+  content: >
+    Compruebe todos los departamentos a los que los miembros del grupo tienen acceso.

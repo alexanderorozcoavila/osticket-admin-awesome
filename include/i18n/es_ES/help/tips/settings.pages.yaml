@@ -1,0 +1,29 @@
+---
+company_information:
+  title: Información de la Compañia
+  content: >
+    Esto hace referencia a la empresa u organización que se beneficiará de software de osTicket y el personal de apoyo. La información aquí aparecerán en firmas de email (es decir, el pie de página) cuando se responden entradas por agentes.
+  links:
+    - 
+      title: Formulario de información de la empresa
+      href: /scp/forms.php?type=C
+landing_page:
+  title: Página de inicio
+  content: >
+    La <span class="doc-desc-title">Pagina de inicio</span> se muestra en la portada de su sitio de soporte.
+offline_page:
+  title: Página offline
+  content: >
+    Se muestra la <span class="doc-desc-title"> Página fuera offline</span> en el sitio de soporte cuando el panel de ayuda está desconectada, ver el Panel de Administración -&gt; Configuración -&gt; Sistema -&gt; Estado de Helpdesk.
+default_thank_you_page:
+  title: Página de agradecimiento por defecto
+  content: >
+    Se muestra la <span class="doc-desc-title"> página de agradecimiento</span> al cliente cuando un <span class="doc-desc-title"> cliente</span> envía un nuevo ticket. <br/> <br/> <span class="doc-desc-title"> Gracias</span> páginas pueden ser asociadas a temas de ayuda.
+logos:
+  title: Logos
+  content: >
+    Puede personalizar el <span class="doc-desc-title"> Logo</span> que se mostrará al cliente en el Portal del cliente (es decir, el sitio de soporte).
+upload_a_new_logo:
+  title: Subir un nuevo logo
+  content: >
+    Elige una imagen en los formatos .gif, .jpg o .png. Nosotros cambiaremos proporcionalmente el tamaño de la visualización de la imagen. Sin embargo, no redimensionaremos la imagen. Por lo tanto acelerar la carga de épocas, se recomienda que usted mantenga su imagen cerca de tamaño de la imagen por defecto (817px &times; 170px).

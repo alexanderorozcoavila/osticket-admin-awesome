@@ -1,0 +1,9 @@
+---
+listing_type:
+  title: Tipos de Lista
+  content: >
+    Elija <span class="doc-desc-opt">pública (publicar)</span> si le gustaría que esta <span class="doc-desc-title">FAQ</span> sea publicada en la base de datos si la categoría se familiariza como pública.
+  links:
+    - 
+      title: Habilitar la base de datos pública para el Portal del cliente
+      href: /scp/settings.php?t=kb

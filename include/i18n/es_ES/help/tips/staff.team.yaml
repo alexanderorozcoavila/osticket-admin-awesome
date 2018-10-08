@@ -1,0 +1,33 @@
+---
+teams:
+  title: Equipos
+  content: >
+    Los equipos forman equipos de uno o más agentes para tratar la firma del Ticket. Los miembros del equipo pueden abarcar los límites del departamento.
+status:
+  title: Estado
+  content: >
+    Si <span class="doc-desc-opt"> está deshabilitado</span>, este equipo no estará disponible para tareas de Tickets ni recibir alertas &amp; avisos sobre asignaciones anteriores.
+lead:
+  title: Guía del equipo
+  content: >
+    Un <span class="doc-desc-title"> equipo</span> puede tener un líder designado que puede recibir <span class="doc-desc-title"> alertas &amp;avisos</span> separados de los miembros.
+  links:
+    - 
+      title: Configurar alertas &amp; avisos
+      href: /scp/settings.php?t=alerts
+assignment_alert:
+  title: Alerta de asignación
+  content: >
+    Puede desactivar la<span class="doc-desc-title">alerta de selección de Tickets</span> para los Tickets asignados a este equipo.
+  links:
+    - 
+      title: Configurar alertas &amp; avisos
+      href: /scp/settings.php?t=alerts
+members:
+  title: Miembros del equipo
+  content: >
+    Los miembros del equipo se configuran a través del perfil del agente.
+  links:
+    - 
+      title: Administrar personal
+      href: /scp/staff.php

@@ -1,0 +1,6 @@
+---
+notes: >
+  Estas plantillas definen la página que se muestra a los clientes después de completar el formulario de inscripción. La plantilla debe mencionar que el sistema les envía un enlace de confirmación de correo electrónico y cuál es el próximo paso en el proceso de registro.
+name: "Registro de cuenta"
+body: >
+  <div><strong>Gracias por registrarse para una cuenta.</strong> <br/> <br />  te enviamos un correo electrónico a la dirección que indicaste. Por favor siga el enlace en el correo electrónico para confirmar tu cuenta y acceder a tus Tickets. </div>

@@ -1,0 +1,29 @@
+---
+custom_lists:
+  title: Listas Personalizadas
+  content: >
+    Tus <span class="doc-desc-title"> listas personalizadas</span> le permitirá crear desplegables con las opciones predefinidas de que un cliente puede seleccionar sus <span class="doc-desc-title"> Formularios personalizados</span>. Si desea utilizar este <span class="doc-desc-title"> formulario personalizado</span> como un <span class="doc-desc-title"> objetivo</span> en un <span class="doc-desc-title"> filtro de Ticket</span>, asegúrese de agregar esta lista al formulario de <span class="doc-desc-title"> detalles del Ticket</span>.
+name:
+  title: Nombre
+  content: >
+    
+plural_name:
+  title: Nombre plural
+  content: >
+    
+sort_order:
+  title: Tipo de orden
+  content: >
+    
+list_s_initial_items:
+  title: Elementos iniciales de lista
+  content: >
+    
+value:
+  title: Valor
+  content: >
+    
+extra:
+  title: Extra
+  content: >
+    Abreviaturas y esas cosas. Si llegas a utilizar códigos internos de los elementos en esta lista, los códigos y las abreviaturas pueden introducirse en esta columna. Si la lista personalizada se representa como un <span class="doc-desc-option"> TypeAhead</span>, estas abreviaturas pueden utilizarse para buscar los elementos de lista personalizada.

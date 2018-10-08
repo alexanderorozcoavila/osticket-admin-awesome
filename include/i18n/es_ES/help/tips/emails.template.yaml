@@ -1,0 +1,21 @@
+---
+email_templates:
+  title: Plantillas de Correo
+  content: >
+    Los conjuntos de plantillas de correo electrónico se utilizan para enviar alertas y respuestas automáticas para diversas acciones que pueden tener lugar durante la vida útil de un Ticket.
+template_to_clone:
+  title: Plantilla para Clonar
+  content: >
+    Elija una Pantilla para clonar o simplemente comienze con las plantillas de correo electrónico de fábrica.
+language:
+  title: Idioma
+  content: >
+    Seleccione el idioma deseado para las <span class="doc-desc-title"> Plantillas de Correo Electrónico </span> <span class="doc-desc-opt"> de fábrica</span>. Los paquetes de idioma están disponibles en osTicket.com.
+  links:
+    - 
+      title: Paquetes de Idioma de osTicket
+      href: 'http://osticket.com/download'
+status:
+  title: Estado
+  content: >
+    Los Conjuntos de Plantillas <span class="doc-desc-opt"> habilitados</span>  están disponibles para ser asociados con Departamentos y establecer el valor predeterminado del sistema.  Los Conjuntos de Plantillas actualmente en uso no pueden ser <span class="doc-desc-opt"> deshabilitados</span>.

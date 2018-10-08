@@ -1,0 +1,11 @@
+---
+notes: |
+  La página de agradecimiento se muestra al cliente cuando un usuario crea un nuevo Ticket a través del portal del cliente.
+name: Gracias
+body: |
+  <div>%{ticket.name}, 
+  <br>
+  <br>
+  Gracias por ponerse en contacto con nosotros.
+  <br>
+  <br><p>Su solicitud de soporte ha sido creado y un representante se pondrá en breve en contacto con usted si es necesario.</p> El Equipo de soporte </div>

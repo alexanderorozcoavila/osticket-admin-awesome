@@ -1,0 +1,13 @@
+---
+site_pages:
+  title: Páginas principales
+  content: >
+    Las página principales pueden servir como un mini sistema de gestión de contenidos (CMS). Puede definir múltiples inicios, sin conexión, y las páginas de agradecimiento y modificarlos en la configuración de empresa y temas de ayuda.
+  links:
+    - 
+      title: Configuración de la empresa
+      href: /scp/settings.php?t=pages
+type:
+  title: Tipo
+  content: >
+    páginas <span class="doc-desc-opt"> sin conexión</span> aparecen en el portal del cliente si su sistema de soporte está deshabilitado. páginas de <span class="doc-desc-opt"> Inicio</span> se muestran en la Página principal de su portal del cliente. <span class="doc-desc-opt"> gracias a ti</span> las páginas aparecen después de que un usuario envía un Ticket. <span class="doc-desc-opt"> otras</span> páginas pueden ser utilizadas como un simple gestor de contenidos (CMS).

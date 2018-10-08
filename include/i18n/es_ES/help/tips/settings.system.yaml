@@ -1,0 +1,45 @@
+---
+helpdesk_status:
+  title: Estado del Sistema de Soporte
+  content: >
+    Si se cambia el estado a <span class="doc-desc-opt">Offline</span>, se desactivará la interfaz del cliente.  Esto no afecta  a cualquier interacción normal con el agente  con el Panel del agente.
+helpdesk_url:
+  title: URL del Sistema de Soporte
+  content: >
+    Esta dirección URL es la base de su instalación de osTicket. Se utiliza en las comunicaciones de correo electrónico para dirigir a los usuarios finales a su sistema de soporte.
+helpdesk_name_title:
+  title: Nombre o título del sistema de soporte
+  content: >
+    Este es el título que aparece en la pestaña del navegador. Si tu página de ayuda del escritorio está marcada, este será el título o el nombre de la página principal.
+default_department:
+  title: Departamento por defecto
+  content: >
+    Elija un  <span class="doc-desc-title"> Departamento</span>por defecto para los Tickets que no se enrutan automáticamente a un departamento. <br/> <br/> El Ticket puede ser enrutado  sobre el tema de ayuda,correo entrante y ajustes de filtro de Ticket.
+default_page_size:
+  title: Tamaño de página por defecto
+  content: >
+    Elija el número de artículos mostrados por página en las colas de Ticket en el Panel de personal. Cada agente también puede personalizar este número por cuenta propia bajo <span class="doc-desc-title"> My preferences</span>.
+default_log_level:
+  title: Nivel de registro predeterminado
+  content: >
+    Determinar el nivel mínimo de problemas que se registrarán en el <span class="doc-desc-title"> registro del sistema</span>. <span class="doc-desc-opt"> depurar</span> representa la menor gravedad y <span class="doc-desc-opt"> Error</span> representa la mayor severidad. Por ejemplo, si quieres ver todos los problemas en los <span class="doc-desc-title"> Registros del sistema</span>, elija <span class="doc-desc-opt"> Debug</span>.
+purge_logs:
+  title: Purgar registros
+  content: >
+    Determinar cuánto le gustaría mantener <span class="doc-desc-title"> Registros del sistema</span> antes de que se eliminen.
+default_name_formatting:
+  title: Nombre predeterminado de formato
+  content: >
+    Seleccione un formato para los nombres de todo el sistema. Las plantillas de correo electrónico se usarán para los nombres si no se especifica ningún otro formato en la variable.
+  links:
+    - 
+      title: Variables de la plantilla de correo electrónico compatibles
+      href: 'http://osticket.com/wiki/Email_templates'
+date_time_options:
+  title: Fecha &amp; opciones de hora
+  content: >
+    Los siguientes ajustes definen la fecha &amp; hora para clientes. Puede cambiar cómo aparecen siguiendo los caracteres de formato de fecha PHP. Las fechas que se muestra a continuación ilustran simplemente el resultado de sus valores correspondientes.
+  links:
+    - 
+      title: Consulte la tabla de formato de fecha PHP
+      href: 'htttp://www.php.net/manual/en/function.date.php'

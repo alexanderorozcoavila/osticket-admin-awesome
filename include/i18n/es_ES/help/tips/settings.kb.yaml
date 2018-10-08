@@ -1,0 +1,29 @@
+---
+knowledge_base_settings:
+  title: Opciones de la Base de Conocimientos
+  content: >
+    
+knowledge_base_status:
+  title: Estado de la Base de conocimientos
+  content: >
+    Habilita esta opción para permitir a los usuarios acceso al autoservicio para sus artículos de la base de conocimiento público.<br><br>La categoría de la base de conocimientos y FAQs pueden hacerse internas (visibles sólo por agentes.)
+  links:
+    - 
+      title: Administrar la Base de conocimientos
+      href: /scp/kb.php
+restrict_kb:
+  title: Restingir acceso a la Base de Conocimientos
+  content: >
+    Habilite esta opción para evitar que los usuarios no registrados accedan a sus artículos de la base de conocimiento desde la interfaz del cliente.
+  links:
+    - 
+      title: Configuración de control de acceso
+      href: /scp/settings.php?t=access
+canned_responses:
+  title: Respuestas predefinidas
+  content: >
+    Habilita esta opción para permitir que los agentes utilicen <span class="doc-desc-title"> Respuestas predefinidas</span> al responder a los Tickets.
+  links:
+    - 
+      title: Gestionar las respuestas predefinidas
+      href: /scp/canned.php

@@ -1,0 +1,13 @@
+---
+name:
+  title: Nombre
+  content: >
+    Elija un nombre de discriptivo para este <span class="doc-desc-title"> Plan de SLA</span> que reflejará su propósito.
+grace_period:
+  title: Período de validez
+  content: >
+    Determinar el número de horas después de haber creado un Ticket que tras el cual estará automáticamente marcado como atrasados. <br><br><em>Las horas se cuentan desde la creación del Ticket.</em>
+transient:
+  title: Transitorio
+  content: >
+    Los SLAs Transitorios son considerados temporales y pueden ser reemplazados por un SLA no transitorio ante una transferencia de <span class="doc-desc-opt">Departamento</span> o cuando su <span class="doc-desc-title">Tema de Ayuda</span> es modificado.

@@ -1,0 +1,65 @@
+---
+contact_information:
+  title: Información de Contacto
+  content: >
+    
+username:
+  title: Nombre de Usuario
+  content: >
+    Solo aquellos Agentes con status de administrador pueden cambiar un nombre de usuario. Si usted es un Agente con privilegios de Administrador, puede hacer esto seleccionando un Agente para editar desde la pestaña <span class="doc-desc-title">Miembros del Personal</span>.
+  links:
+    - 
+      title: Cambiar un usuario como administrador
+      href: /scp/staff.php
+time_zone:
+  title: Zona Horaria
+  content: >
+    
+daylight_saving:
+  title: Horario de Verano
+  content: >
+    
+maximum_page_size:
+  title: Tamaño máximo de página
+  content: >
+    
+auto_refresh_rate:
+  title: Frecuencia de Actualización
+  content: >
+    
+default_signature:
+  title: Firma Predeterminada
+  content: >
+    
+default_paper_size:
+  title: Tamaño del papel predeterminado
+  content: >
+    
+show_assigned_tickets:
+  title: Ver tickets asignados
+  content: >
+    Active para ocultar su nombre de la fila <span class="doc-desc-title">Abrir Tickets</span> para los tickets que le han sido asignados. Al ocultar el nombre del <span class="doc-desc-title"> Departmento</span>  al que perteneces, reemplazará tu nombre donde habitualmente es mostrado.
+password:
+  title: Contraseña
+  content: >
+    
+current_password:
+  title: Contraseña actual
+  content: >
+    
+new_password:
+  title: Nueva contraseña
+  content: >
+    
+confirm_new_password:
+  title: Confirmar nueva contraseña
+  content: >
+    
+signature:
+  title: Firma
+  content: >
+    Crea una <span class="doc-desc-title">firma</span> opcional, que puede aparecer al final de tus respuestas de Tickets. Si esta <span class="doc-desc-title">firma </span> aparece, o no, depende de la <span class="doc-desc-title"> la plantilla de correo</span> que será usada en la respuesta del ticket.
+  links:
+    - 
+      title: Crear plantillas de correo en el panel de administración
+      href: /scp/templates.php
