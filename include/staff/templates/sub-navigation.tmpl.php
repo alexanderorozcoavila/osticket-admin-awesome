@@ -26,7 +26,7 @@ if(($subnav=$nav->getSubMenu()) && is_array($subnav)){
         $submenu = explode(" ",$item['desc']);
         $menuTexto = $item['desc'];
         if($submenu[0] == "Abrir"){
-            $menuTexto = "Abierto ".$submenu[1];
+            $menuTexto = "Abiertos ".$submenu[1];
         }
 
         echo sprintf('<li><a class="%s" 33 href="%s" title="%s" id="%s" %s>%s</a></li>',
