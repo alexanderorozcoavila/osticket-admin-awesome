@@ -1086,6 +1086,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
      </p>
     <div class="clear"></div>
 </div>
+<h1><?php echo DBPASS; ?></h1>
 <script type="text/javascript">
 
 $('.tr_ticket_es').hover(function() {
