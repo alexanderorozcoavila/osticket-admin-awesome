@@ -1002,7 +1002,7 @@ return false;">
                     }
                 
                 ?>
-                <tr>
+                <tr id="<?php echo $T['ticket_id']; ?>">
                 <td colspan="7" class="table-date td_ticket<?php echo $T['ticket_id']; ?>" nowrap >  
                 <div class="<?php echo $selected; ?>" style="width: 891px;"><?php echo $linea1; ?></div>
                 </td>
