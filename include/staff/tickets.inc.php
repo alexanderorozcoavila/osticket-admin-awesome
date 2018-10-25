@@ -8,7 +8,7 @@ if ($link == false) {
                 .mysqli_connect_error());
 }
 
-$sql = "SELECT id, thread_id, timestamp as hora, DATE_ADD(timestamp, INTERVAL ".$cfg->getScriptConflictTime()." MINUTE) as limite, NOW() as hora_actual FROM `os_thread_event` WHERE `data` = 'notedit'";
+$sql = "SELECT id, thread_id, timestamp as hora, DATE_ADD(timestamp, INTERVAL ".$cfg->getScriptConflictTime()." MINUTE) as limite, NOW() as hora_actual FROM ".TABLE_PREFIX."thread_event WHERE data = 'notedit'";
 // print $sql;
 // exit;
 $res = mysqli_query($link, $sql);
@@ -17,7 +17,7 @@ while ($row = mysqli_fetch_array($res)) {
     $hora_limite = strtotime($row['limite']);
     $hora_actual = strtotime($row['hora_actual']);
     if($hora_actual >= $hora_limite){
-        $sql2 ="DELETE FROM `os_thread_event` WHERE `os_thread_event`.`id` = ".$row['id'];
+        $sql2 ="DELETE FROM os_thread_event WHERE ".TABLE_PREFIX."thread_event.id = ".$row['id'];
         $resultado = mysqli_query($link, $sql2);
         if($resultado){
             // echo $row['thread_id'].": liberado...";

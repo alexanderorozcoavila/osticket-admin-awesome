@@ -136,13 +136,13 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
             $idTicket = $_GET['id'];
 
             //anterior
-            $sql1 = "SELECT ticket_id FROM os_ticket WHERE ticket_id = (select min(ticket_id) from os_ticket where ticket_id > '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
+            $sql1 = "SELECT ticket_id FROM ".TABLE_PREFIX."ticket WHERE ticket_id = (select min(ticket_id) from ".TABLE_PREFIX."ticket where ticket_id > '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
             // print $sql1;
             $anterior = db_fetch_array(db_query($sql1));
             // print_r($anterior);
             // exit;
             //siguiente
-            $sql2 = "SELECT ticket_id FROM os_ticket WHERE ticket_id = (select max(ticket_id) from os_ticket where ticket_id < '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
+            $sql2 = "SELECT ticket_id FROM ".TABLE_PREFIX."ticket WHERE ticket_id = (select max(ticket_id) from ".TABLE_PREFIX."ticket where ticket_id < '".$idTicket."' and status_id = '".$id_status."' ".$extra.")";
             $siguiente = db_fetch_array(db_query($sql2));
             ?>
 

@@ -24,7 +24,7 @@ function updatePriority ( ticketid, value ) {
 
 <?php
 
-$sql = "SELECT * FROM ost_ticket__cdata WHERE ticket_id = '".$ticket->getId()."'";
+$sql = "SELECT * FROM ".TABLE_PREFIX."ticket__cdata WHERE ticket_id = '".$ticket->getId()."'";
 $result = db_query($sql);
 while($row = db_fetch_array($result)){
     $priority = $row['priority'];

@@ -65,6 +65,7 @@ if ($lang) {
     <?php
     if($ost && ($headers=$ost->getExtraHeaders())) {
         echo "\n\t".implode("\n\t", $headers)."\n";
+        echo "<br class='1'>";
     }
     ?>
 	<?php include ROOT_DIR . '/osta/inc/staff-head.html'; ?>	
