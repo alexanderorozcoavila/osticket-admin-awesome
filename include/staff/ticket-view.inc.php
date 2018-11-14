@@ -124,7 +124,7 @@ No es posible que dos agentes realicen operaciones sobre un mismo ticket de form
                 $statusUrl = '&status=open';
             }
 
-            $sql="SELECT * FROM `os_ticket_status` WHERE `state` LIKE '".$statusLista."'";
+            $sql="SELECT * FROM `".TABLE_PREFIX."ticket_status` WHERE `state` LIKE '".$statusLista."'";
             //return $sql;
             $resultado = db_fetch_array(db_query($sql));
             if($resultado){

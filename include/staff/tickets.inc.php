@@ -17,7 +17,7 @@ while ($row = mysqli_fetch_array($res)) {
     $hora_limite = strtotime($row['limite']);
     $hora_actual = strtotime($row['hora_actual']);
     if($hora_actual >= $hora_limite){
-        $sql2 ="DELETE FROM os_thread_event WHERE ".TABLE_PREFIX."thread_event.id = ".$row['id'];
+        $sql2 ="DELETE FROM ".TABLE_PREFIX."thread_event WHERE ".TABLE_PREFIX."thread_event.id = ".$row['id'];
         $resultado = mysqli_query($link, $sql2);
         if($resultado){
             // echo $row['thread_id'].": liberado...";

@@ -277,7 +277,7 @@ class Thread extends VerySimpleModel {
             // XXX: Use $user here
         }
 
-        $sql="SELECT * FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        $sql="SELECT * FROM ".TABLE_PREFIX."thread_event WHERE thread_id = ".db_input($thread)."
         AND data = 'notedit' and username LIKE ".db_input($username);
         //return $sql;
         if(db_fetch_array(db_query($sql))){
@@ -288,7 +288,7 @@ class Thread extends VerySimpleModel {
     }
 
     function getLogConflictUserAgente($thread) {
-        $sql="SELECT username FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        $sql="SELECT username FROM ".TABLE_PREFIX."thread_event WHERE thread_id = ".db_input($thread)."
         AND data = 'notedit'";
         //return $sql;
         $d=db_fetch_array(db_query($sql));
@@ -296,7 +296,7 @@ class Thread extends VerySimpleModel {
     }
 
     function getLogConflict($thread) {
-        $sql="SELECT * FROM os_thread_event WHERE thread_id = ".db_input($thread)."
+        $sql="SELECT * FROM ".TABLE_PREFIX."thread_event WHERE thread_id = ".db_input($thread)."
         AND data = 'notedit'";
         //return $sql;
         if(db_fetch_array(db_query($sql))){
