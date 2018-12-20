@@ -925,7 +925,7 @@ return false;">
 						$displaystatus=TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
 						if(!strcasecmp($T['status__state'],'open'))
 							$displaystatus="<b>$displaystatus</b>";
-						echo "<td></td>";
+						echo "<td>".$displaystatus."</td>";
 					} else { ?>
 
 
