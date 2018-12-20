@@ -40,12 +40,12 @@ define('ADMIN_EMAIL','devnull2@installatron.com');
 # Mysql Login info
 define('DBTYPE','mysql');
 define('DBHOST','localhost');
-define('DBNAME','nous00_os1');
-define('DBUSER','nous00_os1');
-define('DBPASS','H.dI5sATjo5NWCrlXuM80');
+define('DBNAME','osticket_2');
+define('DBUSER','omar');
+define('DBPASS','admin');
 
 # Table prefix
-define('TABLE_PREFIX','os_');
+define('TABLE_PREFIX','ost_');
 
 #
 # SSL Options
