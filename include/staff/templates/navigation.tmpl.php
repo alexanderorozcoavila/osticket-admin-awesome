@@ -3,10 +3,15 @@ if(($tabs=$nav->getTabs()) && is_array($tabs)){
     foreach($tabs as $name =>$tab) {
         if ($tab['href'][0] != '/')
             $tab['href'] = ROOT_PATH . 'scp/' . $tab['href'];
+            if($tab['desc']=="Agentes"){
+            	$texto = "Accesos";
+            }else{
+            	$texto = $tab['desc'];
+            }
         echo sprintf('<li class="%s %s" style="color:#212331;"><a style="color:#212331;" href="%s">%s</a>',
             $tab['active'] ? 'active':'inactive',
             @$tab['class'] ?: '',
-            $tab['href'],$tab['desc']);
+            $tab['href'],$texto);
         if(!$tab['active'] && ($subnav=$nav->getSubMenu($name))){
             echo "<ul style=\"color:#212331;\">\n";
             foreach($subnav as $k => $item) {
